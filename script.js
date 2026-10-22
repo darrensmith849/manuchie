@@ -1,15 +1,12 @@
 /* ==========================================================================
    MANUCHIE — interactions
    --------------------------------------------------------------------------
-   CONFIG — the real values live in config.js (git-ignored, deployed).
-     bookingEmail : where enquiries (and the "Email" link) go.
-     web3formsKey : free key from https://web3forms.com. Until it's set the
-                    form falls back to opening the visitor's mail app — no
-                    enquiry is lost.
+   CONFIG — the real value lives in config.js (git-ignored, deployed).
+     bookingEmail : where the booking form and the "Email" link send people.
+                    Both open the visitor's own email app, addressed here.
    ========================================================================== */
 const CONFIG = Object.assign({
   bookingEmail: "bookings@manuchie.com",
-  web3formsKey: "",
 }, window.MANUCHIE_CONFIG);
 
 /* mark that JS is on so CSS can safely hide reveal elements */
@@ -129,26 +126,22 @@ document.documentElement.classList.add("js");
       "&body=" + encodeURIComponent("Hi Manuchie,\n\nI'd love to work on…\n\n");
   }
 
-  /* booking form — POSTs to Web3Forms (the form's action). Without JS the
-     browser validates the required fields and submits it itself; with JS it is
-     validated here, sent with fetch, and the result shown in the status line. */
+  /* booking form — opens the visitor's own email app with the enquiry written
+     out, addressed to CONFIG.bookingEmail. Without JS the browser validates the
+     required fields and hands the form to the mail app itself (the form's
+     mailto: action); with JS it is validated here and the email composed tidily. */
   const form = $("#bookingForm");
   const statusEl = $("#formStatus");
-  const btn = $("#submitBtn");
-  const label = btn && $(".btn-label", btn);
   const setStatus = (m, k) => { if (statusEl) { statusEl.textContent = m; statusEl.className = "form-status" + (k ? " " + k : ""); } };
-  const keySet = Boolean(CONFIG.web3formsKey) && !CONFIG.web3formsKey.startsWith("PASTE_");
   const fields = form ? ["name", "email", "message"].map((n) => form.elements[n]) : [];
-  let sending = false;
 
   if (form) {
     form.noValidate = true; // validated in the submit handler, using the browser's own messages
-    const keyField = form.elements.access_key;
-    if (keyField && keySet) keyField.defaultValue = keyField.value = CONFIG.web3formsKey;
+    form.action = "mailto:" + CONFIG.bookingEmail + "?subject=" + encodeURIComponent("Session enquiry via manuchie");
     fields.forEach((f) => on(f, "input", () => f.removeAttribute("aria-invalid")));
   }
 
-  const mailtoFallback = (d) => {
+  const openMail = (d) => {
     const body = `Name: ${d.name}\nEmail: ${d.email}\n\n${d.message}\n`;
     window.location.href = "mailto:" + CONFIG.bookingEmail +
       "?subject=" + encodeURIComponent("Session enquiry via manuchie") +
@@ -156,9 +149,8 @@ document.documentElement.classList.add("js");
     setStatus("Opening your email app… thanks!", "ok");
   };
 
-  on(form, "submit", async (e) => {
+  on(form, "submit", (e) => {
     e.preventDefault();
-    if (sending) return;
     if (form.elements.botcheck && form.elements.botcheck.checked) return;
 
     // whitespace-only answers count as empty
@@ -166,32 +158,7 @@ document.documentElement.classList.add("js");
     fields.forEach((f) => (f.checkValidity() ? f.removeAttribute("aria-invalid") : f.setAttribute("aria-invalid", "true")));
     if (!form.reportValidity()) return;
 
-    const d = { name: fields[0].value, email: fields[1].value, message: fields[2].value };
-    if (!keySet) { mailtoFallback(d); return; }
-
-    sending = true;
-    btn.disabled = true;
-    form.setAttribute("aria-busy", "true");
-    if (label) label.textContent = "Sending…";
-    setStatus("");
-
-    try {
-      const res = await fetch(form.action, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: new FormData(form),
-      });
-      const out = await res.json().catch(() => ({}));
-      if (res.ok && out.success) { form.reset(); setStatus("Got it — I'll be in touch soon. Thank you.", "ok"); }
-      else setStatus("Something went wrong. Please email " + CONFIG.bookingEmail + ".", "err");
-    } catch (_) {
-      mailtoFallback(d);
-    } finally {
-      sending = false;
-      btn.disabled = false;
-      form.removeAttribute("aria-busy");
-      if (label) label.textContent = "Send it over";
-    }
+    openMail({ name: fields[0].value, email: fields[1].value, message: fields[2].value });
   });
 
   /* in-page links — scroll-margin-top (CSS) keeps targets clear of the fixed

@@ -25,33 +25,21 @@ python3 -m http.server 8099
 
 ---
 
-## ✅ Go live: the 2 things to configure
+## ✅ Go live: the 1 thing to configure
 
-Everything works out of the box **except** where booking enquiries are delivered. Set
-these two values and the contact form sends real email.
-
-Both live in **`config.js`** — git-ignored so the key never lands in the public repo,
-but copied into `dist/` and deployed with the site. Create it if it's missing:
+The booking form and the "Email" button don't send anything themselves: they open the
+visitor's own email app with the enquiry written out, addressed to Manuchie. Set that
+address in **`config.js`** — git-ignored, but copied into `dist/` and deployed with the
+site. Create it if it's missing:
 
 ```js
 window.MANUCHIE_CONFIG = {
-  web3formsKey: "PASTE_YOUR_WEB3FORMS_KEY_HERE",   // ← free key, see below
-  bookingEmail: "bookings@manuchie.com",           // ← Manuchie's real booking inbox
+  bookingEmail: "bookings@manuchie.com",   // ← Manuchie's real booking inbox
 };
 ```
 
-1. **`bookingEmail`** — the address that should receive studio/songwriting/collaboration
-   enquiries. This also powers the "Email directly" button.
-
-2. **`web3formsKey`** — a free access key that lets the form send email with no backend:
-   - Go to **https://web3forms.com**, enter the booking email, and copy the access key.
-   - Paste it into `web3formsKey` in `config.js`. That's the only place it goes.
-
-> Until a real key is set, the form still works — it gracefully falls back to opening the
-> visitor's email app pre-addressed to `bookingEmail`, so no enquiry is ever lost.
-
-*(Prefer a different form service? Formspree, Getform and Netlify Forms all work — swap
-the `fetch()` URL in `script.js`.)*
+`build.sh` also writes this address into the form itself, so it works for visitors
+without JavaScript too.
 
 ---
 
@@ -121,7 +109,7 @@ index.html   — page markup & content
 styles.css   — design system (colour, type, layout, scroll-driven animation)
 fonts.css    — self-hosted Fraunces + Inter (@font-face, same subsets as Google Fonts)
 script.js    — nav, mobile menu, form handling, Spotify fallback
-config.js    — Web3Forms key + booking email (git-ignored, deployed)
+config.js    — booking email (git-ignored, deployed)
 build.sh     — builds dist/ for deployment
 assets/      — photography (originals + -480/-640/-720/-960/-1280 responsive copies)
 assets/fonts — font files

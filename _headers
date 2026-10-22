@@ -5,9 +5,9 @@
 #   data: ........... favicon + film-grain SVG (img-src)
 #   open.spotify.com  Spotify player iframe + reachability probe script
 #   embed.music.apple.com  Apple Music fallback player (only if Spotify is blocked)
-#   api.web3forms.com booking form (fetch + no-JS POST)
+#   mailto: ........ booking form opens the visitor's email app
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://open.spotify.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://open.spotify.com https://embed.music.apple.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self' https://open.spotify.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://open.spotify.com https://embed.music.apple.com; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: SAMEORIGIN

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Build dist/ for Cloudflare Pages.
 #   - copies the page, styles, scripts, self-hosted fonts and only the images the page uses
-#   - puts the Web3Forms key from config.js into the form, so the no-JS POST works
-#     (config.js is git-ignored — the key never lands in the repo)
+#   - writes the booking email from config.js into the form's mailto: action, so the
+#     form opens the visitor's email app even without JavaScript (config.js is git-ignored)
 #   - versions CSS, JS and images with a content hash (?v=…) so _headers can cache them for a year
 #
 # Deploy:  ./build.sh && npx wrangler pages deploy dist --project-name manuchie --branch main
@@ -17,14 +17,15 @@ grep -oE 'assets/[a-z0-9-]+\.jpg' index.html | sort -u | while read -r f; do cp 
 
 if [ -f config.js ]; then
   cp config.js dist/
-  key=$(sed -nE 's/.*web3formsKey: *"([^"]*)".*/\1/p' config.js)
-  if [[ "$key" =~ ^[A-Za-z0-9-]+$ && "$key" != PASTE_* ]]; then
-    perl -pi -e 's/(name="access_key" value=")"/${1}'"$key"'"/' dist/index.html
+  email=$(sed -nE 's/.*bookingEmail: *"([^"]*)".*/\1/p' config.js)
+  if [[ "$email" =~ ^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$ ]]; then
+    EMAIL="$email" perl -pi -e 's/action="mailto:[^?"]*/action="mailto:$ENV{EMAIL}/' dist/index.html
   else
-    echo "note: no Web3Forms key in config.js — with JS the form opens the visitor's mail app; without JS it cannot send"
+    echo "warning: no valid bookingEmail in config.js — the form keeps its default address"
   fi
+  [ "$email" = "bookings@manuchie.com" ] && echo "note: bookingEmail is still the placeholder bookings@manuchie.com"
 else
-  echo "warning: config.js missing — the page will use the default booking email and no form key"
+  echo "warning: config.js missing — the page will use the default booking email"
 fi
 
 # content-hash the CSS/JS references

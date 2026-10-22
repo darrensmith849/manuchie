@@ -22,12 +22,12 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f0b07'/%3E%3Ctext x='50' y='73' font-family='Georgia,serif' font-size='66' font-style='italic' font-weight='700' text-anchor='middle' fill='%23e3ae54'%3EM%3C/text%3E%3C/svg%3E" />
 
   <!-- fonts are self-hosted (fonts.css); preload the Latin files the first screen uses -->
-  <link rel="preload" href="assets/fonts/fraunces-v38-6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeP2Xz5c.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/fraunces-v38-6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjeveQ7ZXk8g.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/newsreader-v26-cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/newsreader-v26-cY9CfjOCX1hbuyalUrK439vCjohCBJWxZA.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="assets/fonts/inter-v20-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="fonts.css?v=1" />
+  <link rel="stylesheet" href="fonts.css?v=2" />
 
-  <link rel="stylesheet" href="styles.css?v=21" />
+  <link rel="stylesheet" href="styles.css?v=22" />
 
   <script type="application/ld+json">
   {
@@ -354,11 +354,9 @@
         </div>
       </div>
 
-      <form class="contact-form reveal" id="bookingForm" action="https://api.web3forms.com/submit" method="post" accept-charset="utf-8">
-        <!-- access_key is filled in at build time (build.sh, from config.js) and by script.js -->
-        <input type="hidden" name="access_key" value="" />
-        <input type="hidden" name="subject" value="New session enquiry — manuchie" />
-        <input type="hidden" name="from_name" value="Manuchie Website" />
+      <!-- Opens the visitor's own email app, addressed to the booking email (set in config.js;
+           build.sh writes it into this action, script.js composes the email when JS is on) -->
+      <form class="contact-form reveal" id="bookingForm" action="mailto:bookings@manuchie.com?subject=Session%20enquiry%20via%20manuchie" method="post" enctype="text/plain">
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label class="fld"><span>Your name</span><input type="text" name="name" autocomplete="name" required placeholder="First and last" /></label>
         <label class="fld"><span>Email</span><input type="email" name="email" autocomplete="email" required placeholder="you@email.com" /></label>
@@ -388,7 +386,7 @@
   </footer>
 
   <script src="config.js?v=1"></script>
-  <script src="script.js?v=14"></script>
+  <script src="script.js?v=15"></script>
   <!-- v11 -->
 </body>
 </html>
