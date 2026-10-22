@@ -295,6 +295,13 @@ button{font:inherit;cursor:pointer}
 .foot-links a:hover{color:var(--gold);border-color:var(--gold)}
 .foot-base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.6rem;font-size:.82rem;color:var(--cream-mute)}
 .foot-mantra{font-family:var(--disp);font-style:italic;color:var(--cream-soft)}
+/* site credit — the builder's mark, in the footer's own greys */
+.foot-credit-row{display:flex;justify-content:center;margin-top:2.2rem;padding-top:1.8rem;border-top:1px solid var(--line-2)}
+.foot-credit{display:inline-flex;align-items:center;gap:.7rem;font-size:.85rem;color:var(--cream-soft);transition:color .25s}
+.foot-credit-k{color:var(--cream-mute);transition:color .25s}
+.foot-credit img{height:2.75rem;width:auto;transition:transform .35s var(--ease)}
+.foot-credit:hover,.foot-credit:hover .foot-credit-k{color:var(--cream)}
+.foot-credit:hover img{transform:scale(1.06)}
 
 /* ---------- responsive ---------- */
 /* desktop: the hero fits the first screen — type, gaps and photo scale with the viewport height */

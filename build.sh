@@ -13,7 +13,7 @@ rm -rf dist
 mkdir -p dist/assets/fonts
 cp index.html styles.css fonts.css script.js _headers robots.txt sitemap.xml dist/
 cp assets/fonts/*.woff2 dist/assets/fonts/
-grep -oE 'assets/[a-z0-9-]+\.jpg' index.html | sort -u | while read -r f; do cp "$f" "dist/$f"; done
+grep -oE 'assets/[a-z0-9-]+\.(jpg|png)' index.html | sort -u | while read -r f; do cp "$f" "dist/$f"; done
 
 if [ -f config.js ]; then
   cp config.js dist/
@@ -35,7 +35,7 @@ for f in styles.css fonts.css script.js config.js; do
   perl -pi -e "s/\Q$f\E\?v=[^\"]*/$f?v=$h/g" dist/index.html
 done
 
-# content-hash relative image references in src/srcset (absolute og/twitter/JSON-LD URLs stay clean)
-perl -MDigest::SHA -pi -e 's{(?<![/\w])(assets/[\w-]+\.jpg)}{ $1 . "?v=" . substr(Digest::SHA->new(256)->addfile($1)->hexdigest, 0, 10) }ge' dist/index.html
+# content-hash relative image references (jpg/png) in src/srcset (absolute og/twitter/JSON-LD URLs stay clean)
+perl -MDigest::SHA -pi -e 's{(?<![/\w])(assets/[\w-]+\.(?:jpg|png))}{ $1 . "?v=" . substr(Digest::SHA->new(256)->addfile($1)->hexdigest, 0, 10) }ge' dist/index.html
 
 echo "dist/ ready: $(find dist -type f | wc -l | tr -d ' ') files, $(du -sh dist | cut -f1)"
