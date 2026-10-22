@@ -9,3 +9,5 @@ dist/
 assets/IMG_*
 # site config with the Web3Forms key — deployed, never committed
 config.js
+# review screenshots (not part of the site)
+screenshots/
