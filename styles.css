@@ -244,9 +244,15 @@ button{font:inherit;cursor:pointer}
 .studio-world .studio-tag{color:var(--cream);font-weight:600;margin:1.2rem 0 1.8rem}
 
 /* ---------- gallery ---------- */
-.gallery{display:flex;gap:clamp(.6rem,1.4vw,1rem);overflow-x:auto;padding:clamp(3.5rem,7vw,6rem) var(--gutter);scroll-padding-inline:var(--gutter);scroll-snap-type:x mandatory;scrollbar-width:none}
-.gallery::-webkit-scrollbar{display:none}
-.gallery figure{flex:0 0 auto;width:clamp(240px,30vw,360px);aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--line-2);scroll-snap-align:center;background:var(--surface)}
+/* the photos share the page rail edge to edge, in equal columns */
+.gallery{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:clamp(.6rem,1.4vw,1rem);padding:clamp(3.5rem,7vw,6rem) var(--gutter)}
+.gallery figure{aspect-ratio:3/4;border-radius:6px;overflow:hidden;border:1px solid var(--line-2);background:var(--surface)}
+/* phones: swipe through them */
+@media (max-width:640px){
+  .gallery{grid-auto-columns:72vw;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gutter);scrollbar-width:none}
+  .gallery::-webkit-scrollbar{display:none}
+  .gallery figure{scroll-snap-align:start}
+}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .7s var(--ease)}
 .gallery figure:hover img{transform:scale(1.04)}
 

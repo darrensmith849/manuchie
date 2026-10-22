@@ -11,7 +11,7 @@ cd "$(dirname "$0")"
 
 rm -rf dist
 mkdir -p dist/assets/fonts
-cp index.html styles.css fonts.css script.js _headers dist/
+cp index.html styles.css fonts.css script.js _headers robots.txt sitemap.xml dist/
 cp assets/fonts/*.woff2 dist/assets/fonts/
 grep -oE 'assets/[a-z0-9-]+\.jpg' index.html | sort -u | while read -r f; do cp "$f" "dist/$f"; done
 
