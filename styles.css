@@ -132,7 +132,8 @@ button{font:inherit;cursor:pointer}
   radial-gradient(60% 55% at 80% 32%,var(--accent-glow),transparent 62%),
   radial-gradient(45% 50% at 12% 88%,rgba(255,255,255,.045),transparent 60%)}
 .hero-type{position:relative;z-index:1;max-width:38rem}
-.hero-name{font-family:var(--disp);font-weight:500;font-size:clamp(3.6rem,9vw,8rem);line-height:.9;letter-spacing:-.03em;margin:1.4rem 0 .3rem;
+.hero-name{font-family:var(--disp);font-weight:500;font-size:clamp(3.6rem,9vw,8rem);line-height:.9;letter-spacing:-.03em;margin:calc(1.4rem - .14em) 0 .3rem;
+  padding-top:.14em; /* room for the tall caps inside the gradient-painted box; margin gives it back */
   background:linear-gradient(168deg,#ffffff 8%,#dcdde1 52%,#a9aab0);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero-tagline{font-family:var(--disp);font-size:clamp(1.6rem,3.2vw,2.6rem);line-height:1.1;color:var(--cream);margin-bottom:1.4rem}
 .hero-tagline em{display:block;font-style:italic;color:var(--emph)}
@@ -301,7 +302,7 @@ button{font:inherit;cursor:pointer}
   .hero{--hero-top:clamp(5.5rem,14vh,10rem);--hero-bot:clamp(1.25rem,4vh,4.5rem);
     grid-template-columns:minmax(0,1fr) auto;padding-top:var(--hero-top);padding-bottom:var(--hero-bot)}
   .hero-type{max-width:42rem}
-  .hero-name{font-size:clamp(3.6rem,min(9vw,13vh),8rem);margin-top:min(1.4rem,2vh)}
+  .hero-name{font-size:clamp(3.6rem,min(9vw,13vh),8rem);margin-top:calc(min(1.4rem,2vh) - .14em)}
   .hero-tagline{font-size:clamp(1.6rem,min(3.2vw,4.6vh),2.6rem);margin-bottom:min(1.4rem,2.2vh)}
   .hero-sub{font-size:clamp(1rem,min(1.5vw,2.3vh),1.2rem);max-width:40rem;line-height:1.55}
   .hero-sub + .hero-sub{margin-top:min(.9rem,1.6vh)}
