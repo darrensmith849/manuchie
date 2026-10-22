@@ -1,0 +1,9 @@
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+dist/
+.wrangler/
+.claude/
+# raw camera originals — the site uses the optimised lowercase copies
+assets/IMG_*

@@ -1,0 +1,143 @@
+# Manuchie — Official Website
+
+A fast, self-contained, single-page website for **Manuchie** (Emmanuel Chiwanga) —
+Zimbabwean producer, songwriter, artist and Music Director. Built with plain HTML, CSS
+and JavaScript (no build step, no dependencies) so it deploys anywhere and is easy to
+edit.
+
+A warm, photography-led editorial design (bone paper · espresso ink · terracotta) using
+Manuchie's own press and video imagery. Sections: Cover · Lead statement · Story ·
+Interstitial · Sound (live Spotify player + records index) · Company (collaborators) ·
+Studio (services) · Contact · Colophon.
+
+---
+
+## 🚀 Quick preview
+
+Just open `index.html` in a browser — or, for the embeds to behave exactly as in
+production, run a tiny local server:
+
+```bash
+# from this folder
+python3 -m http.server 8099
+# then visit http://127.0.0.1:8099
+```
+
+---
+
+## ✅ Go live: the 2 things to configure
+
+Everything works out of the box **except** where booking enquiries are delivered. Set
+these two values and the contact form sends real email.
+
+Open **`script.js`** and edit the `CONFIG` block at the top:
+
+```js
+const CONFIG = {
+  bookingEmail: "bookings@manuchie.com",       // ← Manuchie's real booking inbox
+  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",   // ← free key, see below
+};
+```
+
+1. **`bookingEmail`** — the address that should receive studio/songwriting/collaboration
+   enquiries. This also powers the "Email directly" button.
+
+2. **`web3formsKey`** — a free access key that lets the form send email with no backend:
+   - Go to **https://web3forms.com**, enter the booking email, and copy the access key.
+   - Paste it into `web3formsKey` in `script.js`.
+   - Paste the **same key** into the hidden field in `index.html`:
+     ```html
+     <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+     ```
+
+> Until a real key is set, the form still works — it gracefully falls back to opening the
+> visitor's email app pre-addressed to `bookingEmail`, so no enquiry is ever lost.
+
+*(Prefer a different form service? Formspree, Getform and Netlify Forms all work — swap
+the `fetch()` URL in `script.js`.)*
+
+---
+
+## 🖼️ The photos
+
+Real photography ships in **`assets/`** — pulled from Manuchie's press shots and music
+videos:
+
+- `portrait-terracotta.jpg` — the cover portrait (also the social-share image)
+- `harare-rooftop.jpg` — the Story spread
+
+To swap either one, drop a replacement into `assets/` (keep the same filename, or update
+the `src` in `index.html`). Landscape ~3:2 or portrait ~4:5 crops work best. The **Spotify
+player** already pulls Manuchie's real cover art automatically — no upload needed.
+
+> These images were sourced from his public Spotify/YouTube artwork for his own site. If
+> you have higher-resolution originals (or want different shots featured), send them over
+> and they'll slot straight in.
+
+---
+
+## 🌍 Deploy — Cloudflare + Hetzner
+
+Because it's static (just files), deployment is simple. Two paths, pick either — or use
+both (Cloudflare in front of Hetzner).
+
+### Path A — Cloudflare Pages (simplest, global CDN, free HTTPS)
+
+Direct upload with Wrangler, from this folder:
+
+```bash
+npx wrangler pages deploy . --project-name manuchie
+```
+
+…or connect a Git repo in the Cloudflare dashboard → **Workers & Pages → Create → Pages**,
+with **Build command: _(none)_** and **Output directory: `/`**. The included `_headers`
+file sets caching + security headers automatically. Add the custom domain under
+**Custom domains**.
+
+### Path B — Hetzner VPS, with Cloudflare for DNS/CDN/SSL in front
+
+On the Hetzner server (Caddy = auto‑HTTPS, gzip, one binary):
+
+```bash
+# 1. copy the site up (run from your machine)
+rsync -avz --delete ./ root@YOUR_HETZNER_IP:/var/www/manuchie/
+
+# 2. install Caddy on the server, then use the included Caddyfile
+sudo cp /var/www/manuchie/Caddyfile /etc/caddy/Caddyfile
+sudo systemctl reload caddy
+```
+
+In **Cloudflare** → add the domain, create an **A record** for `manuchie.com` →
+`YOUR_HETZNER_IP` (proxied / orange cloud), and set **SSL/TLS mode = Full (strict)**.
+Edit the domain names at the top of the `Caddyfile` to match.
+
+> Prefer nginx? Point its `root` at `/var/www/manuchie`, `index index.html;`, and use
+> `try_files $uri $uri/ /index.html;`.
+
+---
+
+## 📁 Files
+
+```
+index.html   — page markup & content
+styles.css   — design system (colour, type, layout, scroll-driven animation)
+script.js    — nav, mobile menu, form handling  ← CONFIG lives here
+assets/      — photography (portrait-terracotta.jpg, harare-rooftop.jpg)
+Caddyfile    — Hetzner static-hosting config
+_headers     — Cloudflare Pages caching + security headers
+README.md    — this file
+```
+
+---
+
+## 🔗 Manuchie online
+
+- Instagram — https://www.instagram.com/manuchie1/
+- Spotify — https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM
+- Apple Music — https://music.apple.com/us/artist/manuchie/1708095589
+- YouTube — https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ
+- Shazam — https://www.shazam.com/artist/manuchie/1662208702
+
+*Biography and credits compiled from public profiles across Spotify, Apple Music, Shazam
+and press. Please review the copy in `index.html` and adjust any detail you'd like worded
+differently.*

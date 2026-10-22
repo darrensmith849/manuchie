@@ -1,0 +1,30 @@
+# Caddyfile — serve the Manuchie static site on a Hetzner VPS
+# Caddy gives you automatic HTTPS (Let's Encrypt) with zero config.
+#
+#   1. Put the site files in /var/www/manuchie
+#   2. Replace manuchie.com below with the real domain
+#   3. Run:  caddy run --config /etc/caddy/Caddyfile
+#      (or:  sudo systemctl reload caddy  if installed as a service)
+
+manuchie.com, www.manuchie.com {
+	root * /var/www/manuchie
+	encode zstd gzip
+	file_server
+	try_files {path} {path}/ /index.html
+
+	# Cache fingerprint-free assets hard; keep HTML always fresh
+	@assets path *.css *.js *.woff2 *.jpg *.jpeg *.png *.svg *.ico
+	header @assets Cache-Control "public, max-age=31536000, immutable"
+	header /index.html Cache-Control "public, max-age=0, must-revalidate"
+
+	# Sensible security headers
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+}
+
+# --- If Cloudflare sits IN FRONT of this server (proxied / orange cloud) ---
+# Set Cloudflare SSL/TLS mode to "Full (strict)" and Caddy's Let's Encrypt cert
+# will validate cleanly. Point an A record for manuchie.com at this VPS's IP.
