@@ -6,20 +6,52 @@
   <title>Manuchie — Producer, Songwriter, Music Director & Keyboardist</title>
   <meta name="description" content="Manuchie (Emmanuel Manuchie Chiwanga) — contemporary Christian music producer, songwriter, music director and keyboardist. Based in Harare, Zimbabwe, and Australia. Working worldwide." />
   <meta name="theme-color" content="#0f0b07" />
+  <link rel="canonical" href="https://manuchie.pages.dev/">
 
   <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://manuchie.pages.dev/" />
+  <meta property="og:site_name" content="Manuchie" />
   <meta property="og:title" content="Manuchie — A sound rooted in faith. A vision without borders." />
   <meta property="og:description" content="Producer · Songwriter · Music Director · Keyboardist. Harare, Zimbabwe · Australia · Worldwide." />
-  <meta property="og:image" content="assets/portrait-terracotta.jpg" />
+  <meta property="og:image" content="https://manuchie.pages.dev/assets/portrait-terracotta.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Manuchie — A sound rooted in faith. A vision without borders." />
+  <meta name="twitter:description" content="Producer · Songwriter · Music Director · Keyboardist. Harare, Zimbabwe · Australia · Worldwide." />
+  <meta name="twitter:image" content="https://manuchie.pages.dev/assets/portrait-terracotta.jpg" />
 
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f0b07'/%3E%3Ctext x='50' y='73' font-family='Georgia,serif' font-size='66' font-style='italic' font-weight='700' text-anchor='middle' fill='%23e3ae54'%3EM%3C/text%3E%3C/svg%3E" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <!-- fonts are self-hosted (fonts.css); preload the Latin files the first screen uses -->
+  <link rel="preload" href="assets/fonts/fraunces-v38-6NU78FyLNQOQZAnv9bYEvDiIdE9Ea92uemAk_WBq8U_9v0c2Wa0KxC9TeP2Xz5c.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/fraunces-v38-6NU58FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK0K1ChjeveQ7ZXk8g.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/inter-v20-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="fonts.css?v=1" />
 
-  <link rel="stylesheet" href="styles.css?v=20" />
+  <link rel="stylesheet" href="styles.css?v=21" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Manuchie",
+    "alternateName": "Emmanuel Manuchie Chiwanga",
+    "jobTitle": ["Producer", "Songwriter", "Music Director", "Keyboardist"],
+    "description": "Manuchie is a contemporary Christian music producer, songwriter, music director, and keyboardist. Known for his collaborations with Jenn Johnson of Bethel Music and Annatoria, he is part of a new generation of African creatives shaping contemporary Christian music.",
+    "homeLocation": [
+      { "@type": "Place", "name": "Harare, Zimbabwe" },
+      { "@type": "Place", "name": "Australia" }
+    ],
+    "url": "https://manuchie.pages.dev/",
+    "image": "https://manuchie.pages.dev/assets/portrait-terracotta.jpg",
+    "sameAs": [
+      "https://www.instagram.com/manuchie1/",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702"
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#story">Skip to content</a>
@@ -75,7 +107,7 @@
         </div>
       </div>
       <figure class="hero-photo reveal">
-        <img src="assets/portrait-terracotta.jpg" alt="Manuchie" fetchpriority="high" />
+        <img src="assets/portrait-terracotta.jpg" alt="Manuchie" width="536" height="640" fetchpriority="high" />
         <figcaption>Emmanuel Manuchie Chiwanga</figcaption>
       </figure>
     </section>
@@ -91,7 +123,9 @@
     <!-- ===== STORY ===== -->
     <section class="story" id="story">
       <figure class="story-photo reveal">
-        <img src="assets/studio.jpg" alt="Manuchie at work in the studio" loading="lazy" />
+        <img src="assets/studio.jpg" alt="Manuchie at work in the studio" width="1119" height="1680" loading="lazy" decoding="async"
+          srcset="assets/studio-640.jpg 640w, assets/studio-960.jpg 960w, assets/studio.jpg 1119w"
+          sizes="(max-width: 540px) 100vw, (max-width: 900px) 480px, (max-width: 1400px) 42vw, 570px" />
       </figure>
       <div class="story-copy">
         <p class="sec-no reveal">01 — The Story</p>
@@ -154,7 +188,9 @@
     <!-- ===== MANTRA ===== -->
     <section class="mantra">
       <figure class="mantra-photo">
-        <img src="assets/studio-mantra.jpg" alt="Manuchie in his studio beneath the sign that reads Better Music Bigger Purpose" loading="lazy" />
+        <img src="assets/studio-mantra.jpg" alt="Manuchie in his studio beneath the sign that reads Better Music Bigger Purpose" width="1252" height="1680" loading="lazy" decoding="async"
+          srcset="assets/studio-mantra-640.jpg 640w, assets/studio-mantra-960.jpg 960w, assets/studio-mantra.jpg 1252w"
+          sizes="(max-width: 900px) 100vw, 50vw" />
       </figure>
       <div class="mantra-type">
         <p class="sec-no gold reveal">The mantra</p>
@@ -212,7 +248,9 @@
 
         <div class="featured reveal">
           <figure class="featured-art">
-            <img src="assets/worship-rays.jpg" alt="Still from the Been So Good film" loading="lazy" />
+            <img src="assets/worship-rays.jpg" alt="Still from the Been So Good film" width="1600" height="900" loading="lazy" decoding="async"
+              srcset="assets/worship-rays-640.jpg 640w, assets/worship-rays-960.jpg 960w, assets/worship-rays-1280.jpg 1280w, assets/worship-rays.jpg 1600w"
+              sizes="(max-width: 900px) 100vw, (max-width: 1400px) 45vw, 640px" />
           </figure>
           <div class="featured-meta">
             <span class="featured-k">Featured project</span>
@@ -278,11 +316,15 @@
 
     <!-- ===== GALLERY ===== -->
     <section class="gallery" aria-label="Photographs">
-      <figure class="reveal"><img src="assets/window.jpg" alt="Manuchie" loading="lazy" /></figure>
-      <figure class="reveal"><img src="assets/recline.jpg" alt="Manuchie" loading="lazy" /></figure>
-      <figure class="reveal"><img src="assets/portrait-cap.jpg" alt="Manuchie, portrait" loading="lazy" /></figure>
-      <figure class="reveal"><img src="assets/tux-gallery.jpg" alt="Manuchie in a white tuxedo" loading="lazy" /></figure>
-      <figure class="reveal"><img src="assets/formal.jpg" alt="Manuchie, formal portrait" loading="lazy" /></figure>
+      <figure class="reveal"><img src="assets/window.jpg" alt="Manuchie" width="1119" height="1680" loading="lazy" decoding="async"
+        srcset="assets/window-480.jpg 480w, assets/window-720.jpg 720w, assets/window.jpg 1119w"
+        sizes="(max-width: 800px) 240px, (max-width: 1200px) 30vw, 360px" /></figure>
+      <figure class="reveal"><img src="assets/recline.jpg" alt="Manuchie" width="1119" height="1680" loading="lazy" decoding="async"
+        srcset="assets/recline-480.jpg 480w, assets/recline-720.jpg 720w, assets/recline.jpg 1119w"
+        sizes="(max-width: 800px) 240px, (max-width: 1200px) 30vw, 360px" /></figure>
+      <figure class="reveal"><img src="assets/portrait-cap.jpg" alt="Manuchie, portrait" width="1119" height="1680" loading="lazy" decoding="async"
+        srcset="assets/portrait-cap-480.jpg 480w, assets/portrait-cap-720.jpg 720w, assets/portrait-cap.jpg 1119w"
+        sizes="(max-width: 800px) 240px, (max-width: 1200px) 30vw, 360px" /></figure>
     </section>
 
     <!-- ===== CONTACT ===== -->
@@ -312,8 +354,11 @@
         </div>
       </div>
 
-      <form class="contact-form reveal" id="bookingForm" novalidate>
+      <form class="contact-form reveal" id="bookingForm" action="https://api.web3forms.com/submit" method="post" accept-charset="utf-8">
+        <!-- access_key is filled in at build time (build.sh, from config.js) and by script.js -->
+        <input type="hidden" name="access_key" value="" />
         <input type="hidden" name="subject" value="New session enquiry — manuchie" />
+        <input type="hidden" name="from_name" value="Manuchie Website" />
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label class="fld"><span>Your name</span><input type="text" name="name" autocomplete="name" required placeholder="First and last" /></label>
         <label class="fld"><span>Email</span><input type="email" name="email" autocomplete="email" required placeholder="you@email.com" /></label>
@@ -343,7 +388,7 @@
   </footer>
 
   <script src="config.js?v=1"></script>
-  <script src="script.js?v=13"></script>
+  <script src="script.js?v=14"></script>
   <!-- v11 -->
 </body>
 </html>

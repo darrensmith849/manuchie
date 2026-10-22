@@ -80,24 +80,25 @@ both (Cloudflare in front of Hetzner).
 
 ### Path A — Cloudflare Pages (simplest, global CDN, free HTTPS)
 
-Direct upload with Wrangler, from this folder:
+Build `dist/` (copies only what the page uses, puts the form key from `config.js` into
+the form, and content-hashes CSS/JS/image URLs), then upload it with Wrangler:
 
 ```bash
-npx wrangler pages deploy . --project-name manuchie
+./build.sh && npx wrangler pages deploy dist --project-name manuchie --branch main
 ```
 
-…or connect a Git repo in the Cloudflare dashboard → **Workers & Pages → Create → Pages**,
-with **Build command: _(none)_** and **Output directory: `/`**. The included `_headers`
-file sets caching + security headers automatically. Add the custom domain under
-**Custom domains**.
+Always deploy `dist/`, not the repo folder: `_headers` caches CSS, JS and images for a
+year, which is only safe because `build.sh` gives every changed file a new `?v=` URL.
+The included `_headers` file also sets the security headers (CSP etc.). Add the custom
+domain under **Custom domains**.
 
 ### Path B — Hetzner VPS, with Cloudflare for DNS/CDN/SSL in front
 
 On the Hetzner server (Caddy = auto‑HTTPS, gzip, one binary):
 
 ```bash
-# 1. copy the site up (run from your machine)
-rsync -avz --delete ./ root@YOUR_HETZNER_IP:/var/www/manuchie/
+# 1. build, then copy the built site up (run from your machine)
+./build.sh && rsync -avz --delete dist/ root@YOUR_HETZNER_IP:/var/www/manuchie/
 
 # 2. install Caddy on the server, then use the included Caddyfile
 sudo cp /var/www/manuchie/Caddyfile /etc/caddy/Caddyfile
@@ -118,8 +119,12 @@ Edit the domain names at the top of the `Caddyfile` to match.
 ```
 index.html   — page markup & content
 styles.css   — design system (colour, type, layout, scroll-driven animation)
-script.js    — nav, mobile menu, form handling  ← CONFIG lives here
-assets/      — photography (portrait-terracotta.jpg, harare-rooftop.jpg)
+fonts.css    — self-hosted Fraunces + Inter (@font-face, same subsets as Google Fonts)
+script.js    — nav, mobile menu, form handling, Spotify fallback
+config.js    — Web3Forms key + booking email (git-ignored, deployed)
+build.sh     — builds dist/ for deployment
+assets/      — photography (originals + -480/-640/-720/-960/-1280 responsive copies)
+assets/fonts — font files
 Caddyfile    — Hetzner static-hosting config
 _headers     — Cloudflare Pages caching + security headers
 README.md    — this file

@@ -99,6 +99,10 @@ button{font:inherit;cursor:pointer}
 
 .skip-link{position:fixed;top:-60px;left:1rem;z-index:200;background:var(--gold);color:#17100a;padding:.6rem 1rem;border-radius:6px;font-weight:600;transition:top .2s}
 .skip-link:focus{top:1rem}
+/* in-page targets land below the fixed nav (same 72px offset the old JS scroll used) */
+#top,section[id]{scroll-margin-top:4.5rem}
+/* sections focused by in-page links get keyboard focus without a frame drawn round them */
+[tabindex="-1"]:focus{outline:none}
 
 /* ---------- nav ---------- */
 .nav{position:fixed;inset:0 0 auto 0;z-index:100;display:flex;align-items:center;justify-content:space-between;

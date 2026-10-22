@@ -41,9 +41,17 @@ document.documentElement.classList.add("js");
     drawer.hidden = !open;
     document.body.style.overflow = open ? "hidden" : "";
   };
-  on(burger, "click", () => setDrawer(drawer.hidden));
+  on(burger, "click", () => {
+    const open = drawer.hidden;
+    setDrawer(open);
+    if (open) { const first = $("a", drawer); if (first) first.focus(); }
+  });
   $$("#drawer a").forEach((a) => on(a, "click", () => setDrawer(false)));
-  on(document, "keydown", (e) => { if (e.key === "Escape") setDrawer(false); });
+  on(document, "keydown", (e) => {
+    if (e.key !== "Escape" || !drawer || drawer.hidden) return;
+    setDrawer(false);
+    burger.focus();
+  });
 
   /* reveal on scroll */
   const reveals = $$(".reveal");
@@ -62,21 +70,24 @@ document.documentElement.classList.add("js");
   const wave = $("#wave");
   if (wave) {
     const N = 60;
-    let bars = "";
+    const bars = document.createDocumentFragment();
     for (let i = 0; i < N; i++) {
-      const h = (15 + Math.random() * 85).toFixed(0);
-      const delay = (Math.random() * 2.6).toFixed(2);
-      const dur = (2 + Math.random() * 1.6).toFixed(2);
-      bars += `<span style="height:${h}%;animation-delay:${delay}s;animation-duration:${dur}s"></span>`;
+      const bar = document.createElement("span");
+      bar.style.height = (15 + Math.random() * 85).toFixed(0) + "%";
+      bar.style.animationDelay = (Math.random() * 2.6).toFixed(2) + "s";
+      bar.style.animationDuration = (2 + Math.random() * 1.6).toFixed(2) + "s";
+      bars.appendChild(bar);
     }
-    wave.innerHTML = bars;
+    wave.replaceChildren(bars);
   }
 
   /* Spotify player — some networks (office firewalls) block Spotify, which
      leaves a broken frame. Probe the host with Spotify's own embed script and,
-     if it can't be reached, swap in an Apple Music player plus platform links. */
+     if it can't be reached, swap in an Apple Music player plus platform links.
+     The probe waits until the player is near the viewport (the iframe itself is
+     lazy-loaded), so it never competes with the first screen. */
   const player = $("#player");
-  if (player) {
+  const probeSpotify = () => {
     const probe = document.createElement("script");
     probe.async = true;
     probe.src = "https://open.spotify.com/embed/iframe-api/v1";
@@ -96,6 +107,16 @@ document.documentElement.classList.add("js");
       $(".player-fallback", player).hidden = false;
     };
     document.head.appendChild(probe);
+  };
+  if (player) {
+    if ("IntersectionObserver" in window) {
+      const pio = new IntersectionObserver((entries) => {
+        if (entries.some((en) => en.isIntersecting)) { pio.disconnect(); probeSpotify(); }
+      }, { rootMargin: "1200px 0px" });
+      pio.observe(player);
+    } else {
+      probeSpotify();
+    }
   }
 
   /* direct email link (assembled at runtime) */
@@ -108,11 +129,24 @@ document.documentElement.classList.add("js");
       "&body=" + encodeURIComponent("Hi Manuchie,\n\nI'd love to work on…\n\n");
   }
 
-  /* booking form */
+  /* booking form — POSTs to Web3Forms (the form's action). Without JS the
+     browser validates the required fields and submits it itself; with JS it is
+     validated here, sent with fetch, and the result shown in the status line. */
   const form = $("#bookingForm");
   const statusEl = $("#formStatus");
   const btn = $("#submitBtn");
+  const label = btn && $(".btn-label", btn);
   const setStatus = (m, k) => { if (statusEl) { statusEl.textContent = m; statusEl.className = "form-status" + (k ? " " + k : ""); } };
+  const keySet = Boolean(CONFIG.web3formsKey) && !CONFIG.web3formsKey.startsWith("PASTE_");
+  const fields = form ? ["name", "email", "message"].map((n) => form.elements[n]) : [];
+  let sending = false;
+
+  if (form) {
+    form.noValidate = true; // validated in the submit handler, using the browser's own messages
+    const keyField = form.elements.access_key;
+    if (keyField && keySet) keyField.defaultValue = keyField.value = CONFIG.web3formsKey;
+    fields.forEach((f) => on(f, "input", () => f.removeAttribute("aria-invalid")));
+  }
 
   const mailtoFallback = (d) => {
     const body = `Name: ${d.name}\nEmail: ${d.email}\n\n${d.message}\n`;
@@ -124,55 +158,56 @@ document.documentElement.classList.add("js");
 
   on(form, "submit", async (e) => {
     e.preventDefault();
+    if (sending) return;
+    if (form.elements.botcheck && form.elements.botcheck.checked) return;
+
+    // whitespace-only answers count as empty
+    fields.forEach((f) => { f.value = f.value.trim(); });
+    fields.forEach((f) => (f.checkValidity() ? f.removeAttribute("aria-invalid") : f.setAttribute("aria-invalid", "true")));
     if (!form.reportValidity()) return;
-    if (form.botcheck && form.botcheck.checked) return;
 
-    const d = {
-      name: form.name.value.trim(),
-      email: form.email.value.trim(),
-      message: form.message.value.trim(),
-    };
-
-    const keySet = CONFIG.web3formsKey && !CONFIG.web3formsKey.startsWith("PASTE_");
+    const d = { name: fields[0].value, email: fields[1].value, message: fields[2].value };
     if (!keySet) { mailtoFallback(d); return; }
 
+    sending = true;
     btn.disabled = true;
-    const label = $(".btn-label", btn);
+    form.setAttribute("aria-busy", "true");
     if (label) label.textContent = "Sending…";
     setStatus("");
 
     try {
-      const res = await fetch("https://api.web3forms.com/submit", {
+      const res = await fetch(form.action, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({
-          access_key: CONFIG.web3formsKey,
-          subject: "New session enquiry via manuchie",
-          from_name: "Manuchie Website",
-          ...d,
-        }),
+        headers: { Accept: "application/json" },
+        body: new FormData(form),
       });
-      const out = await res.json();
-      if (out.success) { form.reset(); setStatus("Got it — I'll be in touch soon. Thank you.", "ok"); }
+      const out = await res.json().catch(() => ({}));
+      if (res.ok && out.success) { form.reset(); setStatus("Got it — I'll be in touch soon. Thank you.", "ok"); }
       else setStatus("Something went wrong. Please email " + CONFIG.bookingEmail + ".", "err");
     } catch (_) {
       mailtoFallback(d);
     } finally {
+      sending = false;
       btn.disabled = false;
+      form.removeAttribute("aria-busy");
       if (label) label.textContent = "Send it over";
     }
   });
 
-  /* smooth-scroll with sticky-header offset */
+  /* in-page links — scroll-margin-top (CSS) keeps targets clear of the fixed
+     nav; focus moves to the target so the skip link and keyboard users land in
+     the right place. Smooth only when reduced motion isn't requested. */
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   $$('a[href^="#"]').forEach((a) => {
     on(a, "click", (e) => {
       const id = a.getAttribute("href");
       if (id.length < 2) return;
-      const t = $(id);
+      const t = document.getElementById(id.slice(1));
       if (!t) return;
       e.preventDefault();
-      const top = t.getBoundingClientRect().top + window.scrollY - 72;
-      window.scrollTo({ top, behavior: "smooth" });
+      t.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "start" });
+      if (!t.hasAttribute("tabindex")) t.setAttribute("tabindex", "-1");
+      t.focus({ preventScroll: true });
       history.pushState(null, "", id);
     });
   });
