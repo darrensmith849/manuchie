@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
-  <link rel="stylesheet" href="styles.css?v=15" />
+  <link rel="stylesheet" href="styles.css?v=16" />
 </head>
 <body>
   <a class="skip-link" href="#story">Skip to content</a>
@@ -199,6 +199,7 @@
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             loading="lazy"></iframe>
           <div class="player-fallback" hidden>
+            <div class="pf-player" data-src="https://embed.music.apple.com/us/album/mourning-to-dancing-feat-the-unveiled-single/1707767813?i=1707767814&amp;theme=dark"></div>
             <span class="featured-k">Stream the catalogue</span>
             <h3>Manuchie</h3>
             <div class="pf-links">
@@ -312,7 +313,6 @@
       </div>
 
       <form class="contact-form reveal" id="bookingForm" novalidate>
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
         <input type="hidden" name="subject" value="New session enquiry — manuchie" />
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
         <label class="fld"><span>Your name</span><input type="text" name="name" autocomplete="name" required placeholder="First and last" /></label>
@@ -342,7 +342,8 @@
     </div>
   </footer>
 
-  <script src="script.js?v=11"></script>
+  <script src="config.js?v=1"></script>
+  <script src="script.js?v=13"></script>
   <!-- v11 -->
 </body>
 </html>

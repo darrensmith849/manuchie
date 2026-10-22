@@ -7,3 +7,5 @@ dist/
 .claude/
 # raw camera originals — the site uses the optimised lowercase copies
 assets/IMG_*
+# site config with the Web3Forms key — deployed, never committed
+config.js

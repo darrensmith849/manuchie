@@ -30,12 +30,13 @@ python3 -m http.server 8099
 Everything works out of the box **except** where booking enquiries are delivered. Set
 these two values and the contact form sends real email.
 
-Open **`script.js`** and edit the `CONFIG` block at the top:
+Both live in **`config.js`** — git-ignored so the key never lands in the public repo,
+but copied into `dist/` and deployed with the site. Create it if it's missing:
 
 ```js
-const CONFIG = {
-  bookingEmail: "bookings@manuchie.com",       // ← Manuchie's real booking inbox
-  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",   // ← free key, see below
+window.MANUCHIE_CONFIG = {
+  web3formsKey: "PASTE_YOUR_WEB3FORMS_KEY_HERE",   // ← free key, see below
+  bookingEmail: "bookings@manuchie.com",           // ← Manuchie's real booking inbox
 };
 ```
 
@@ -44,11 +45,7 @@ const CONFIG = {
 
 2. **`web3formsKey`** — a free access key that lets the form send email with no backend:
    - Go to **https://web3forms.com**, enter the booking email, and copy the access key.
-   - Paste it into `web3formsKey` in `script.js`.
-   - Paste the **same key** into the hidden field in `index.html`:
-     ```html
-     <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
-     ```
+   - Paste it into `web3formsKey` in `config.js`. That's the only place it goes.
 
 > Until a real key is set, the form still works — it gracefully falls back to opening the
 > visitor's email app pre-addressed to `bookingEmail`, so no enquiry is ever lost.

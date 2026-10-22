@@ -1,17 +1,16 @@
 /* ==========================================================================
    MANUCHIE — interactions
    --------------------------------------------------------------------------
-   CONFIG — set these two to make the booking form send real email.
+   CONFIG — the real values live in config.js (git-ignored, deployed).
      bookingEmail : where enquiries (and the "Email" link) go.
-     web3formsKey : free key from https://web3forms.com (sign up with the
-                    booking email, paste the key here AND into the hidden
-                    field in index.html). Until then the form falls back to
-                    opening the visitor's mail app — no enquiry is lost.
+     web3formsKey : free key from https://web3forms.com. Until it's set the
+                    form falls back to opening the visitor's mail app — no
+                    enquiry is lost.
    ========================================================================== */
-const CONFIG = {
+const CONFIG = Object.assign({
   bookingEmail: "bookings@manuchie.com",
-  web3formsKey: "YOUR_WEB3FORMS_ACCESS_KEY",
-};
+  web3formsKey: "",
+}, window.MANUCHIE_CONFIG);
 
 /* mark that JS is on so CSS can safely hide reveal elements */
 document.documentElement.classList.add("js");
@@ -74,8 +73,8 @@ document.documentElement.classList.add("js");
   }
 
   /* Spotify player — some networks (office firewalls) block Spotify, which
-     leaves a broken frame. Probe the host with Spotify's own embed script and
-     swap in platform links if it can't be reached. */
+     leaves a broken frame. Probe the host with Spotify's own embed script and,
+     if it can't be reached, swap in an Apple Music player plus platform links. */
   const player = $("#player");
   if (player) {
     const probe = document.createElement("script");
@@ -84,6 +83,16 @@ document.documentElement.classList.add("js");
     probe.onerror = () => {
       const frame = $("iframe", player);
       if (frame) frame.remove();
+      const slot = $(".pf-player", player);
+      if (slot) {
+        const am = document.createElement("iframe");
+        am.title = "Manuchie on Apple Music";
+        am.src = slot.dataset.src;
+        am.height = "175";
+        am.allow = "autoplay *; encrypted-media *; fullscreen *; clipboard-write";
+        am.setAttribute("sandbox", "allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation");
+        slot.appendChild(am);
+      }
       $(".player-fallback", player).hidden = false;
     };
     document.head.appendChild(probe);
@@ -124,7 +133,7 @@ document.documentElement.classList.add("js");
       message: form.message.value.trim(),
     };
 
-    const keySet = CONFIG.web3formsKey && CONFIG.web3formsKey !== "YOUR_WEB3FORMS_ACCESS_KEY";
+    const keySet = CONFIG.web3formsKey && !CONFIG.web3formsKey.startsWith("PASTE_");
     if (!keySet) { mailtoFallback(d); return; }
 
     btn.disabled = true;
