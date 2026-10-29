@@ -1,0 +1,157 @@
+[
+  {
+    "name": "/favicon.ico is served (image/vnd.microsoft.icon)",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "/favicon.svg is served (image/svg+xml)",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "/apple-touch-icon.png is served (image/png)",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "/site.webmanifest is served (application/manifest+json)",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "robots.txt disallows /admin and /api/",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Header shows the Hallmark lockup",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Footer shows the Hallmark wordmark",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Old gold 'M' data: favicon is gone",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Pageview beacon sent once, with UTM tags",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Section views sent once each",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Spotify click sent",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "form_start sent once, without any typed content",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "In-page success message, no email app opened",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Form is cleared after sending",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "No console errors from the page's own code",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Without JavaScript the form posts and shows the confirmation page",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Dashboard: 1 visit, 1 page view, 1 visitor (admin's own visit not counted)",
+    "ok": true,
+    "info": "{\"pageviews\":1,\"visits\":1,\"visitors\":1,\"form_starts\":1,\"enquiries\":2,\"clicks\":{\"spotify\":1,\"apple_music\":0,\"youtube\":0,\"shazam\":0,\"instagram\":0,\"email\":0,\"book_session\":0},\"conversion\":2}"
+  },
+  {
+    "name": "Dashboard: Spotify click counted once",
+    "ok": true,
+    "info": "{\"spotify\":1,\"apple_music\":0,\"youtube\":0,\"shazam\":0,\"instagram\":0,\"email\":0,\"book_session\":0}"
+  },
+  {
+    "name": "Dashboard: 2 enquiries (JS and no-JS), conversion shown",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Dashboard: traffic source is the UTM source 'qa'",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Dashboard: the contact section is among the sections viewed",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Analytics: funnel counts the form start and the enquiry",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Analytics: campaign row qa / test / e2e",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Analytics: device recorded as desktop",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Enquiry stored with consent and shown as new",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Enquiry has source page, UTM and the full message",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "Consent proof stored with the exact label wording from the page",
+    "ok": true,
+    "info": ""
+  },
+  {
+    "name": "390px: no horizontal overflow",
+    "ok": true,
+    "info": "0px"
+  },
+  {
+    "name": "768px: no horizontal overflow",
+    "ok": true,
+    "info": "0px"
+  },
+  {
+    "name": "1024px: no horizontal overflow",
+    "ok": true,
+    "info": "0px"
+  },
+  {
+    "name": "1440px: no horizontal overflow",
+    "ok": true,
+    "info": "0px"
+  }
+]

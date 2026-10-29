@@ -1,0 +1,18 @@
+{
+  "name": "manuchie-website",
+  "private": true,
+  "type": "module",
+  "description": "Manuchie's website, enquiry system and private dashboard (Cloudflare Worker + D1).",
+  "scripts": {
+    "build": "./build.sh",
+    "dev": "./build.sh && wrangler dev",
+    "test": "node --test \"worker/test/*.test.js\"",
+    "db:migrate:local": "wrangler d1 migrations apply manuchie --local",
+    "db:migrate": "wrangler d1 migrations apply manuchie --remote",
+    "admin:create": "node scripts/create-admin.mjs",
+    "deploy": "./build.sh && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "4.155.0"
+  }
+}

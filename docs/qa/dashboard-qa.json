@@ -1,0 +1,240 @@
+[
+  {
+    "width": 390,
+    "page": "overview",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 390,
+    "page": "analytics",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 390,
+    "page": "enquiries",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 390,
+    "page": "enquiry",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 390,
+    "page": "contacts",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 390,
+    "page": "contact",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 390,
+    "page": "consent",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 390,
+    "page": "settings",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 390,
+    "page": "menu",
+    "focused": true,
+    "closed": true
+  },
+  {
+    "width": 390,
+    "page": "keyboard",
+    "firstTab": "Skip to content"
+  },
+  {
+    "width": 390,
+    "page": "console",
+    "errors": []
+  },
+  {
+    "width": 768,
+    "page": "overview",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 768,
+    "page": "analytics",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 768,
+    "page": "enquiries",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 768,
+    "page": "enquiry",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 768,
+    "page": "contacts",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 768,
+    "page": "contact",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 768,
+    "page": "consent",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 768,
+    "page": "settings",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 768,
+    "page": "keyboard",
+    "firstTab": "Skip to content"
+  },
+  {
+    "width": 768,
+    "page": "console",
+    "errors": []
+  },
+  {
+    "width": 1024,
+    "page": "overview",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 1024,
+    "page": "analytics",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 1024,
+    "page": "enquiries",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 1024,
+    "page": "enquiry",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 1024,
+    "page": "contacts",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 1024,
+    "page": "contact",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 1024,
+    "page": "consent",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 1024,
+    "page": "settings",
+    "overflow": 0,
+    "axe": null
+  },
+  {
+    "width": 1024,
+    "page": "keyboard",
+    "firstTab": "Skip to content"
+  },
+  {
+    "width": 1024,
+    "page": "console",
+    "errors": []
+  },
+  {
+    "width": 1440,
+    "page": "overview",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 1440,
+    "page": "analytics",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 1440,
+    "page": "enquiries",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 1440,
+    "page": "enquiry",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 1440,
+    "page": "contacts",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 1440,
+    "page": "contact",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 1440,
+    "page": "consent",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 1440,
+    "page": "settings",
+    "overflow": 0,
+    "axe": []
+  },
+  {
+    "width": 1440,
+    "page": "keyboard",
+    "firstTab": "Skip to content"
+  },
+  {
+    "width": 1440,
+    "page": "console",
+    "errors": []
+  }
+]

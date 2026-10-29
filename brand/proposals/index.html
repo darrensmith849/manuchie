@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manuchie Identity Proposals</title>
+<meta name="description" content="Three proposed identities for Manuchie (Emmanuel Manuchie Chiwanga): Lumen, Mbira and Hallmark. Hallmark was chosen.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/hallmark/icon-32.png">
+<style>
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;src:url(assets/fonts/newsreader.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:200 800;src:url(assets/fonts/newsreader-italic.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;src:url(assets/fonts/inter.woff2) format("woff2")}
+
+:root{
+  --bg:#0a0a0b; --surface:#141416; --surface-2:#1a1a1d;
+  --ink:#f3f0ea; --soft:rgba(243,240,234,.68); --mute:rgba(243,240,234,.52);
+  --line:rgba(255,255,255,.12); --line-2:rgba(255,255,255,.07);
+  --paper:#f3f0ea; --paper-ink:#0a0a0b; --paper-line:rgba(10,10,11,.12);
+  --terra:#b5481e; --terra-soft:rgba(181,72,30,.16); --gold:#c8a15a;
+  --disp:"Newsreader",Georgia,serif; --sans:"Inter",-apple-system,"Segoe UI",sans-serif;
+  --gutter:clamp(16px,4vw,56px); --r:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding:0 var(--gutter)}
+
+/* ---------- top ---------- */
+.top{padding:clamp(56px,9vw,104px) 0 clamp(40px,6vw,64px);
+  background:radial-gradient(120% 120% at 85% -20%,#6a2a12 0%,#331710 28%,var(--bg) 58%)}
+.eyebrow{font:600 12px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+h1{font:500 clamp(44px,7vw,92px)/.98 var(--disp);letter-spacing:-.02em;margin:22px 0 26px}
+h1 em{font-style:italic;font-weight:400}
+.lede{max-width:44rem;font-size:clamp(17px,1.6vw,19px);color:var(--soft)}
+.lede + .lede{margin-top:12px}
+.verdict{margin-top:40px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;
+  padding:26px 28px;border:1px solid rgba(240,185,150,.22);border-radius:var(--r);background:rgba(72,33,15,.55)}
+.verdict img{width:84px;height:84px}
+.verdict h2{font:500 26px/1.2 var(--disp)}
+.verdict h2 b{font-weight:600}
+.verdict ul{margin:10px 0 0;padding-left:18px;color:var(--soft)}
+.verdict li + li{margin-top:4px}
+.jump{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.jump a{font:500 14px/1 var(--sans);text-decoration:none;padding:10px 16px;border:1px solid var(--line);border-radius:999px;color:var(--soft)}
+.jump a:hover{color:var(--ink);border-color:var(--mute)}
+.jump a.rec{border-color:var(--terra);color:var(--ink)}
+
+/* ---------- concept ---------- */
+.concept{padding:clamp(56px,8vw,96px) 0;border-top:1px solid var(--line-2)}
+.c-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px}
+.c-no{font:italic 400 22px/1 var(--disp);color:var(--mute)}
+.c-head h2{font:500 clamp(40px,5vw,64px)/1 var(--disp);letter-spacing:-.015em}
+.badge{align-self:center;font:600 11px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;
+  color:#fff;background:var(--terra);padding:8px 12px;border-radius:999px}
+.c-idea{flex-basis:100%;font:italic 400 clamp(20px,2.2vw,26px)/1.3 var(--disp);color:var(--soft);margin-top:10px}
+.c-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,48px);margin-top:36px;align-items:start}
+.rationale p{color:var(--soft)}
+.rationale p + p{margin-top:12px}
+.rationale strong{color:var(--ink);font-weight:600}
+.facts{list-style:none;padding:0;margin-top:22px;border-top:1px solid var(--line-2)}
+.facts li{display:grid;grid-template-columns:7.5rem 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-2);font-size:14px;color:var(--soft)}
+.facts li span{font:600 11px/1.9 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.panel{position:relative;border-radius:var(--r);display:flex;align-items:center;justify-content:center;padding:28px;min-height:120px;min-width:0}
+.panel.dark{background:var(--surface);border:1px solid var(--line-2)}
+.panel.ink{background:var(--bg);border:1px solid var(--line-2)}
+.panel.light{background:var(--paper);color:var(--paper-ink)}
+.panel .tag{position:absolute;left:14px;top:12px;font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.panel.light .tag{color:rgba(10,10,11,.5)}
+.sym{aspect-ratio:1/1}
+.sym img{width:62%;height:auto}
+.stack{flex-direction:column;gap:22px;padding:44px 28px 32px}
+.stack img{width:auto;max-width:100%}
+.stack .lk{height:46px}
+.stack .wm{height:34px}
+.row{margin-top:12px}
+
+/* small sizes */
+.sizes{justify-content:flex-start;gap:22px;flex-wrap:wrap;padding:40px 24px 22px}
+.sizes figure{display:flex;flex-direction:column;align-items:center;gap:10px}
+.sizes figcaption{font:500 11px/1 var(--sans);color:var(--mute);letter-spacing:.06em}
+.panel.light .sizes figcaption,.panel.light figcaption{color:rgba(10,10,11,.55)}
+.px{image-rendering:pixelated;image-rendering:crisp-edges}
+.zoom{width:96px;height:96px}
+.sep{width:1px;align-self:stretch;background:var(--line)}
+.panel.light .sep{background:var(--paper-line)}
+
+/* in context */
+.ctx{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;margin-top:12px}
+.site{border-radius:var(--r);overflow:hidden;border:1px solid var(--line-2);
+  background:radial-gradient(135% 115% at 80% -16%,#b5481e 0%,#6a2a12 16%,#331710 35%,#0a0a0b 61%)}
+.site-nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 28px}
+.site-nav img{height:28px;width:auto}
+.site-links{display:flex;align-items:center;gap:26px;font:500 14.7px/1 var(--sans);color:rgba(243,243,241,.64)}
+.site-book{padding:9px 18px;border:1.4px solid #c9cace;border-radius:999px;color:#c9cace}
+.site-hero{padding:34px 28px 40px}
+.site-hero p{font:600 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#c9cace}
+.site-hero h3{font:500 64px/1 var(--disp);letter-spacing:-.03em;margin-top:14px;
+  background:linear-gradient(168deg,#fff 8%,#dcdde1 52%,#a9aab0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.site.solid .site-nav{background:rgba(15,11,7,.86)}
+.site.mobile{max-width:390px}
+.site.mobile .site-nav{padding:16px 18px}
+.site.mobile .site-nav img{height:24px}
+.burger{display:flex;flex-direction:column;gap:6px}
+.burger i{display:block;width:24px;height:2px;background:var(--ink)}
+
+.ctx-row{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:12px}
+.tabs{display:flex;flex-direction:column;gap:10px;padding:18px;justify-content:center;align-items:stretch}
+.tabbar{display:flex;align-items:flex-end;gap:0;padding:8px 10px 0;border-radius:10px 10px 0 0;min-width:0}
+.tabbar.l{background:#dfe1e5}
+.tabbar.d{background:#1f2023}
+.tab{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:9px 9px 0 0;min-width:0;width:260px;max-width:100%;font:400 12.5px/1 var(--sans)}
+.tabbar.l .tab{background:#fff;color:#1f1f1f}
+.tabbar.d .tab{background:#35363a;color:#e8eaed}
+.tab img{width:16px;height:16px;flex:none}
+.tab span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.tab b{font-weight:400;opacity:.6}
+.tab-note{font-size:12px;color:var(--mute);margin-top:4px}
+
+.social{display:flex;align-items:center;gap:22px;padding:24px}
+.avatar{border-radius:50%;flex:none}
+.avatar.lg{width:132px;height:132px}
+.avatar.md{width:56px;height:56px}
+.avatar.sm{width:32px;height:32px}
+.profile h4{font:600 16px/1.2 var(--sans)}
+.profile p{font-size:13px;color:var(--soft);margin-top:4px;line-height:1.45}
+.profile .minis{display:flex;align-items:center;gap:10px;margin-top:14px}
+
+/* palette + files */
+.block{padding:clamp(56px,8vw,96px) 0;border-top:1px solid var(--line-2)}
+.block h2{font:500 clamp(32px,4vw,48px)/1.05 var(--disp);letter-spacing:-.01em}
+.block > .wrap > p{color:var(--soft);max-width:44rem;margin-top:14px}
+.swatches{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:32px}
+.sw{border-radius:var(--r);overflow:hidden;border:1px solid var(--line-2);background:var(--surface)}
+.sw i{display:block;height:110px}
+.sw div{padding:14px}
+.sw b{display:block;font:600 14px/1.3 var(--sans)}
+.sw code{font:500 13px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--soft)}
+.sw p{font-size:12px;color:var(--mute);margin-top:8px;line-height:1.45}
+.files{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:32px}
+.files div{padding:20px;border:1px solid var(--line-2);border-radius:var(--r);background:var(--surface)}
+.files h3{font:600 13px/1.3 var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.files p{font-size:14px;color:var(--soft);margin-top:8px}
+.files code{font:500 13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink)}
+footer{padding:40px 0 64px;border-top:1px solid var(--line-2);color:var(--mute);font-size:13px}
+
+@media (max-width:960px){
+  .c-grid{grid-template-columns:minmax(0,1fr)}
+  .ctx-row{grid-template-columns:minmax(0,1fr)}
+  .swatches{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .files{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:620px){
+  .pair{grid-template-columns:minmax(0,1fr)}
+  .verdict{grid-template-columns:minmax(0,1fr)}
+  .social{flex-wrap:wrap}
+  .site-nav{padding:16px 18px}
+  .site-nav img{height:22px}
+  .site-links{gap:14px;font-size:13px}
+  .site-book{padding:7px 12px}
+  .site-links a:not(.site-book){display:none}
+  .site-hero h3{font-size:44px}
+  .swatches{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .tab{width:100%}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">Manuchie · identity proposals · 29 October 2026</p>
+    <h1>A new mark,<br><em>three directions.</em></h1>
+    <p class="lede">The gold italic “M” is retired. Below are three new identities for Manuchie (Emmanuel Manuchie Chiwanga), each with its own symbol, wordmark and horizontal lockup, all drawn as outlined vectors. Each is shown large, at favicon sizes (16, 32 and 48 px), on dark and light grounds, in the site’s header and as a round profile picture.</p>
+    <p class="lede">Each one rests on a different idea: light, an instrument, and a maker’s seal. All three stay on the page for reference; Hallmark is the one going ahead.</p>
+    <div class="verdict">
+      <img src="assets/hallmark/symbol-on-dark.svg" alt="">
+      <div>
+        <h2>Chosen: <b>03 Hallmark</b></h2>
+        <ul>
+          <li>Chosen by the client on 29 October 2026. It is now being built into the site.</li>
+          <li>The full seal signs large work: record sleeves, merchandise, press and the profile picture.</li>
+          <li>The coursed-stone M carries the identity at small sizes: the header lockup, the favicon and the app icons.</li>
+        </ul>
+      </div>
+    </div>
+    <nav class="jump" aria-label="Concepts">
+      <a href="#lumen">01 Lumen</a>
+      <a href="#mbira">02 Mbira</a>
+      <a class="rec" href="#hallmark">03 Hallmark · chosen</a>
+      <a href="#palette">Palette</a>
+      <a href="#files">Files</a>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= 01 LUMEN ================= -->
+<section class="concept" id="lumen">
+  <div class="wrap">
+    <div class="c-head">
+      <p class="c-no">01</p>
+      <h2>Lumen</h2>
+      <p class="c-idea">An M of two pillars, with a wedge of light falling between them.</p>
+    </div>
+    <div class="c-grid">
+      <div class="rationale">
+        <p>The M is built from three solid pieces: two pillars, and between them a <strong>wedge of light</strong> cut free by two narrow rays. It comes from the worship-rays imagery of the “Been So Good” film, and from his name: <strong>Emmanuel</strong>, “God with us”, light that comes down into the middle of things.</p>
+        <p>It is also a <strong>downbeat</strong>, the single downward stroke a music director gives to bring a band in. Faith and music sit in the geometry, with no cross and no notes.</p>
+        <p>The wordmark is the site’s own serif, Newsreader, outlined and spaced as a logo. The dot of the i is replaced by a small falling wedge, so the symbol hides in the name. The wedge can also work on its own as a bullet, an end-card or a beam in motion graphics.</p>
+        <ul class="facts">
+          <li><span>Colours</span> Off-white pillars, terracotta light; black or white in one colour</li>
+          <li><span>Type</span> Newsreader 520, optical size 60, outlined</li>
+          <li><span>16 px</span> Drawn pixel by pixel: 3 px pillars, 1 px rays, a stepped wedge</li>
+          <li><span>Status</span> Proposal: symbol, wordmark and lockup</li>
+        </ul>
+      </div>
+      <div>
+        <div class="pair">
+          <figure class="panel ink sym"><span class="tag">On dark</span><img src="assets/lumen/symbol-on-dark.svg" alt="Lumen symbol on dark"></figure>
+          <figure class="panel light sym"><span class="tag">On light</span><img src="assets/lumen/symbol.svg" alt="Lumen symbol on light"></figure>
+        </div>
+        <div class="pair row">
+          <figure class="panel ink stack"><span class="tag">Lockup · wordmark</span><img class="lk" src="assets/lumen/lockup-on-dark.svg" alt="Manuchie lockup"><img class="wm" src="assets/lumen/wordmark-on-dark.svg" alt="Manuchie wordmark"></figure>
+          <figure class="panel light stack"><span class="tag">Lockup · wordmark</span><img class="lk" src="assets/lumen/lockup.svg" alt="Manuchie lockup"><img class="wm" src="assets/lumen/wordmark.svg" alt="Manuchie wordmark"></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="pair row">
+      <div class="panel dark sizes"><span class="tag">Favicon · actual size, then enlarged</span>
+        <figure><img class="px" src="assets/lumen/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+        <figure><img class="px" src="assets/lumen/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+        <figure><img class="px" src="assets/lumen/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+        <span class="sep"></span>
+        <figure><img class="px zoom" src="assets/lumen/icon-16.png" alt="16 px icon enlarged"><figcaption>16 × 6</figcaption></figure>
+        <figure><img class="px zoom" src="assets/lumen/icon-32.png" alt="32 px icon enlarged"><figcaption>32 × 3</figcaption></figure>
+      </div>
+      <div class="panel light sizes"><span class="tag">Same files on a light page</span>
+        <figure><img class="px" src="assets/lumen/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+        <figure><img class="px" src="assets/lumen/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+        <figure><img class="px" src="assets/lumen/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+        <span class="sep"></span>
+        <figure><img class="px" src="assets/lumen/favicon-light-16.png" width="16" height="16" alt=""><figcaption>SVG 16</figcaption></figure>
+        <figure><img class="px" src="assets/lumen/favicon-light-32.png" width="32" height="32" alt=""><figcaption>SVG 32</figcaption></figure>
+        <figure><img class="px zoom" src="assets/lumen/favicon-light-32.png" alt="transparent SVG favicon enlarged"><figcaption>no tile</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="ctx">
+      <div class="site"><div class="site-nav"><img src="assets/lumen/lockup-on-dark.svg" alt="Manuchie"><div class="site-links"><a>Story</a><a>Sound</a><a>Studio</a><a class="site-book">Book a session</a></div></div>
+        <div class="site-hero"><p>Harare, Zimbabwe · Australia · Worldwide</p><h3>Manuchie</h3></div></div>
+      <div class="ctx-row">
+        <div class="panel dark tabs"><span class="tag">Browser tabs</span>
+          <div class="tabbar l"><div class="tab"><img src="assets/lumen/favicon-light-16.png" alt=""><span>Manuchie <b>— Producer, Songwriter, Music Director</b></span></div></div>
+          <div class="tabbar d"><div class="tab"><img src="assets/lumen/favicon-dark-16.png" alt=""><span>Manuchie <b>— Producer, Songwriter, Music Director</b></span></div></div>
+          <p class="tab-note">favicon.svg follows the browser theme; favicon.ico (dark tile) covers Safari and older browsers.</p>
+        </div>
+        <div class="panel dark social"><span class="tag">Profile picture</span>
+          <img class="avatar lg" src="assets/lumen/social-540.png" alt="Lumen profile image, round crop">
+          <div class="profile"><h4>manuchie1</h4><p>Producer · Songwriter · Music Director · Keyboardist<br>Harare · Australia · Worldwide</p>
+            <div class="minis"><img class="avatar md" src="assets/lumen/social-540.png" alt=""><img class="avatar sm" src="assets/lumen/social-540.png" alt=""></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 02 MBIRA ================= -->
+<section class="concept" id="mbira">
+  <div class="wrap">
+    <div class="c-head">
+      <p class="c-no">02</p>
+      <h2>Mbira</h2>
+      <p class="c-idea">An M played on five keys of Zimbabwe’s own keyboard.</p>
+    </div>
+    <div class="c-grid">
+      <div class="rationale">
+        <p>Five keys pass over a bridge: the <strong>mbira</strong>, the instrument at the heart of Shona music for centuries and a keyboard in its own right, so the keyboardist’s instrument and his country meet in one shape. The outer keys are the stems of an M and the inner three trace its V, so the letter is <strong>played</strong> rather than written.</p>
+        <p>A gold bridge stands for the metal and the keys are off-white. The wordmark is Inter, widely spaced, for a clean, contemporary producer feel that sits apart from the serif of the site.</p>
+        <p>This is the most openly African and musical of the three. The risk is that, at a glance, it reads as an instrument icon (or a comb) before it reads as an M.</p>
+        <ul class="facts">
+          <li><span>Colours</span> Off-white keys, gold bridge (deep gold on light)</li>
+          <li><span>Type</span> Inter 500, tracked +26%, outlined</li>
+          <li><span>16 px</span> Five 2 px keys under a 2 px bridge, all on whole pixels</li>
+          <li><span>Status</span> Proposal: symbol, wordmark and lockup</li>
+        </ul>
+      </div>
+      <div>
+        <div class="pair">
+          <figure class="panel ink sym"><span class="tag">On dark</span><img src="assets/mbira/symbol-on-dark.svg" alt="Mbira symbol on dark"></figure>
+          <figure class="panel light sym"><span class="tag">On light</span><img src="assets/mbira/symbol.svg" alt="Mbira symbol on light"></figure>
+        </div>
+        <div class="pair row">
+          <figure class="panel ink stack"><span class="tag">Lockup · wordmark</span><img class="lk" src="assets/mbira/lockup-on-dark.svg" alt="Manuchie lockup"><img class="wm" src="assets/mbira/wordmark-on-dark.svg" alt="Manuchie wordmark" style="height:22px"></figure>
+          <figure class="panel light stack"><span class="tag">Lockup · wordmark</span><img class="lk" src="assets/mbira/lockup.svg" alt="Manuchie lockup"><img class="wm" src="assets/mbira/wordmark.svg" alt="Manuchie wordmark" style="height:22px"></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="pair row">
+      <div class="panel dark sizes"><span class="tag">Favicon · actual size, then enlarged</span>
+        <figure><img class="px" src="assets/mbira/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+        <figure><img class="px" src="assets/mbira/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+        <figure><img class="px" src="assets/mbira/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+        <span class="sep"></span>
+        <figure><img class="px zoom" src="assets/mbira/icon-16.png" alt="16 px icon enlarged"><figcaption>16 × 6</figcaption></figure>
+        <figure><img class="px zoom" src="assets/mbira/icon-32.png" alt="32 px icon enlarged"><figcaption>32 × 3</figcaption></figure>
+      </div>
+      <div class="panel light sizes"><span class="tag">Same files on a light page</span>
+        <figure><img class="px" src="assets/mbira/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+        <figure><img class="px" src="assets/mbira/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+        <figure><img class="px" src="assets/mbira/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+        <span class="sep"></span>
+        <figure><img class="px" src="assets/mbira/favicon-light-16.png" width="16" height="16" alt=""><figcaption>SVG 16</figcaption></figure>
+        <figure><img class="px" src="assets/mbira/favicon-light-32.png" width="32" height="32" alt=""><figcaption>SVG 32</figcaption></figure>
+        <figure><img class="px zoom" src="assets/mbira/favicon-light-32.png" alt="transparent SVG favicon enlarged"><figcaption>no tile</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="ctx">
+      <div class="site"><div class="site-nav"><img src="assets/mbira/lockup-on-dark.svg" alt="Manuchie"><div class="site-links"><a>Story</a><a>Sound</a><a>Studio</a><a class="site-book">Book a session</a></div></div>
+        <div class="site-hero"><p>Harare, Zimbabwe · Australia · Worldwide</p><h3>Manuchie</h3></div></div>
+      <div class="ctx-row">
+        <div class="panel dark tabs"><span class="tag">Browser tabs</span>
+          <div class="tabbar l"><div class="tab"><img src="assets/mbira/favicon-light-16.png" alt=""><span>Manuchie <b>— Producer, Songwriter, Music Director</b></span></div></div>
+          <div class="tabbar d"><div class="tab"><img src="assets/mbira/favicon-dark-16.png" alt=""><span>Manuchie <b>— Producer, Songwriter, Music Director</b></span></div></div>
+          <p class="tab-note">Light and dark browser themes, transparent SVG favicon.</p>
+        </div>
+        <div class="panel dark social"><span class="tag">Profile picture</span>
+          <img class="avatar lg" src="assets/mbira/social-540.png" alt="Mbira profile image, round crop">
+          <div class="profile"><h4>manuchie1</h4><p>Producer · Songwriter · Music Director · Keyboardist<br>Harare · Australia · Worldwide</p>
+            <div class="minis"><img class="avatar md" src="assets/mbira/social-540.png" alt=""><img class="avatar sm" src="assets/mbira/social-540.png" alt=""></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 03 HALLMARK ================= -->
+<section class="concept" id="hallmark">
+  <div class="wrap">
+    <div class="c-head">
+      <p class="c-no">03</p>
+      <h2>Hallmark</h2>
+      <span class="badge">Chosen</span>
+      <p class="c-idea">A maker’s seal, with the chevron of Great Zimbabwe running round it.</p>
+    </div>
+    <div class="c-grid">
+      <div class="rationale">
+        <p>Like a craftsman’s hallmark, this seal signs the work. His full name, <strong>Emmanuel Manuchie Chiwanga</strong>, runs round the rim, and at its foot is the charge from Psalm 33:3 that the site already carries: <strong>“play skilfully”</strong>.</p>
+        <p>Inside it runs the <strong>chevron frieze</strong> from the wall of the Great Enclosure at Great Zimbabwe, the country’s masterwork of dry-stone building, which also reads as a continuous sound wave. At the centre, the M is laid like a course of stone between two bands.</p>
+        <p>The seal belongs on record sleeves, merchandise, certificates, press and the profile picture. Its lettering needs room, so below about 144 px the identity switches to the <strong>coursed-stone M</strong> on its own. That M is the mark in the header lockup, the favicon and the app icons.</p>
+        <ul class="facts">
+          <li><span>Colours</span> Muted gold on near-black; black and terracotta on light</li>
+          <li><span>Type</span> Newsreader caps, outlined, set on the circle</li>
+          <li><span>16 px</span> Seal reduced to the stone M, drawn pixel by pixel</li>
+          <li><span>Package</span><div>Full production set in <code>brand/package/</code></div></li>
+        </ul>
+      </div>
+      <div>
+        <div class="pair">
+          <figure class="panel ink sym"><span class="tag">On dark</span><img src="assets/hallmark/symbol-on-dark.svg" alt="Hallmark seal on dark" style="width:74%"></figure>
+          <figure class="panel light sym"><span class="tag">On light</span><img src="assets/hallmark/symbol.svg" alt="Hallmark seal on light" style="width:74%"></figure>
+        </div>
+        <div class="pair row">
+          <figure class="panel ink stack"><span class="tag">Lockup · wordmark</span><img class="lk" src="assets/hallmark/lockup-on-dark.svg" alt="Manuchie lockup"><img class="wm" src="assets/hallmark/wordmark-on-dark.svg" alt="Manuchie wordmark" style="height:26px"></figure>
+          <figure class="panel light stack"><span class="tag">Lockup · core mark</span><img class="lk" src="assets/hallmark/lockup.svg" alt="Manuchie lockup"><img class="wm" src="assets/hallmark/core.svg" alt="Hallmark core mark" style="height:64px"></figure>
+        </div>
+      </div>
+    </div>
+
+    <div class="pair row">
+      <div class="panel dark sizes"><span class="tag">Favicon · actual size, then enlarged</span>
+        <figure><img class="px" src="assets/hallmark/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+        <figure><img class="px" src="assets/hallmark/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+        <figure><img class="px" src="assets/hallmark/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+        <span class="sep"></span>
+        <figure><img class="px zoom" src="assets/hallmark/icon-16.png" alt="16 px icon enlarged"><figcaption>16 × 6</figcaption></figure>
+        <figure><img class="px zoom" src="assets/hallmark/icon-32.png" alt="32 px icon enlarged"><figcaption>32 × 3</figcaption></figure>
+      </div>
+      <div class="panel light sizes"><span class="tag">Same files on a light page</span>
+        <figure><img class="px" src="assets/hallmark/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+        <figure><img class="px" src="assets/hallmark/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+        <figure><img class="px" src="assets/hallmark/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+        <span class="sep"></span>
+        <figure><img class="px" src="assets/hallmark/favicon-light-16.png" width="16" height="16" alt=""><figcaption>SVG 16</figcaption></figure>
+        <figure><img class="px" src="assets/hallmark/favicon-light-32.png" width="32" height="32" alt=""><figcaption>SVG 32</figcaption></figure>
+        <figure><img class="px zoom" src="assets/hallmark/favicon-light-32.png" alt="transparent SVG favicon enlarged"><figcaption>no tile</figcaption></figure>
+      </div>
+    </div>
+
+    <div class="ctx">
+      <div class="site"><div class="site-nav"><img src="assets/hallmark/lockup-on-dark.svg" alt="Manuchie"><div class="site-links"><a>Story</a><a>Sound</a><a>Studio</a><a class="site-book">Book a session</a></div></div>
+        <div class="site-hero"><p>Harare, Zimbabwe · Australia · Worldwide</p><h3>Manuchie</h3></div></div>
+      <div class="ctx-row">
+        <div class="panel dark tabs"><span class="tag">Browser tabs</span>
+          <div class="tabbar l"><div class="tab"><img src="assets/hallmark/favicon-light-16.png" alt=""><span>Manuchie <b>— Producer, Songwriter, Music Director</b></span></div></div>
+          <div class="tabbar d"><div class="tab"><img src="assets/hallmark/favicon-dark-16.png" alt=""><span>Manuchie <b>— Producer, Songwriter, Music Director</b></span></div></div>
+          <p class="tab-note">Light and dark browser themes, transparent SVG favicon.</p>
+        </div>
+        <div class="panel dark social"><span class="tag">Profile picture</span>
+          <img class="avatar lg" src="assets/hallmark/social-540.png" alt="Hallmark profile image, round crop">
+          <div class="profile"><h4>manuchie1</h4><p>Producer · Songwriter · Music Director · Keyboardist<br>Harare · Australia · Worldwide</p>
+            <div class="minis"><img class="avatar md" src="assets/hallmark/social-540.png" alt=""><img class="avatar sm" src="assets/hallmark/social-540.png" alt=""></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PALETTE ================= -->
+<section class="block" id="palette">
+  <div class="wrap">
+    <h2>Palette</h2>
+    <p>One palette serves all three concepts and matches the website. Contrast figures are WCAG ratios. Terracotta and deep gold are for shapes and large type; for small text on dark, use off-white or gold.</p>
+    <div class="swatches">
+      <div class="sw"><i style="background:#0a0a0b;border-bottom:1px solid rgba(255,255,255,.08)"></i><div><b>Near-black</b><code>#0a0a0b</code><p>Main ground (site background)</p></div></div>
+      <div class="sw"><i style="background:#141416"></i><div><b>Charcoal</b><code>#141416</code><p>Surfaces, cards</p></div></div>
+      <div class="sw"><i style="background:#f3f0ea"></i><div><b>Warm off-white</b><code>#f3f0ea</code><p>17.4 : 1 on near-black</p></div></div>
+      <div class="sw"><i style="background:#b5481e"></i><div><b>Terracotta</b><code>#b5481e</code><p>3.7 : 1 on near-black, 4.7 : 1 on off-white</p></div></div>
+      <div class="sw"><i style="background:#c8a15a"></i><div><b>Muted gold</b><code>#c8a15a</code><p>8.2 : 1 on near-black (dark grounds only)</p></div></div>
+      <div class="sw"><i style="background:#8c6727"></i><div><b>Deep gold</b><code>#8c6727</code><p>4.5 : 1 on off-white (gold on light)</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="files">
+  <div class="wrap">
+    <h2>What’s in the folder</h2>
+    <p>Hallmark is being wired into the site. <code>brand/package/README.md</code> has the usage rules and the exact tags to add.</p>
+    <div class="files">
+      <div><h3>Concepts</h3><p><code>brand/concepts/&lt;name&gt;/</code>: symbol.svg, wordmark.svg and lockup.svg for each concept, plus on-dark copies, small-size icons and a preview board.</p></div>
+      <div><h3>Production package (Hallmark)</h3><p><code>brand/package/</code>: seal, M mark, wordmark and lockup in four colourways, favicon.svg / .ico, app and touch icons, a maskable icon, a social image and the web manifest.</p></div>
+      <div><h3>Rebuild</h3><p><code>brand/build.sh</code> re-exports every PNG and ICO; <code>--package lumen</code> or <code>--package mbira</code> would rebuild the package from another concept.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Manuchie identity proposals · prepared 29 October 2026 · All lettering outlined from Newsreader and Inter (SIL Open Font License).</div></footer>
+</body>
+</html>

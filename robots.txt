@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /api/
 
-Sitemap: https://manuchie.pages.dev/sitemap.xml
+Sitemap: https://manuchie.org/sitemap.xml

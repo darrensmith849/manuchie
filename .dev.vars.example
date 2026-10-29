@@ -1,0 +1,19 @@
+# Local development secrets for `wrangler dev`.
+# Copy to .dev.vars (git-ignored) and fill in. Production values are set with
+#   npx wrangler secret put MAIL_TO      (and the same for each secret below)
+# Never commit real values.
+
+# Where enquiries are delivered (Manuchie's inbox)
+MAIL_TO=manuchie-inbox@example.com
+
+# Verified sender in Resend, e.g. "Manuchie Website <enquiries@manuchie.org>"
+MAIL_FROM=Manuchie Website <enquiries@example.com>
+
+# Resend API key (https://resend.com/api-keys) — "Sending access" is enough
+RESEND_API_KEY=re_xxxxxxxxxxxxxxxxxxxxxxxx
+
+# "true" emails the visitor a short confirmation (never repeats their message)
+SEND_ACKNOWLEDGEMENT=false
+
+# Testing only: send email to a local mock instead of Resend
+# RESEND_API_URL=http://127.0.0.1:8799/emails

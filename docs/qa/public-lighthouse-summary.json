@@ -1,0 +1,159 @@
+{
+  "url": "http://127.0.0.1:8703/ (dist/ served locally with the _headers rules applied and gzip, like the CDN)",
+  "lighthouse": "13.6.0",
+  "chromium": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "runs": {
+    "mobile": {
+      "median": {
+        "performance": 100,
+        "accessibility": 100,
+        "best_practices": 100,
+        "seo": 100,
+        "FCP_ms": 1033,
+        "LCP_ms": 1033,
+        "TBT_ms": 70,
+        "CLS": 0,
+        "SI_ms": 1071,
+        "transfer_KiB": 413
+      },
+      "all": [
+        {
+          "performance": 97,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 931,
+          "LCP_ms": 931,
+          "TBT_ms": 191,
+          "CLS": 0,
+          "SI_ms": 1167,
+          "transfer_KiB": 413
+        },
+        {
+          "performance": 99,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 1040,
+          "LCP_ms": 1040,
+          "TBT_ms": 104,
+          "CLS": 0,
+          "SI_ms": 1071,
+          "transfer_KiB": 413
+        },
+        {
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 1053,
+          "LCP_ms": 1053,
+          "TBT_ms": 70,
+          "CLS": 0,
+          "SI_ms": 1166,
+          "transfer_KiB": 413
+        },
+        {
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 857,
+          "LCP_ms": 857,
+          "TBT_ms": 29,
+          "CLS": 0,
+          "SI_ms": 978,
+          "transfer_KiB": 413
+        },
+        {
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 1033,
+          "LCP_ms": 1033,
+          "TBT_ms": 70,
+          "CLS": 0,
+          "SI_ms": 1033,
+          "transfer_KiB": 413
+        }
+      ]
+    },
+    "desktop": {
+      "median": {
+        "performance": 100,
+        "accessibility": 100,
+        "best_practices": 100,
+        "seo": 100,
+        "FCP_ms": 286,
+        "LCP_ms": 647,
+        "TBT_ms": 0,
+        "CLS": 0,
+        "SI_ms": 497,
+        "transfer_KiB": 444
+      },
+      "all": [
+        {
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 250,
+          "LCP_ms": 675,
+          "TBT_ms": 0,
+          "CLS": 0,
+          "SI_ms": 417,
+          "transfer_KiB": 444
+        },
+        {
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 286,
+          "LCP_ms": 641,
+          "TBT_ms": 0,
+          "CLS": 0,
+          "SI_ms": 485,
+          "transfer_KiB": 444
+        },
+        {
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 295,
+          "LCP_ms": 652,
+          "TBT_ms": 0,
+          "CLS": 0,
+          "SI_ms": 507,
+          "transfer_KiB": 444
+        },
+        {
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 290,
+          "LCP_ms": 647,
+          "TBT_ms": 0,
+          "CLS": 0,
+          "SI_ms": 519,
+          "transfer_KiB": 444
+        },
+        {
+          "performance": 100,
+          "accessibility": 100,
+          "best_practices": 100,
+          "seo": 100,
+          "FCP_ms": 285,
+          "LCP_ms": 641,
+          "TBT_ms": 0,
+          "CLS": 0,
+          "SI_ms": 497,
+          "transfer_KiB": 444
+        }
+      ]
+    }
+  }
+}

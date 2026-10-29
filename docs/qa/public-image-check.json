@@ -1,0 +1,512 @@
+[
+  {
+    "file": "alltheglory-dove.webp",
+    "source": "alltheglory-dove.png",
+    "size": "79x96",
+    "sourceSize": "79x96",
+    "aspectOk": true,
+    "psnr": 40.9,
+    "maxMeanDiff": 0.3,
+    "bytes": 6506
+  },
+  {
+    "file": "portrait-cap-1119.avif",
+    "source": "portrait-cap.jpg",
+    "size": "1119x1680",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 44.6,
+    "maxMeanDiff": 0.1,
+    "bytes": 42193
+  },
+  {
+    "file": "portrait-cap-1119.webp",
+    "source": "portrait-cap.jpg",
+    "size": "1119x1680",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 42.6,
+    "maxMeanDiff": 0.1,
+    "bytes": 43376
+  },
+  {
+    "file": "portrait-cap-480.avif",
+    "source": "portrait-cap.jpg",
+    "size": "480x720",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 39.4,
+    "maxMeanDiff": 0.6,
+    "bytes": 13402
+  },
+  {
+    "file": "portrait-cap-480.webp",
+    "source": "portrait-cap.jpg",
+    "size": "480x720",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 38.3,
+    "maxMeanDiff": 0.6,
+    "bytes": 13314
+  },
+  {
+    "file": "portrait-cap-720.avif",
+    "source": "portrait-cap.jpg",
+    "size": "720x1081",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 42.3,
+    "maxMeanDiff": 0.4,
+    "bytes": 23085
+  },
+  {
+    "file": "portrait-cap-720.webp",
+    "source": "portrait-cap.jpg",
+    "size": "720x1081",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 40.9,
+    "maxMeanDiff": 0.5,
+    "bytes": 23630
+  },
+  {
+    "file": "portrait-terracotta-400.avif",
+    "source": "portrait-terracotta.jpg",
+    "size": "400x477",
+    "sourceSize": "536x640",
+    "aspectOk": true,
+    "psnr": 39.6,
+    "maxMeanDiff": 0.6,
+    "bytes": 9068
+  },
+  {
+    "file": "portrait-terracotta-400.webp",
+    "source": "portrait-terracotta.jpg",
+    "size": "400x477",
+    "sourceSize": "536x640",
+    "aspectOk": true,
+    "psnr": 38.7,
+    "maxMeanDiff": 0.6,
+    "bytes": 10214
+  },
+  {
+    "file": "portrait-terracotta-536.avif",
+    "source": "portrait-terracotta.jpg",
+    "size": "536x640",
+    "sourceSize": "536x640",
+    "aspectOk": true,
+    "psnr": 41.8,
+    "maxMeanDiff": 0.3,
+    "bytes": 14630
+  },
+  {
+    "file": "portrait-terracotta-536.webp",
+    "source": "portrait-terracotta.jpg",
+    "size": "536x640",
+    "sourceSize": "536x640",
+    "aspectOk": true,
+    "psnr": 40.6,
+    "maxMeanDiff": 0.2,
+    "bytes": 16252
+  },
+  {
+    "file": "recline-1119.avif",
+    "source": "recline.jpg",
+    "size": "1119x1680",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 41.1,
+    "maxMeanDiff": 0.1,
+    "bytes": 95561
+  },
+  {
+    "file": "recline-1119.webp",
+    "source": "recline.jpg",
+    "size": "1119x1680",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 39.8,
+    "maxMeanDiff": 0.2,
+    "bytes": 96872
+  },
+  {
+    "file": "recline-480.avif",
+    "source": "recline.jpg",
+    "size": "480x720",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 38,
+    "maxMeanDiff": 0.7,
+    "bytes": 18871
+  },
+  {
+    "file": "recline-480.webp",
+    "source": "recline.jpg",
+    "size": "480x720",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 37.5,
+    "maxMeanDiff": 0.7,
+    "bytes": 19746
+  },
+  {
+    "file": "recline-720.avif",
+    "source": "recline.jpg",
+    "size": "720x1081",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 39.4,
+    "maxMeanDiff": 0.6,
+    "bytes": 41758
+  },
+  {
+    "file": "recline-720.webp",
+    "source": "recline.jpg",
+    "size": "720x1081",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 38.5,
+    "maxMeanDiff": 0.6,
+    "bytes": 42332
+  },
+  {
+    "file": "studio-1119.avif",
+    "source": "studio.jpg",
+    "size": "1119x1680",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 43.1,
+    "maxMeanDiff": 0.2,
+    "bytes": 68051
+  },
+  {
+    "file": "studio-1119.webp",
+    "source": "studio.jpg",
+    "size": "1119x1680",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 41.5,
+    "maxMeanDiff": 0.2,
+    "bytes": 66728
+  },
+  {
+    "file": "studio-480.avif",
+    "source": "studio.jpg",
+    "size": "480x720",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 37,
+    "maxMeanDiff": 0.5,
+    "bytes": 18112
+  },
+  {
+    "file": "studio-480.webp",
+    "source": "studio.jpg",
+    "size": "480x720",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 36.5,
+    "maxMeanDiff": 0.6,
+    "bytes": 18246
+  },
+  {
+    "file": "studio-640.avif",
+    "source": "studio.jpg",
+    "size": "640x961",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 39.3,
+    "maxMeanDiff": 0.5,
+    "bytes": 29698
+  },
+  {
+    "file": "studio-640.webp",
+    "source": "studio.jpg",
+    "size": "640x961",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 38.7,
+    "maxMeanDiff": 0.5,
+    "bytes": 30036
+  },
+  {
+    "file": "studio-960.avif",
+    "source": "studio.jpg",
+    "size": "960x1441",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 41.5,
+    "maxMeanDiff": 0.5,
+    "bytes": 50072
+  },
+  {
+    "file": "studio-960.webp",
+    "source": "studio.jpg",
+    "size": "960x1441",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 40.5,
+    "maxMeanDiff": 0.5,
+    "bytes": 51346
+  },
+  {
+    "file": "studio-mantra-1252.avif",
+    "source": "studio-mantra.jpg",
+    "size": "1252x1680",
+    "sourceSize": "1252x1680",
+    "aspectOk": true,
+    "psnr": 42.4,
+    "maxMeanDiff": 0.1,
+    "bytes": 86133
+  },
+  {
+    "file": "studio-mantra-1252.webp",
+    "source": "studio-mantra.jpg",
+    "size": "1252x1680",
+    "sourceSize": "1252x1680",
+    "aspectOk": true,
+    "psnr": 40.7,
+    "maxMeanDiff": 0.2,
+    "bytes": 96148
+  },
+  {
+    "file": "studio-mantra-640.avif",
+    "source": "studio-mantra.jpg",
+    "size": "640x858",
+    "sourceSize": "1252x1680",
+    "aspectOk": true,
+    "psnr": 36.5,
+    "maxMeanDiff": 0.6,
+    "bytes": 26172
+  },
+  {
+    "file": "studio-mantra-640.webp",
+    "source": "studio-mantra.jpg",
+    "size": "640x858",
+    "sourceSize": "1252x1680",
+    "aspectOk": true,
+    "psnr": 36.1,
+    "maxMeanDiff": 0.6,
+    "bytes": 31270
+  },
+  {
+    "file": "studio-mantra-960.avif",
+    "source": "studio-mantra.jpg",
+    "size": "960x1288",
+    "sourceSize": "1252x1680",
+    "aspectOk": true,
+    "psnr": 40.2,
+    "maxMeanDiff": 0.6,
+    "bytes": 50789
+  },
+  {
+    "file": "studio-mantra-960.webp",
+    "source": "studio-mantra.jpg",
+    "size": "960x1288",
+    "sourceSize": "1252x1680",
+    "aspectOk": true,
+    "psnr": 39.2,
+    "maxMeanDiff": 0.6,
+    "bytes": 57548
+  },
+  {
+    "file": "tux-gallery-1120.avif",
+    "source": "tux-gallery.jpg",
+    "size": "1120x1680",
+    "sourceSize": "1120x1680",
+    "aspectOk": true,
+    "psnr": 44.4,
+    "maxMeanDiff": 0.1,
+    "bytes": 56598
+  },
+  {
+    "file": "tux-gallery-1120.webp",
+    "source": "tux-gallery.jpg",
+    "size": "1120x1680",
+    "sourceSize": "1120x1680",
+    "aspectOk": true,
+    "psnr": 42.7,
+    "maxMeanDiff": 0.1,
+    "bytes": 58736
+  },
+  {
+    "file": "tux-gallery-480.avif",
+    "source": "tux-gallery.jpg",
+    "size": "480x720",
+    "sourceSize": "1120x1680",
+    "aspectOk": true,
+    "psnr": 39.4,
+    "maxMeanDiff": 0.7,
+    "bytes": 23755
+  },
+  {
+    "file": "tux-gallery-480.webp",
+    "source": "tux-gallery.jpg",
+    "size": "480x720",
+    "sourceSize": "1120x1680",
+    "aspectOk": true,
+    "psnr": 38.6,
+    "maxMeanDiff": 0.7,
+    "bytes": 19374
+  },
+  {
+    "file": "tux-gallery-720.avif",
+    "source": "tux-gallery.jpg",
+    "size": "720x1080",
+    "sourceSize": "1120x1680",
+    "aspectOk": true,
+    "psnr": 41.6,
+    "maxMeanDiff": 0.3,
+    "bytes": 33724
+  },
+  {
+    "file": "tux-gallery-720.webp",
+    "source": "tux-gallery.jpg",
+    "size": "720x1080",
+    "sourceSize": "1120x1680",
+    "aspectOk": true,
+    "psnr": 40.4,
+    "maxMeanDiff": 0.4,
+    "bytes": 31170
+  },
+  {
+    "file": "window-1119.avif",
+    "source": "window.jpg",
+    "size": "1119x1680",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 43.3,
+    "maxMeanDiff": 0.1,
+    "bytes": 54285
+  },
+  {
+    "file": "window-1119.webp",
+    "source": "window.jpg",
+    "size": "1119x1680",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 41.6,
+    "maxMeanDiff": 0.1,
+    "bytes": 59122
+  },
+  {
+    "file": "window-480.avif",
+    "source": "window.jpg",
+    "size": "480x720",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 38.1,
+    "maxMeanDiff": 0.6,
+    "bytes": 16984
+  },
+  {
+    "file": "window-480.webp",
+    "source": "window.jpg",
+    "size": "480x720",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 37.3,
+    "maxMeanDiff": 0.6,
+    "bytes": 18162
+  },
+  {
+    "file": "window-720.avif",
+    "source": "window.jpg",
+    "size": "720x1081",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 40.7,
+    "maxMeanDiff": 0.6,
+    "bytes": 29817
+  },
+  {
+    "file": "window-720.webp",
+    "source": "window.jpg",
+    "size": "720x1081",
+    "sourceSize": "1119x1680",
+    "aspectOk": true,
+    "psnr": 39.6,
+    "maxMeanDiff": 0.5,
+    "bytes": 32398
+  },
+  {
+    "file": "worship-rays-1280.avif",
+    "source": "worship-rays.jpg",
+    "size": "1280x720",
+    "sourceSize": "1600x900",
+    "aspectOk": true,
+    "psnr": 42,
+    "maxMeanDiff": 0.6,
+    "bytes": 33232
+  },
+  {
+    "file": "worship-rays-1280.webp",
+    "source": "worship-rays.jpg",
+    "size": "1280x720",
+    "sourceSize": "1600x900",
+    "aspectOk": true,
+    "psnr": 40.6,
+    "maxMeanDiff": 0.6,
+    "bytes": 36714
+  },
+  {
+    "file": "worship-rays-1600.avif",
+    "source": "worship-rays.jpg",
+    "size": "1600x900",
+    "sourceSize": "1600x900",
+    "aspectOk": true,
+    "psnr": 43.4,
+    "maxMeanDiff": 0.2,
+    "bytes": 45585
+  },
+  {
+    "file": "worship-rays-1600.webp",
+    "source": "worship-rays.jpg",
+    "size": "1600x900",
+    "sourceSize": "1600x900",
+    "aspectOk": true,
+    "psnr": 41.4,
+    "maxMeanDiff": 0.2,
+    "bytes": 51666
+  },
+  {
+    "file": "worship-rays-640.avif",
+    "source": "worship-rays.jpg",
+    "size": "640x360",
+    "sourceSize": "1600x900",
+    "aspectOk": true,
+    "psnr": 35.9,
+    "maxMeanDiff": 1.1,
+    "bytes": 14104
+  },
+  {
+    "file": "worship-rays-640.webp",
+    "source": "worship-rays.jpg",
+    "size": "640x360",
+    "sourceSize": "1600x900",
+    "aspectOk": true,
+    "psnr": 36.5,
+    "maxMeanDiff": 0.9,
+    "bytes": 16846
+  },
+  {
+    "file": "worship-rays-960.avif",
+    "source": "worship-rays.jpg",
+    "size": "960x540",
+    "sourceSize": "1600x900",
+    "aspectOk": true,
+    "psnr": 39.8,
+    "maxMeanDiff": 0.5,
+    "bytes": 23525
+  },
+  {
+    "file": "worship-rays-960.webp",
+    "source": "worship-rays.jpg",
+    "size": "960x540",
+    "sourceSize": "1600x900",
+    "aspectOk": true,
+    "psnr": 39.1,
+    "maxMeanDiff": 0.5,
+    "bytes": 27326
+  }
+]

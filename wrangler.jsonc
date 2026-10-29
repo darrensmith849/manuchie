@@ -1,0 +1,45 @@
+// Cloudflare Worker for manuchie.org — Manuchie01@gmail.com's Account.
+// Deploy: ./build.sh && npx wrangler deploy   (see docs/DEPLOYMENT.md)
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "manuchie",
+  "main": "worker/src/index.js",
+  "compatibility_date": "2026-10-29",
+  "account_id": "c47856fcc04d89b572273dafaae646f1",
+
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    // The API and the dashboard always go through the Worker (auth, no-store headers).
+    "run_worker_first": ["/api/*", "/admin", "/admin/*"]
+  },
+
+  "routes": [
+    { "pattern": "manuchie.org", "custom_domain": true },
+    { "pattern": "www.manuchie.org", "custom_domain": true }
+  ],
+  "workers_dev": false,
+  "preview_urls": false,
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "manuchie",
+      "database_id": "ce4b8ead-c827-4919-bc07-eb12eeb470e9",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  // Housekeeping (expired sessions, rate-limit rows, old analytics salts and events) runs
+  // alongside normal API traffic, at most every 6 hours. A daily cron can be added too, once the
+  // account has a workers.dev subdomain (open Workers & Pages in the dashboard once):
+  //   "triggers": { "crons": ["17 3 * * *"] },
+
+  "vars": {
+    "SEND_ACKNOWLEDGEMENT": "false"
+  },
+  // Secrets (set with `npx wrangler secret put NAME`, never committed):
+  //   MAIL_TO, MAIL_FROM, RESEND_API_KEY
+
+  "observability": { "enabled": true }
+}

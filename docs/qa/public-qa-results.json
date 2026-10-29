@@ -1,0 +1,1247 @@
+{
+  "base": "http://127.0.0.1:8703/",
+  "net": false,
+  "widths": {
+    "390": {
+      "clsOnLoad": 0,
+      "clsAfterScroll": 0,
+      "layout": {
+        "scrollWidth": 390,
+        "vw": 390,
+        "offRail": [],
+        "clipped": []
+      },
+      "anchors": {
+        "#story": {
+          "targetTop": 64,
+          "navBottom": 64,
+          "drawerHidden": true,
+          "focused": "story"
+        },
+        "#sound": {
+          "targetTop": 64,
+          "navBottom": 64,
+          "drawerHidden": true,
+          "focused": "sound"
+        },
+        "#studio": {
+          "targetTop": 64,
+          "navBottom": 64,
+          "drawerHidden": true,
+          "focused": "studio"
+        },
+        "#contact": {
+          "targetTop": 64,
+          "navBottom": 64,
+          "drawerHidden": true,
+          "focused": "contact"
+        }
+      },
+      "tabOrder": [
+        "a:Skip to content",
+        "a:Manuchie",
+        "button:Open menu",
+        "a:Book a session",
+        "a:Hear his work",
+        "a:Listen ↗",
+        "a:01Mourning to DancingManuchie featuring ",
+        "a:02Been So GoodManuchie x The Unveiled↗",
+        "a:03Present Jesu Christmas ProjectAnnatori",
+        "a:04Celebrate Africafeaturing Britt Nicole",
+        "a:05Collaborations & productionwith artist",
+        "a:Apple Music",
+        "a:YouTube",
+        "a:Shazam",
+        "a:Enquire about your next project",
+        "a:EmailDirect to the inbox",
+        "a:Instagram@manuchie1",
+        "input:name",
+        "input:email",
+        "textarea:message",
+        "input:marketing_consent",
+        "button:Send it over",
+        "a:Instagram",
+        "a:Spotify",
+        "a:Apple Music",
+        "a:YouTube",
+        "a:Shazam",
+        "a:Built by All The Glory"
+      ],
+      "smallTargets": [],
+      "console": []
+    },
+    "768": {
+      "clsOnLoad": 0,
+      "clsAfterScroll": 0,
+      "layout": {
+        "scrollWidth": 768,
+        "vw": 768,
+        "offRail": [],
+        "clipped": []
+      },
+      "anchors": {
+        "#story": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 144,
+          "focused": "story",
+          "hash": "#story"
+        },
+        "#sound": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 144,
+          "focused": "sound",
+          "hash": "#sound"
+        },
+        "#studio": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 145,
+          "focused": "studio",
+          "hash": "#studio"
+        },
+        "#contact": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 144,
+          "focused": "contact",
+          "hash": "#contact"
+        }
+      },
+      "tabOrder": [
+        "a:Skip to content",
+        "a:Manuchie",
+        "a:Story",
+        "a:Sound",
+        "a:Studio",
+        "a:Book a session",
+        "a:Book a session",
+        "a:Hear his work",
+        "a:Listen ↗",
+        "a:01Mourning to DancingManuchie featuring ",
+        "a:02Been So GoodManuchie x The Unveiled↗",
+        "a:03Present Jesu Christmas ProjectAnnatori",
+        "a:04Celebrate Africafeaturing Britt Nicole",
+        "a:05Collaborations & productionwith artist",
+        "a:Apple Music",
+        "a:YouTube",
+        "a:Shazam",
+        "a:Enquire about your next project",
+        "a:EmailDirect to the inbox",
+        "a:Instagram@manuchie1",
+        "input:name",
+        "input:email",
+        "textarea:message",
+        "input:marketing_consent",
+        "button:Send it over",
+        "a:Instagram",
+        "a:Spotify",
+        "a:Apple Music",
+        "a:YouTube",
+        "a:Shazam",
+        "a:Built by All The Glory"
+      ],
+      "smallTargets": [],
+      "console": []
+    },
+    "1024": {
+      "clsOnLoad": 0,
+      "clsAfterScroll": 0,
+      "layout": {
+        "scrollWidth": 1024,
+        "vw": 1024,
+        "offRail": [],
+        "clipped": []
+      },
+      "anchors": {
+        "#story": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 164,
+          "focused": "story",
+          "hash": "#story"
+        },
+        "#sound": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 164,
+          "focused": "sound",
+          "hash": "#sound"
+        },
+        "#studio": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 165,
+          "focused": "studio",
+          "hash": "#studio"
+        },
+        "#contact": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 164,
+          "focused": "contact",
+          "hash": "#contact"
+        }
+      },
+      "tabOrder": [
+        "a:Skip to content",
+        "a:Manuchie",
+        "a:Story",
+        "a:Sound",
+        "a:Studio",
+        "a:Book a session",
+        "a:Book a session",
+        "a:Hear his work",
+        "a:Listen ↗",
+        "a:01Mourning to DancingManuchie featuring ",
+        "a:02Been So GoodManuchie x The Unveiled↗",
+        "a:03Present Jesu Christmas ProjectAnnatori",
+        "a:04Celebrate Africafeaturing Britt Nicole",
+        "a:05Collaborations & productionwith artist",
+        "a:Apple Music",
+        "a:YouTube",
+        "a:Shazam",
+        "a:Enquire about your next project",
+        "a:EmailDirect to the inbox",
+        "a:Instagram@manuchie1",
+        "input:name",
+        "input:email",
+        "textarea:message",
+        "input:marketing_consent",
+        "button:Send it over",
+        "a:Instagram",
+        "a:Spotify",
+        "a:Apple Music",
+        "a:YouTube",
+        "a:Shazam",
+        "a:Built by All The Glory"
+      ],
+      "smallTargets": [],
+      "console": []
+    },
+    "1440": {
+      "clsOnLoad": 0,
+      "clsAfterScroll": 0,
+      "layout": {
+        "scrollWidth": 1440,
+        "vw": 1440,
+        "offRail": [],
+        "clipped": []
+      },
+      "anchors": {
+        "#story": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 192,
+          "focused": "story",
+          "hash": "#story"
+        },
+        "#sound": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 192,
+          "focused": "sound",
+          "hash": "#sound"
+        },
+        "#studio": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 193,
+          "focused": "studio",
+          "hash": "#studio"
+        },
+        "#contact": {
+          "targetTop": 72,
+          "navBottom": 72,
+          "firstTextTop": 192,
+          "focused": "contact",
+          "hash": "#contact"
+        }
+      },
+      "tabOrder": [
+        "a:Skip to content",
+        "a:Manuchie",
+        "a:Story",
+        "a:Sound",
+        "a:Studio",
+        "a:Book a session",
+        "a:Book a session",
+        "a:Hear his work",
+        "a:Listen ↗",
+        "a:01Mourning to DancingManuchie featuring ",
+        "a:02Been So GoodManuchie x The Unveiled↗",
+        "a:03Present Jesu Christmas ProjectAnnatori",
+        "a:04Celebrate Africafeaturing Britt Nicole",
+        "a:05Collaborations & productionwith artist",
+        "a:Apple Music",
+        "a:YouTube",
+        "a:Shazam",
+        "a:Enquire about your next project",
+        "a:EmailDirect to the inbox",
+        "a:Instagram@manuchie1",
+        "input:name",
+        "input:email",
+        "textarea:message",
+        "input:marketing_consent",
+        "button:Send it over",
+        "a:Instagram",
+        "a:Spotify",
+        "a:Apple Music",
+        "a:YouTube",
+        "a:Shazam",
+        "a:Built by All The Glory"
+      ],
+      "smallTargets": [],
+      "console": []
+    }
+  },
+  "form": {
+    "success": {
+      "busy": {
+        "disabled": true,
+        "ariaBusy": "true",
+        "formBusy": "true"
+      },
+      "after": {
+        "status": "Thank you — your enquiry has been sent. Manuchie will be in touch soon.",
+        "statusRole": "status",
+        "name": {
+          "value": "",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "email": {
+          "value": "",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "message": {
+          "value": "",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "consent": false,
+        "disabled": false,
+        "ariaBusy": null,
+        "focus": "submitBtn"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "type": "application/json",
+          "body": "{\"name\":\"Test Person\",\"email\":\"test@example.com\",\"message\":\"A worship EP, recording in March.\",\"marketing_consent\":true,\"botcheck\":false,\"started_at\":1793264679130,\"source_page\":\"/\",\"referrer\":\"\",\"utm_source\":\"\",\"utm_medium\":\"\",\"utm_campaign\":\"\",\"sid\":\"f1cdb16d5739adaeba1db71a\"}"
+        }
+      ],
+      "popups": [],
+      "navigations": [],
+      "url": "http://127.0.0.1:8703/",
+      "collect": [
+        {
+          "type": "pageview",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f1cdb16d5739adaeba1db71a",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "gallery",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f1cdb16d5739adaeba1db71a",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "contact",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f1cdb16d5739adaeba1db71a",
+          "w": 1440
+        },
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f1cdb16d5739adaeba1db71a",
+          "w": 1440
+        },
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f1cdb16d5739adaeba1db71a",
+          "w": 1440
+        }
+      ],
+      "console": [],
+      "payload": {
+        "name": "Test Person",
+        "email": "test@example.com",
+        "message": "A worship EP, recording in March.",
+        "marketing_consent": true,
+        "botcheck": false,
+        "started_at": 1793264679130,
+        "source_page": "/",
+        "referrer": "",
+        "utm_source": "",
+        "utm_medium": "",
+        "utm_campaign": "",
+        "sid": "f1cdb16d5739adaeba1db71a"
+      }
+    },
+    "validation": {
+      "busy": {
+        "disabled": true,
+        "ariaBusy": "true",
+        "formBusy": "true"
+      },
+      "after": {
+        "status": "",
+        "statusRole": "status",
+        "name": {
+          "value": "Test Person",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "email": {
+          "value": "test@example.com",
+          "invalid": "true",
+          "describedby": "f-email-err",
+          "error": "Please enter a valid email address."
+        },
+        "message": {
+          "value": "A worship EP, recording in March.",
+          "invalid": "true",
+          "describedby": "f-message-err",
+          "error": "Please tell us a little about the project."
+        },
+        "consent": false,
+        "disabled": false,
+        "ariaBusy": null,
+        "focus": "f-email"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "type": "application/json",
+          "body": "{\"name\":\"Test Person\",\"email\":\"test@example.com\",\"message\":\"A worship EP, recording in March.\",\"marketing_consent\":false,\"botcheck\":false,\"started_at\":1793264680527,\"source_page\":\"/\",\"referrer\":\"\",\"utm_source\":\"\",\"utm_medium\":\"\",\"utm_campaign\":\"\",\"sid\":\"36740639faed76fa451e2652\"}"
+        }
+      ],
+      "popups": [],
+      "navigations": [],
+      "url": "http://127.0.0.1:8703/",
+      "collect": [
+        {
+          "type": "pageview",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "36740639faed76fa451e2652",
+          "w": 1440
+        },
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "36740639faed76fa451e2652",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "gallery",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "36740639faed76fa451e2652",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "contact",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "36740639faed76fa451e2652",
+          "w": 1440
+        }
+      ],
+      "console": [
+        "error: Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://127.0.0.1:8703/api/enquiry"
+      ]
+    },
+    "rate_limited": {
+      "busy": {
+        "disabled": true,
+        "ariaBusy": "true",
+        "formBusy": "true"
+      },
+      "after": {
+        "status": "Too many attempts — please wait a minute and try again.",
+        "statusRole": "status",
+        "name": {
+          "value": "Test Person",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "email": {
+          "value": "test@example.com",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "message": {
+          "value": "A worship EP, recording in March.",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "consent": false,
+        "disabled": false,
+        "ariaBusy": null,
+        "focus": "submitBtn"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "type": "application/json",
+          "body": "{\"name\":\"Test Person\",\"email\":\"test@example.com\",\"message\":\"A worship EP, recording in March.\",\"marketing_consent\":false,\"botcheck\":false,\"started_at\":1793264681833,\"source_page\":\"/\",\"referrer\":\"\",\"utm_source\":\"\",\"utm_medium\":\"\",\"utm_campaign\":\"\",\"sid\":\"6070fe7fcc92eced1039fad5\"}"
+        }
+      ],
+      "popups": [],
+      "navigations": [],
+      "url": "http://127.0.0.1:8703/",
+      "collect": [
+        {
+          "type": "pageview",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "6070fe7fcc92eced1039fad5",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "gallery",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "6070fe7fcc92eced1039fad5",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "contact",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "6070fe7fcc92eced1039fad5",
+          "w": 1440
+        },
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "6070fe7fcc92eced1039fad5",
+          "w": 1440
+        }
+      ],
+      "console": [
+        "error: Failed to load resource: the server responded with a status of 429 (Too Many Requests) @ http://127.0.0.1:8703/api/enquiry"
+      ]
+    },
+    "server_error": {
+      "busy": {
+        "disabled": true,
+        "ariaBusy": "true",
+        "formBusy": "true"
+      },
+      "after": {
+        "status": "Sorry — your enquiry couldn't be sent. Please try again in a moment.",
+        "statusRole": "status",
+        "name": {
+          "value": "Test Person",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "email": {
+          "value": "test@example.com",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "message": {
+          "value": "A worship EP, recording in March.",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "consent": false,
+        "disabled": false,
+        "ariaBusy": null,
+        "focus": "submitBtn"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "type": "application/json",
+          "body": "{\"name\":\"Test Person\",\"email\":\"test@example.com\",\"message\":\"A worship EP, recording in March.\",\"marketing_consent\":false,\"botcheck\":false,\"started_at\":1793264683301,\"source_page\":\"/\",\"referrer\":\"\",\"utm_source\":\"\",\"utm_medium\":\"\",\"utm_campaign\":\"\",\"sid\":\"286af6e1edaa528af79f2033\"}"
+        }
+      ],
+      "popups": [],
+      "navigations": [],
+      "url": "http://127.0.0.1:8703/",
+      "collect": [
+        {
+          "type": "pageview",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "286af6e1edaa528af79f2033",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "gallery",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "286af6e1edaa528af79f2033",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "contact",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "286af6e1edaa528af79f2033",
+          "w": 1440
+        },
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "286af6e1edaa528af79f2033",
+          "w": 1440
+        }
+      ],
+      "console": [
+        "error: Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:8703/api/enquiry"
+      ]
+    },
+    "origin_403": {
+      "busy": {
+        "disabled": true,
+        "ariaBusy": "true",
+        "formBusy": "true"
+      },
+      "after": {
+        "status": "Sorry — your enquiry couldn't be sent. Please try again in a moment.",
+        "statusRole": "status",
+        "name": {
+          "value": "Test Person",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "email": {
+          "value": "test@example.com",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "message": {
+          "value": "A worship EP, recording in March.",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "consent": false,
+        "disabled": false,
+        "ariaBusy": null,
+        "focus": "submitBtn"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "type": "application/json",
+          "body": "{\"name\":\"Test Person\",\"email\":\"test@example.com\",\"message\":\"A worship EP, recording in March.\",\"marketing_consent\":false,\"botcheck\":false,\"started_at\":1793264684563,\"source_page\":\"/\",\"referrer\":\"\",\"utm_source\":\"\",\"utm_medium\":\"\",\"utm_campaign\":\"\",\"sid\":\"9aede958b90639ae9025d032\"}"
+        }
+      ],
+      "popups": [],
+      "navigations": [],
+      "url": "http://127.0.0.1:8703/",
+      "collect": [
+        {
+          "type": "pageview",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "9aede958b90639ae9025d032",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "hero",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "9aede958b90639ae9025d032",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "gallery",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "9aede958b90639ae9025d032",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "contact",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "9aede958b90639ae9025d032",
+          "w": 1440
+        },
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "9aede958b90639ae9025d032",
+          "w": 1440
+        }
+      ],
+      "console": [
+        "error: Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8703/api/enquiry"
+      ]
+    },
+    "network_failure": {
+      "busy": {
+        "disabled": true,
+        "ariaBusy": "true",
+        "formBusy": "true"
+      },
+      "after": {
+        "status": "Sorry — your enquiry couldn't be sent. Please try again in a moment.",
+        "statusRole": "status",
+        "name": {
+          "value": "Test Person",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "email": {
+          "value": "test@example.com",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "message": {
+          "value": "A worship EP, recording in March.",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "consent": false,
+        "disabled": false,
+        "ariaBusy": null,
+        "focus": "submitBtn"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "type": "application/json",
+          "body": "{\"name\":\"Test Person\",\"email\":\"test@example.com\",\"message\":\"A worship EP, recording in March.\",\"marketing_consent\":false,\"botcheck\":false,\"started_at\":1793264685888,\"source_page\":\"/\",\"referrer\":\"\",\"utm_source\":\"\",\"utm_medium\":\"\",\"utm_campaign\":\"\",\"sid\":\"f2fdf7830337417bd9376028\"}"
+        }
+      ],
+      "popups": [],
+      "navigations": [],
+      "url": "http://127.0.0.1:8703/",
+      "collect": [
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f2fdf7830337417bd9376028",
+          "w": 1440
+        },
+        {
+          "type": "pageview",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f2fdf7830337417bd9376028",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "gallery",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f2fdf7830337417bd9376028",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "contact",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "f2fdf7830337417bd9376028",
+          "w": 1440
+        }
+      ],
+      "console": [
+        "error: Failed to load resource: net::ERR_INTERNET_DISCONNECTED @ http://127.0.0.1:8703/api/enquiry"
+      ]
+    },
+    "html_response": {
+      "busy": {
+        "disabled": true,
+        "ariaBusy": "true",
+        "formBusy": "true"
+      },
+      "after": {
+        "status": "Sorry — your enquiry couldn't be sent. Please try again in a moment.",
+        "statusRole": "status",
+        "name": {
+          "value": "Test Person",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "email": {
+          "value": "test@example.com",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "message": {
+          "value": "A worship EP, recording in March.",
+          "invalid": null,
+          "describedby": null,
+          "error": ""
+        },
+        "consent": false,
+        "disabled": false,
+        "ariaBusy": null,
+        "focus": "submitBtn"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "type": "application/json",
+          "body": "{\"name\":\"Test Person\",\"email\":\"test@example.com\",\"message\":\"A worship EP, recording in March.\",\"marketing_consent\":false,\"botcheck\":false,\"started_at\":1793264687332,\"source_page\":\"/\",\"referrer\":\"\",\"utm_source\":\"\",\"utm_medium\":\"\",\"utm_campaign\":\"\",\"sid\":\"a184f2e2833f70684aa8293c\"}"
+        }
+      ],
+      "popups": [],
+      "navigations": [],
+      "url": "http://127.0.0.1:8703/",
+      "collect": [
+        {
+          "type": "pageview",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "a184f2e2833f70684aa8293c",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "gallery",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "a184f2e2833f70684aa8293c",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "contact",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "a184f2e2833f70684aa8293c",
+          "w": 1440
+        },
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "a184f2e2833f70684aa8293c",
+          "w": 1440
+        }
+      ],
+      "console": [
+        "error: Failed to load resource: the server responded with a status of 502 (Bad Gateway) @ http://127.0.0.1:8703/api/enquiry"
+      ]
+    },
+    "empty_submit": {
+      "busy": {
+        "disabled": false,
+        "ariaBusy": null,
+        "formBusy": null
+      },
+      "after": {
+        "status": "",
+        "statusRole": "status",
+        "name": {
+          "value": "",
+          "invalid": "true",
+          "describedby": null,
+          "error": ""
+        },
+        "email": {
+          "value": "",
+          "invalid": "true",
+          "describedby": null,
+          "error": ""
+        },
+        "message": {
+          "value": "",
+          "invalid": "true",
+          "describedby": null,
+          "error": ""
+        },
+        "consent": false,
+        "disabled": false,
+        "ariaBusy": null,
+        "focus": "f-name"
+      },
+      "requests": [],
+      "popups": [],
+      "navigations": [],
+      "url": "http://127.0.0.1:8703/",
+      "collect": [
+        {
+          "type": "pageview",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "6c251a011257bb7bf9e94cc2",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "gallery",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "6c251a011257bb7bf9e94cc2",
+          "w": 1440
+        },
+        {
+          "type": "section_view",
+          "name": "contact",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "6c251a011257bb7bf9e94cc2",
+          "w": 1440
+        },
+        {
+          "type": "form_start",
+          "name": "",
+          "path": "/",
+          "ref": "",
+          "utm_source": "",
+          "utm_medium": "",
+          "utm_campaign": "",
+          "sid": "6c251a011257bb7bf9e94cc2",
+          "w": 1440
+        }
+      ],
+      "console": []
+    }
+  },
+  "analytics": {
+    "events": [
+      "pageview",
+      "section_view:hero",
+      "section_view:story",
+      "section_view:mantra",
+      "section_view:sound",
+      "section_view:studio",
+      "section_view:gallery",
+      "section_view:contact",
+      "click:spotify",
+      "click:apple_music",
+      "click:youtube",
+      "click:shazam",
+      "click:instagram",
+      "click:email",
+      "click:book_session",
+      "click:book_session",
+      "click:book_session",
+      "form_start"
+    ],
+    "sample": {
+      "type": "pageview",
+      "name": "",
+      "path": "/",
+      "ref": "https://www.instagram.com/",
+      "utm_source": "ig",
+      "utm_medium": "social",
+      "utm_campaign": "launch",
+      "sid": "824fd12239b80d8342b80dec",
+      "w": 1440
+    },
+    "storage": {
+      "sid": "824fd12239b80d8342b80dec",
+      "landing": "{\"referrer\":\"https://www.instagram.com/\",\"utm_source\":\"ig\",\"utm_medium\":\"social\",\"utm_campaign\":\"launch\"}"
+    },
+    "gpc": 0,
+    "dnt": 0
+  },
+  "nojs": {
+    "form": {
+      "action": "/api/enquiry",
+      "method": "post",
+      "enctype": null,
+      "mailto": null
+    },
+    "visibleRevealsHidden": 0,
+    "posted": {
+      "method": "POST",
+      "type": "application/x-www-form-urlencoded",
+      "body": "source_page=%2F&name=No+Script&email=ns%40example.com&message=Hello&marketing_consent=on"
+    }
+  },
+  "drawer": {
+    "afterOpen": {
+      "hidden": false,
+      "focus": "Story",
+      "expanded": "true",
+      "mainInert": true,
+      "footInert": true
+    },
+    "tabCycle": [
+      "Sound",
+      "Studio",
+      "Book a session",
+      "Manuchie",
+      "Close menu",
+      "Story",
+      "Sound",
+      "Studio"
+    ],
+    "afterEscape": {
+      "hidden": true,
+      "focus": "burger",
+      "mainInert": false
+    }
+  },
+  "reduced": {
+    "marqueeAnimation": "none",
+    "waveAnimation": "none",
+    "marqueeCopyDisplay": "none",
+    "marqueeToggleHidden": true,
+    "hiddenReveals": 0,
+    "scrollBehavior": "auto",
+    "allCollaboratorsInView": true,
+    "pauseButton": {
+      "state": "paused",
+      "pressed": "true",
+      "label": "Play the collaborators ticker"
+    }
+  },
+  "a11y": {
+    "headings": [
+      "H1 Manuchie",
+      "H2 A sound rooted in faith.A vision without borders.",
+      "H2 Make music with purpose.Pursue excellence in every sound.",
+      "H2 Press play.",
+      "H3 Manuchie (hidden fallback)",
+      "H3 Been So Good",
+      "H2 Let’s bring yourideas to life.",
+      "H3 Music production and arrangement",
+      "H3 Songwriting and composition",
+      "H3 Vocal production",
+      "H3 Recording, mixing, and mastering",
+      "H3 Keyboard recording and musical direction",
+      "H3 Creative development for artists, churches, and worship collectives",
+      "H3 Wherever you are in the world,we can create together.",
+      "H2 Let’s makegreat music."
+    ],
+    "images": [
+      {
+        "src": "assets/portrait-terracotta.jpg?v=bee24d7c22",
+        "alt": "Manuchie in black sunglasses and a silver chain, chin resting on his hand, against a terracotta-orange wall",
+        "w": "536",
+        "h": "640",
+        "loading": "eager",
+        "fetchpriority": "high"
+      },
+      {
+        "src": "assets/studio.jpg?v=b108d81b2b",
+        "alt": "Manuchie in headphones working at a laptop at his studio desk, beside a studio monitor speaker",
+        "w": "1119",
+        "h": "1680",
+        "loading": "lazy",
+        "fetchpriority": ""
+      },
+      {
+        "src": "assets/studio-mantra.jpg?v=2a6d2c1b04",
+        "alt": "Manuchie in sunglasses and a black top in his studio, beneath a sign that reads Better Music Bigger Purpose",
+        "w": "1252",
+        "h": "1680",
+        "loading": "lazy",
+        "fetchpriority": ""
+      },
+      {
+        "src": "assets/worship-rays.jpg?v=a0410ba6ea",
+        "alt": "Still from the Been So Good film: Manuchie with The Unveiled in a hall crossed by shafts of light, beneath the title Been So Good",
+        "w": "1600",
+        "h": "900",
+        "loading": "lazy",
+        "fetchpriority": ""
+      },
+      {
+        "src": "assets/window.jpg?v=6dfd620407",
+        "alt": "Manuchie in a white cap, sunglasses and a white T-shirt, standing beside a wooden window",
+        "w": "1119",
+        "h": "1680",
+        "loading": "lazy",
+        "fetchpriority": ""
+      },
+      {
+        "src": "assets/recline.jpg?v=97e4ed2346",
+        "alt": "Manuchie dressed in white, reclining on a sofa in dappled sunlight",
+        "w": "1119",
+        "h": "1680",
+        "loading": "lazy",
+        "fetchpriority": ""
+      },
+      {
+        "src": "assets/portrait-cap.jpg?v=00e3b11ebb",
+        "alt": "Portrait of Manuchie in a white cap and sunglasses, glancing to one side",
+        "w": "1119",
+        "h": "1680",
+        "loading": "lazy",
+        "fetchpriority": ""
+      },
+      {
+        "src": "assets/tux-gallery.jpg?v=05f1f4c213",
+        "alt": "Manuchie in a white tuxedo jacket and black bow tie, in a dark room hung with a leopard painting",
+        "w": "1120",
+        "h": "1680",
+        "loading": "lazy",
+        "fetchpriority": ""
+      },
+      {
+        "src": "assets/alltheglory-dove.png?v=979a2a873c",
+        "alt": "",
+        "w": "79",
+        "h": "96",
+        "loading": "lazy",
+        "fetchpriority": ""
+      }
+    ]
+  }
+}

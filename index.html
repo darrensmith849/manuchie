@@ -5,178 +5,235 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Manuchie — Producer, Songwriter, Music Director & Keyboardist</title>
   <meta name="description" content="Manuchie (Emmanuel Manuchie Chiwanga) — contemporary Christian music producer, songwriter, music director and keyboardist. Based in Harare, Zimbabwe, and Australia. Working worldwide." />
-  <meta name="theme-color" content="#0f0b07" />
-  <link rel="canonical" href="https://manuchie.pages.dev/">
+  <link rel="canonical" href="https://manuchie.org/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0a0a0b" />
+  <meta name="color-scheme" content="dark" />
+
+  <link rel="stylesheet" href="fonts.css?v=3" />
+  <link rel="stylesheet" href="styles.css?v=29" />
+  <!-- first screen: the portrait (high priority) and the two Latin font files it uses most -->
+  <link rel="preload" as="image" type="image/avif" media="(min-width: 640px)" href="assets/portrait-terracotta-536.avif" imagesrcset="assets/portrait-terracotta-400.avif 400w, assets/portrait-terracotta-536.avif 536w" imagesizes="(min-width: 1024px) 616px, (min-width: 640px) 45vw, calc(100vw - 2.5rem)" fetchpriority="high" />
+  <link rel="preload" href="assets/fonts/newsreader-v26-cY9AfjOCX1hbuyalUrK4397yjIJFJpc-w4-7.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="assets/fonts/inter-v20-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
+  <script src="config.js?v=1" defer></script>
+  <script src="script.js?v=16" defer></script>
 
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://manuchie.pages.dev/" />
+  <meta property="og:url" content="https://manuchie.org/" />
   <meta property="og:site_name" content="Manuchie" />
+  <meta property="og:locale" content="en_GB" />
   <meta property="og:title" content="Manuchie — A sound rooted in faith. A vision without borders." />
   <meta property="og:description" content="Producer · Songwriter · Music Director · Keyboardist. Harare, Zimbabwe · Australia · Worldwide." />
-  <meta property="og:image" content="https://manuchie.pages.dev/assets/portrait-terracotta.jpg" />
+  <meta property="og:image" content="https://manuchie.org/assets/portrait-terracotta.jpg" />
+  <meta property="og:image:secure_url" content="https://manuchie.org/assets/portrait-terracotta.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="536" />
+  <meta property="og:image:height" content="640" />
+  <meta property="og:image:alt" content="Manuchie in black sunglasses and a silver chain, chin resting on his hand, against a terracotta-orange wall" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Manuchie — A sound rooted in faith. A vision without borders." />
   <meta name="twitter:description" content="Producer · Songwriter · Music Director · Keyboardist. Harare, Zimbabwe · Australia · Worldwide." />
-  <meta name="twitter:image" content="https://manuchie.pages.dev/assets/portrait-terracotta.jpg" />
+  <meta name="twitter:image" content="https://manuchie.org/assets/portrait-terracotta.jpg" />
+  <meta name="twitter:image:alt" content="Manuchie in black sunglasses and a silver chain, chin resting on his hand, against a terracotta-orange wall" />
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f0b07'/%3E%3Ctext x='50' y='73' font-family='Georgia,serif' font-size='66' font-style='italic' font-weight='700' text-anchor='middle' fill='%23e3ae54'%3EM%3C/text%3E%3C/svg%3E" />
-
-  <!-- fonts are self-hosted (fonts.css); preload the Latin files the first screen uses -->
-  <link rel="preload" href="assets/fonts/newsreader-v26-cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/newsreader-v26-cY9CfjOCX1hbuyalUrK439vCjohCBJWxZA.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="preload" href="assets/fonts/inter-v20-UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="fonts.css?v=2" />
-
-  <link rel="stylesheet" href="styles.css?v=28" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Manuchie",
-    "alternateName": "Emmanuel Manuchie Chiwanga",
-    "jobTitle": ["Producer", "Songwriter", "Music Director", "Keyboardist"],
-    "description": "Manuchie is a contemporary Christian music producer, songwriter, music director, and keyboardist. Known for his collaborations with Jenn Johnson of Bethel Music and Annatoria, he is part of a new generation of African creatives shaping contemporary Christian music.",
-    "homeLocation": [
-      { "@type": "Place", "name": "Harare, Zimbabwe" },
-      { "@type": "Place", "name": "Australia" }
-    ],
-    "url": "https://manuchie.pages.dev/",
-    "image": "https://manuchie.pages.dev/assets/portrait-terracotta.jpg",
-    "sameAs": [
-      "https://www.instagram.com/manuchie1/",
-      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
-      "https://music.apple.com/us/artist/manuchie/1708095589",
-      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
-      "https://www.shazam.com/artist/manuchie/1662208702"
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://manuchie.org/#person",
+        "name": "Manuchie",
+        "alternateName": "Emmanuel Manuchie Chiwanga",
+        "jobTitle": ["Producer", "Songwriter", "Music Director", "Keyboardist"],
+        "description": "Manuchie is a contemporary Christian music producer, songwriter, music director, and keyboardist. Known for his collaborations with Jenn Johnson of Bethel Music and Annatoria, he is part of a new generation of African creatives shaping contemporary Christian music.",
+        "homeLocation": [
+          { "@type": "Place", "name": "Harare, Zimbabwe" },
+          { "@type": "Place", "name": "Australia" }
+        ],
+        "url": "https://manuchie.org/",
+        "image": "https://manuchie.org/assets/portrait-terracotta.jpg",
+        "sameAs": [
+          "https://www.instagram.com/manuchie1/",
+          "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+          "https://music.apple.com/us/artist/manuchie/1708095589",
+          "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+          "https://www.shazam.com/artist/manuchie/1662208702"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://manuchie.org/#website",
+        "url": "https://manuchie.org/",
+        "name": "Manuchie",
+        "inLanguage": "en",
+        "about": { "@id": "https://manuchie.org/#person" },
+        "publisher": { "@id": "https://manuchie.org/#person" }
+      }
     ]
   }
   </script>
 </head>
 <body>
-  <a class="skip-link" href="#story">Skip to content</a>
+  <a class="skip-link" href="#top">Skip to content</a>
   <div class="grain" aria-hidden="true"></div>
 
   <header class="nav" id="nav">
-    <a class="nav-logo" href="#top">Manuchie</a>
+    <a class="nav-logo" href="#top"><img src="assets/logo-lockup.svg" alt="Manuchie" width="246" height="28" /></a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#story">Story</a>
       <a href="#sound">Sound</a>
       <a href="#studio">Studio</a>
-      <a href="#contact" class="nav-book">Book a session</a>
+      <a href="#contact" class="nav-book" data-track="book_session">Book a session</a>
     </nav>
-    <button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span></button>
+    <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu"><span></span><span></span></button>
   </header>
 
-  <div class="drawer" id="drawer" hidden>
+  <nav class="drawer" id="drawer" aria-label="Menu" hidden>
     <a href="#story">Story</a>
     <a href="#sound">Sound</a>
     <a href="#studio">Studio</a>
-    <a href="#contact" class="drawer-book">Book a session</a>
-  </div>
+    <a href="#contact" class="drawer-book" data-track="book_session">Book a session</a>
+  </nav>
 
   <main id="top">
 
     <!-- ===== HERO ===== -->
-    <section class="hero">
-      <div class="hero-glow" aria-hidden="true"></div>
-      <div class="hero-type">
-        <p class="eyebrow reveal"><span class="tick"></span>Harare, Zimbabwe · Australia · Worldwide</p>
-        <h1 class="hero-name reveal">Manuchie</h1>
-        <p class="hero-tagline reveal">Producer. Songwriter. <em>Music&nbsp;Director. Keyboardist.</em></p>
-        <p class="hero-sub reveal">
-          Manuchie is a contemporary Christian music producer, songwriter, music director, and
-          keyboardist. Known for his collaborations with Jenn Johnson of Bethel Music and
-          Annatoria, he is part of a new generation of African creatives shaping contemporary
-          Christian music.
-        </p>
-        <p class="hero-sub reveal">
-          With a distinctive approach to production, songwriting, and musical direction, Manuchie
-          combines powerful melodies, rich musical textures, and a deep understanding of the
-          message behind the music. His work spans worship, gospel, and contemporary sounds,
-          connecting artists, cultures, and audiences across borders.
-        </p>
-        <p class="hero-based reveal">Based in Harare, Zimbabwe, and Australia. Working worldwide.</p>
-        <div class="hero-cta reveal">
-          <a href="#contact" class="btn btn-gold">Book a session</a>
-          <a href="#sound" class="btn btn-line">
-            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
-            Hear his work
-          </a>
-          <div class="wave" id="wave" aria-hidden="true"></div>
+    <section class="hero" data-section="hero">
+      <div class="hero-inner">
+        <div class="hero-type">
+          <div class="hero-intro">
+            <div class="hero-head">
+              <p class="eyebrow"><span class="tick" aria-hidden="true"></span>Harare, Zimbabwe · Australia · Worldwide</p>
+              <h1 class="hero-name">Manuchie</h1>
+              <p class="hero-tagline">Producer. Songwriter. <em>Music&nbsp;Director. Keyboardist.</em></p>
+            </div>
+            <div class="hero-body">
+              <p class="hero-sub">
+                Manuchie is a contemporary Christian music producer, songwriter, music director, and
+                keyboardist. Known for his collaborations with Jenn Johnson of Bethel Music and
+                Annatoria, he is part of a new generation of African creatives shaping contemporary
+                Christian music.
+              </p>
+              <p class="hero-sub">
+                With a distinctive approach to production, songwriting, and musical direction, Manuchie
+                combines powerful melodies, rich musical textures, and a deep understanding of the
+                message behind the music. His work spans worship, gospel, and contemporary sounds,
+                connecting artists, cultures, and audiences across borders.
+              </p>
+              <p class="hero-based">Based in Harare, Zimbabwe, and Australia. Working worldwide.</p>
+            </div>
+          </div>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-gold" data-track="book_session">Book a session</a>
+            <a href="#sound" class="btn btn-line">
+              <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M8 5v14l11-7z"/></svg>
+              Hear his work
+            </a>
+            <div class="wave" id="wave" aria-hidden="true"></div>
+          </div>
         </div>
+        <figure class="hero-photo">
+          <picture>
+            <source type="image/avif" srcset="assets/portrait-terracotta-400.avif 400w, assets/portrait-terracotta-536.avif 536w" sizes="(min-width: 1024px) 616px, (min-width: 640px) 45vw, calc(100vw - 2.5rem)" />
+            <source type="image/webp" srcset="assets/portrait-terracotta-400.webp 400w, assets/portrait-terracotta-536.webp 536w" sizes="(min-width: 1024px) 616px, (min-width: 640px) 45vw, calc(100vw - 2.5rem)" />
+            <img src="assets/portrait-terracotta.jpg" width="536" height="640" fetchpriority="high"
+              alt="Manuchie in black sunglasses and a silver chain, chin resting on his hand, against a terracotta-orange wall" />
+          </picture>
+          <figcaption>Emmanuel Manuchie Chiwanga</figcaption>
+        </figure>
       </div>
-      <figure class="hero-photo reveal">
-        <img src="assets/portrait-terracotta.jpg" alt="Manuchie" width="536" height="640" fetchpriority="high" />
-        <figcaption>Emmanuel Manuchie Chiwanga</figcaption>
-      </figure>
     </section>
 
     <!-- ===== MARQUEE ===== -->
-    <div class="marquee" aria-label="Selected collaborators">
-      <div class="marquee-run">
-        <span>Zimpraise</span><i>✦</i><span>The Unveiled</span><i>✦</i><span>Jenn Johnson</span><i>✦</i><span>Bethel Music</span><i>✦</i><span>Annatoria</span><i>✦</i><span>DC3</span><i>✦</i><span>Gemma Griffiths</span><i>✦</i><span>Peruzzi</span><i>✦</i><span>Silas Magalhães</span><i>✦</i><span>Britt Nicole</span><i>✦</i><span>Jekalyn Carr</span><i>✦</i>
-        <span aria-hidden="true">Zimpraise</span><i aria-hidden="true">✦</i><span aria-hidden="true">The Unveiled</span><i aria-hidden="true">✦</i><span aria-hidden="true">Jenn Johnson</span><i aria-hidden="true">✦</i><span aria-hidden="true">Bethel Music</span><i aria-hidden="true">✦</i><span aria-hidden="true">Annatoria</span><i aria-hidden="true">✦</i><span aria-hidden="true">DC3</span><i aria-hidden="true">✦</i><span aria-hidden="true">Gemma Griffiths</span><i aria-hidden="true">✦</i><span aria-hidden="true">Peruzzi</span><i aria-hidden="true">✦</i><span aria-hidden="true">Silas Magalhães</span><i aria-hidden="true">✦</i><span aria-hidden="true">Britt Nicole</span><i aria-hidden="true">✦</i><span aria-hidden="true">Jekalyn Carr</span><i aria-hidden="true">✦</i>
+    <div class="marquee" id="marquee">
+      <div class="marquee-track">
+        <ul class="marquee-run" aria-label="Selected collaborators">
+          <li>Zimpraise<i aria-hidden="true">✦</i></li><li>The Unveiled<i aria-hidden="true">✦</i></li><li>Jenn Johnson<i aria-hidden="true">✦</i></li><li>Bethel Music<i aria-hidden="true">✦</i></li><li>Annatoria<i aria-hidden="true">✦</i></li><li>DC3<i aria-hidden="true">✦</i></li><li>Gemma Griffiths<i aria-hidden="true">✦</i></li><li>Peruzzi<i aria-hidden="true">✦</i></li><li>Silas Magalhães<i aria-hidden="true">✦</i></li><li>Britt Nicole<i aria-hidden="true">✦</i></li><li>Jekalyn Carr<i aria-hidden="true">✦</i></li>
+        </ul>
+        <ul class="marquee-run marquee-copy" aria-hidden="true">
+          <li>Zimpraise<i>✦</i></li><li>The Unveiled<i>✦</i></li><li>Jenn Johnson<i>✦</i></li><li>Bethel Music<i>✦</i></li><li>Annatoria<i>✦</i></li><li>DC3<i>✦</i></li><li>Gemma Griffiths<i>✦</i></li><li>Peruzzi<i>✦</i></li><li>Silas Magalhães<i>✦</i></li><li>Britt Nicole<i>✦</i></li><li>Jekalyn Carr<i>✦</i></li>
+        </ul>
       </div>
+      <button class="marquee-toggle" id="marqueeToggle" type="button" aria-pressed="false" aria-label="Pause the collaborators ticker" hidden>
+        <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" focusable="false"><path class="i-pause" fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/><path class="i-play" fill="currentColor" d="M8 5v14l11-7z"/></svg>
+      </button>
     </div>
 
     <!-- ===== STORY ===== -->
-    <section class="story" id="story">
+    <section class="story" id="story" data-section="story">
       <figure class="story-photo reveal">
-        <img src="assets/studio.jpg" alt="Manuchie at work in the studio" width="1119" height="1680" loading="lazy" decoding="async"
-          srcset="assets/studio-640.jpg 640w, assets/studio-960.jpg 960w, assets/studio.jpg 1119w"
-          sizes="(max-width: 540px) 100vw, (max-width: 900px) 480px, (max-width: 1400px) 42vw, 570px" />
+        <picture>
+          <source type="image/avif" srcset="assets/studio-480.avif 480w, assets/studio-640.avif 640w, assets/studio-960.avif 960w, assets/studio-1119.avif 1119w" sizes="(min-width: 1024px) min(45vw, 616px), (min-width: 768px) 40vw, calc(100vw - 2.5rem)" />
+          <source type="image/webp" srcset="assets/studio-480.webp 480w, assets/studio-640.webp 640w, assets/studio-960.webp 960w, assets/studio-1119.webp 1119w" sizes="(min-width: 1024px) min(45vw, 616px), (min-width: 768px) 40vw, calc(100vw - 2.5rem)" />
+          <img src="assets/studio.jpg" width="1119" height="1680" loading="lazy" decoding="async"
+            srcset="assets/studio-640.jpg 640w, assets/studio-960.jpg 960w, assets/studio.jpg 1119w"
+            sizes="(min-width: 1024px) min(45vw, 616px), (min-width: 768px) 40vw, calc(100vw - 2.5rem)"
+            alt="Manuchie in headphones working at a laptop at his studio desk, beside a studio monitor speaker" />
+        </picture>
       </figure>
       <div class="story-copy">
         <p class="sec-no reveal">01 — The Story</p>
         <h2 class="h-lg reveal">A sound rooted in faith.<br><em>A vision without borders.</em></h2>
-        <p class="reveal">
-          Behind the name Manuchie is <strong>Emmanuel Manuchie Chiwanga</strong>, a Zimbabwean
-          music producer, songwriter, artist, and music director whose work has contributed to
-          contemporary gospel and worship music in Africa and beyond.
-        </p>
-        <p class="reveal">
-          His journey is shaped by a passion for building sounds, developing artists, and creating
-          music that carries meaning beyond the studio.
-        </p>
-        <p class="reveal">
-          Through his work with <strong>Zimpraise</strong>, Manuchie has contributed to major gospel
-          projects through songwriting, musical arrangements, production, and music direction. His
-          creative journey has also extended across borders, collaborating with artists and
-          musicians whose work reaches international audiences.
-        </p>
-        <p class="reveal">
-          His work with <strong>The Unveiled</strong> marked a defining chapter in his musical
-          journey. Through songwriting and production, he helped shape standout records, including
-          Mourning to Dancing, carrying the sound of Zimbabwean worship beyond the walls of the church.
-        </p>
-        <p class="reveal">
-          His collaborations span genres and territories, including work with
-          <strong>Annatoria</strong> on the Present Jesu Christmas Project featuring
-          <strong>DC3</strong>, as well as collaborations with <strong>Gemma Griffiths</strong>,
-          <strong>Peruzzi</strong>, <strong>Silas Magalhães</strong>, and other artists across the
-          contemporary music landscape.
-        </p>
-        <p class="reveal">
-          His work has also intersected with the international worship community through
-          collaborations connected to <strong>Jenn Johnson</strong> and the wider
-          <strong>Bethel Music</strong> platform, including projects such as Celebrate Africa
-          featuring <strong>Britt Nicole</strong>.
-        </p>
-        <p class="reveal">
-          Beyond the studio, Manuchie’s experience as a music director includes leading the musical
-          direction for <strong>Jekalyn Carr</strong>’s Zimbabwe tour, bringing musicians and
-          creative teams together to deliver a unified musical experience.
-        </p>
-        <p class="reveal">
-          Today, Manuchie continues to build at the intersection of African creativity and global
-          contemporary Christian music — producing records, developing ideas, and helping artists
-          translate their vision into music that moves people.
-        </p>
-        <p class="reveal">
-          For him, music is more than sound. It is ministry, storytelling, collaboration, and a
-          lifelong pursuit of excellence.
-        </p>
+        <div class="prose reveal">
+          <p>
+            Behind the name Manuchie is <strong>Emmanuel Manuchie Chiwanga</strong>, a Zimbabwean
+            music producer, songwriter, artist, and music director whose work has contributed to
+            contemporary gospel and worship music in Africa and beyond.
+          </p>
+          <p>
+            His journey is shaped by a passion for building sounds, developing artists, and creating
+            music that carries meaning beyond the studio.
+          </p>
+          <p>
+            Through his work with <strong>Zimpraise</strong>, Manuchie has contributed to major gospel
+            projects through songwriting, musical arrangements, production, and music direction. His
+            creative journey has also extended across borders, collaborating with artists and
+            musicians whose work reaches international audiences.
+          </p>
+        </div>
+        <div class="prose reveal">
+          <p>
+            His work with <strong>The Unveiled</strong> marked a defining chapter in his musical
+            journey. Through songwriting and production, he helped shape standout records, including
+            Mourning to Dancing, carrying the sound of Zimbabwean worship beyond the walls of the church.
+          </p>
+          <p>
+            His collaborations span genres and territories, including work with
+            <strong>Annatoria</strong> on the Present Jesu Christmas Project featuring
+            <strong>DC3</strong>, as well as collaborations with <strong>Gemma Griffiths</strong>,
+            <strong>Peruzzi</strong>, <strong>Silas Magalhães</strong>, and other artists across the
+            contemporary music landscape.
+          </p>
+          <p>
+            His work has also intersected with the international worship community through
+            collaborations connected to <strong>Jenn Johnson</strong> and the wider
+            <strong>Bethel Music</strong> platform, including projects such as Celebrate Africa
+            featuring <strong>Britt Nicole</strong>.
+          </p>
+        </div>
+        <div class="prose reveal">
+          <p>
+            Beyond the studio, Manuchie’s experience as a music director includes leading the musical
+            direction for <strong>Jekalyn Carr</strong>’s Zimbabwe tour, bringing musicians and
+            creative teams together to deliver a unified musical experience.
+          </p>
+          <p>
+            Today, Manuchie continues to build at the intersection of African creativity and global
+            contemporary Christian music — producing records, developing ideas, and helping artists
+            translate their vision into music that moves people.
+          </p>
+          <p>
+            For him, music is more than sound. It is ministry, storytelling, collaboration, and a
+            lifelong pursuit of excellence.
+          </p>
+        </div>
         <ul class="facts reveal">
           <li><span>Based</span> Harare, Zimbabwe · Australia</li>
           <li><span>Rooms</span> Worship · Gospel · Contemporary</li>
@@ -186,11 +243,16 @@
     </section>
 
     <!-- ===== MANTRA ===== -->
-    <section class="mantra">
+    <section class="mantra" data-section="mantra">
       <figure class="mantra-photo">
-        <img src="assets/studio-mantra.jpg" alt="Manuchie in his studio beneath the sign that reads Better Music Bigger Purpose" width="1252" height="1680" loading="lazy" decoding="async"
-          srcset="assets/studio-mantra-640.jpg 640w, assets/studio-mantra-960.jpg 960w, assets/studio-mantra.jpg 1252w"
-          sizes="(max-width: 900px) 100vw, 50vw" />
+        <picture>
+          <source type="image/avif" srcset="assets/studio-mantra-640.avif 640w, assets/studio-mantra-960.avif 960w, assets/studio-mantra-1252.avif 1252w" sizes="(min-width: 1024px) 50vw, 100vw" />
+          <source type="image/webp" srcset="assets/studio-mantra-640.webp 640w, assets/studio-mantra-960.webp 960w, assets/studio-mantra-1252.webp 1252w" sizes="(min-width: 1024px) 50vw, 100vw" />
+          <img src="assets/studio-mantra.jpg" width="1252" height="1680" loading="lazy" decoding="async"
+            srcset="assets/studio-mantra-640.jpg 640w, assets/studio-mantra-960.jpg 960w, assets/studio-mantra.jpg 1252w"
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            alt="Manuchie in sunglasses and a black top in his studio, beneath a sign that reads Better Music Bigger Purpose" />
+        </picture>
       </figure>
       <div class="mantra-type">
         <p class="sec-no gold reveal">The mantra</p>
@@ -199,45 +261,49 @@
           <p>“Sing to him a new song; play skilfully with a loud noise.”</p>
           <cite>Psalm 33:3 — KJV</cite>
         </blockquote>
-        <p class="mantra-sub reveal">This is more than a verse. It is a creative philosophy.</p>
-        <p class="mantra-sub reveal">
-          We believe music deserves both a message and craft. Every melody, arrangement,
-          performance, and production is an opportunity to honour God through creativity,
-          discipline, and excellence.
-        </p>
-        <p class="mantra-sub reveal">
-          Our sound is driven by faith, shaped by collaboration, and committed to creating music
-          that speaks to the heart.
-        </p>
-        <p class="mantra-close reveal">Faith in the message. Excellence in the music. Purpose in every note.</p>
+        <div class="prose reveal">
+          <p>This is more than a verse. It is a creative philosophy.</p>
+          <p>
+            We believe music deserves both a message and craft. Every melody, arrangement,
+            performance, and production is an opportunity to honour God through creativity,
+            discipline, and excellence.
+          </p>
+          <p>
+            Our sound is driven by faith, shaped by collaboration, and committed to creating music
+            that speaks to the heart.
+          </p>
+          <p class="mantra-close">Faith in the message. Excellence in the music. Purpose in every note.</p>
+        </div>
       </div>
     </section>
 
     <!-- ===== SOUND ===== -->
-    <section class="sound" id="sound">
-      <div class="sound-head split-head">
+    <section class="sound" id="sound" data-section="sound">
+      <div class="split-head">
         <div class="split-title">
           <p class="sec-no reveal">02 — On Record</p>
           <h2 class="h-lg reveal">Press play.</h2>
         </div>
-        <div class="split-copy">
-        <p class="sound-note reveal">Every record tells a story. Every sound carries a message.</p>
-        <p class="sound-note reveal">
-          Explore selected productions, songwriting credits, collaborations, and musical projects
-          reflecting Manuchie’s journey across contemporary Christian music, gospel, and beyond.
-        </p>
-        <p class="sound-note sound-listen reveal">Listen to Manuchie.</p>
+        <div class="split-copy prose reveal">
+          <p>Every record tells a story. Every sound carries a message.</p>
+          <p>
+            Explore selected productions, songwriting credits, collaborations, and musical projects
+            reflecting Manuchie’s journey across contemporary Christian music, gospel, and beyond.
+          </p>
+          <p class="lead">Listen to Manuchie.</p>
         </div>
       </div>
 
       <div class="sound-grid">
         <div class="player reveal" id="player">
-          <iframe
+          <!-- the Spotify player: script.js puts this iframe in place shortly before the section
+               scrolls into view; without JavaScript the browser shows it directly -->
+          <noscript class="player-embed"><iframe
             title="Manuchie on Spotify"
-            src="https://open.spotify.com/embed/artist/0ipSaL44aiNFpQzx5O3vLM?utm_source=generator&theme=0"
-            width="100%" height="420" frameborder="0"
+            src="https://open.spotify.com/embed/artist/0ipSaL44aiNFpQzx5O3vLM?utm_source=generator&amp;theme=0"
+            width="100%" height="420"
             allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"></iframe>
+            loading="lazy"></iframe></noscript>
           <div class="player-fallback" hidden>
             <div class="pf-player" data-src="https://embed.music.apple.com/us/album/mourning-to-dancing-feat-the-unveiled-single/1707767813?i=1707767814&amp;theme=dark"></div>
             <span class="featured-k">Stream the catalogue</span>
@@ -250,11 +316,16 @@
           </div>
         </div>
 
-        <div class="featured reveal">
+        <article class="featured reveal">
           <figure class="featured-art">
-            <img src="assets/worship-rays.jpg" alt="Still from the Been So Good film" width="1600" height="900" loading="lazy" decoding="async"
-              srcset="assets/worship-rays-640.jpg 640w, assets/worship-rays-960.jpg 960w, assets/worship-rays-1280.jpg 1280w, assets/worship-rays.jpg 1600w"
-              sizes="(max-width: 900px) 100vw, (max-width: 1400px) 45vw, 640px" />
+            <picture>
+              <source type="image/avif" srcset="assets/worship-rays-640.avif 640w, assets/worship-rays-960.avif 960w, assets/worship-rays-1280.avif 1280w, assets/worship-rays-1600.avif 1600w" sizes="(min-width: 1440px) 646px, (min-width: 768px) 46vw, calc(100vw - 2.5rem)" />
+              <source type="image/webp" srcset="assets/worship-rays-640.webp 640w, assets/worship-rays-960.webp 960w, assets/worship-rays-1280.webp 1280w, assets/worship-rays-1600.webp 1600w" sizes="(min-width: 1440px) 646px, (min-width: 768px) 46vw, calc(100vw - 2.5rem)" />
+              <img src="assets/worship-rays.jpg" width="1600" height="900" loading="lazy" decoding="async"
+                srcset="assets/worship-rays-640.jpg 640w, assets/worship-rays-960.jpg 960w, assets/worship-rays-1280.jpg 1280w, assets/worship-rays.jpg 1600w"
+                sizes="(min-width: 1440px) 646px, (min-width: 768px) 46vw, calc(100vw - 2.5rem)"
+                alt="Still from the Been So Good film: Manuchie with The Unveiled in a hall crossed by shafts of light, beneath the title Been So Good" />
+            </picture>
           </figure>
           <div class="featured-meta">
             <span class="featured-k">Featured project</span>
@@ -262,16 +333,16 @@
             <p>Manuchie x The Unveiled</p>
             <a href="https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM" target="_blank" rel="noopener" class="featured-link">Listen ↗</a>
           </div>
-        </div>
+        </article>
       </div>
 
       <p class="records-k reveal">Featured projects and collaborations include</p>
       <ol class="records reveal">
-        <li><a href="https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM" target="_blank" rel="noopener"><span class="yr">01</span><span class="nm">Mourning to Dancing</span><span class="wi">Manuchie featuring The Unveiled</span><span class="go">↗</span></a></li>
-        <li><a href="https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM" target="_blank" rel="noopener"><span class="yr">02</span><span class="nm">Been So Good</span><span class="wi">Manuchie x The Unveiled</span><span class="go">↗</span></a></li>
-        <li><a href="https://open.spotify.com/search/Present%20Jesu%20Annatoria" target="_blank" rel="noopener"><span class="yr">03</span><span class="nm">Present Jesu Christmas Project</span><span class="wi">Annatoria featuring DC3</span><span class="go">↗</span></a></li>
-        <li><a href="https://open.spotify.com/search/Celebrate%20Africa%20Britt%20Nicole" target="_blank" rel="noopener"><span class="yr">04</span><span class="nm">Celebrate Africa</span><span class="wi">featuring Britt Nicole</span><span class="go">↗</span></a></li>
-        <li><a href="https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM" target="_blank" rel="noopener"><span class="yr">05</span><span class="nm">Collaborations &amp; production</span><span class="wi">with artists including Silas Magalhães, Gemma Griffiths, Peruzzi, and others</span><span class="go">↗</span></a></li>
+        <li><a href="https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM" target="_blank" rel="noopener"><span class="yr">01</span><span class="nm">Mourning to Dancing</span><span class="wi">Manuchie featuring The Unveiled</span><span class="go" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM" target="_blank" rel="noopener"><span class="yr">02</span><span class="nm">Been So Good</span><span class="wi">Manuchie x The Unveiled</span><span class="go" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://open.spotify.com/search/Present%20Jesu%20Annatoria" target="_blank" rel="noopener"><span class="yr">03</span><span class="nm">Present Jesu Christmas Project</span><span class="wi">Annatoria featuring DC3</span><span class="go" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://open.spotify.com/search/Celebrate%20Africa%20Britt%20Nicole" target="_blank" rel="noopener"><span class="yr">04</span><span class="nm">Celebrate Africa</span><span class="wi">featuring Britt Nicole</span><span class="go" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM" target="_blank" rel="noopener"><span class="yr">05</span><span class="nm">Collaborations &amp; production</span><span class="wi">with artists including Silas Magalhães, Gemma Griffiths, Peruzzi, and others</span><span class="go" aria-hidden="true">↗</span></a></li>
       </ol>
       <p class="records-note reveal">Additional credits include work across Zimpraise projects and the wider contemporary gospel and worship landscape.</p>
 
@@ -284,25 +355,25 @@
     </section>
 
     <!-- ===== STUDIO ===== -->
-    <section class="studio" id="studio">
-      <div class="studio-head split-head">
+    <section class="studio" id="studio" data-section="studio">
+      <div class="split-head">
         <div class="split-title">
           <p class="sec-no gold reveal">03 — The Studio Is Open</p>
-          <h2 class="h-lg light reveal">Let’s bring your<br><em>ideas to life.</em></h2>
+          <h2 class="h-lg reveal">Let’s bring your<br><em>ideas to life.</em></h2>
         </div>
-        <div class="split-copy">
-        <p class="studio-note reveal">
-          Every great record begins with an idea. Whether you’re developing a song, building a
-          worship sound, producing an EP, or bringing a complete musical vision to life, Manuchie
-          brings creative direction, musical expertise, and production experience to your project.
-        </p>
-        <p class="studio-note reveal">
-          From the first chord to the final master, the goal is simple: to make music that sounds
-          exceptional and communicates something meaningful.
-        </p>
+        <div class="split-copy prose reveal">
+          <p>
+            Every great record begins with an idea. Whether you’re developing a song, building a
+            worship sound, producing an EP, or bringing a complete musical vision to life, Manuchie
+            brings creative direction, musical expertise, and production experience to your project.
+          </p>
+          <p>
+            From the first chord to the final master, the goal is simple: to make music that sounds
+            exceptional and communicates something meaningful.
+          </p>
         </div>
-        <p class="sec-no gold offers-k reveal">Studio services include</p>
       </div>
+      <p class="sec-no gold offers-k reveal">Studio services include</p>
       <ol class="offers">
         <li class="reveal"><span class="offer-no">01</span><h3>Music production and arrangement</h3></li>
         <li class="reveal"><span class="offer-no">02</span><h3>Songwriting and composition</h3></li>
@@ -313,52 +384,82 @@
       </ol>
       <div class="studio-world split-head">
         <h3 class="split-title reveal">Wherever you are in the world,<br><em>we can create together.</em></h3>
-        <div class="split-copy">
-        <p class="reveal">
-          From Harare to Sydney and everywhere in between, projects can be developed remotely or
-          collaboratively, connecting artists and creative teams across borders.
-        </p>
-        <p class="studio-tag reveal">Your vision. Our creativity. One great record.</p>
-        <a href="#contact" class="btn btn-gold reveal">Enquire about your next project</a>
+        <div class="split-copy prose reveal">
+          <p>
+            From Harare to Sydney and everywhere in between, projects can be developed remotely or
+            collaboratively, connecting artists and creative teams across borders.
+          </p>
+          <p class="lead">Your vision. Our creativity. One great record.</p>
+          <a href="#contact" class="btn btn-gold" data-track="book_session">Enquire about your next project</a>
         </div>
       </div>
     </section>
 
     <!-- ===== GALLERY ===== -->
-    <section class="gallery" aria-label="Photographs">
-      <figure class="reveal"><img src="assets/window.jpg" alt="Manuchie" width="1119" height="1680" loading="lazy" decoding="async"
-        srcset="assets/window-480.jpg 480w, assets/window-720.jpg 720w, assets/window.jpg 1119w"
-        sizes="(max-width: 640px) 72vw, (max-width: 1400px) 23vw, 320px" /></figure>
-      <figure class="reveal"><img src="assets/recline.jpg" alt="Manuchie" width="1119" height="1680" loading="lazy" decoding="async"
-        srcset="assets/recline-480.jpg 480w, assets/recline-720.jpg 720w, assets/recline.jpg 1119w"
-        sizes="(max-width: 640px) 72vw, (max-width: 1400px) 23vw, 320px" /></figure>
-      <figure class="reveal"><img src="assets/portrait-cap.jpg" alt="Manuchie, portrait" width="1119" height="1680" loading="lazy" decoding="async"
-        srcset="assets/portrait-cap-480.jpg 480w, assets/portrait-cap-720.jpg 720w, assets/portrait-cap.jpg 1119w"
-        sizes="(max-width: 640px) 72vw, (max-width: 1400px) 23vw, 320px" /></figure>
-      <figure class="reveal"><img src="assets/tux-gallery.jpg" alt="Manuchie in a white tuxedo" width="1120" height="1680" loading="lazy" decoding="async"
-        srcset="assets/tux-gallery-480.jpg 480w, assets/tux-gallery-720.jpg 720w, assets/tux-gallery.jpg 1120w"
-        sizes="(max-width: 640px) 72vw, (max-width: 1400px) 23vw, 320px" /></figure>
+    <section class="gallery" data-section="gallery" aria-label="Photographs">
+      <figure class="reveal">
+        <picture>
+          <source type="image/avif" srcset="assets/window-480.avif 480w, assets/window-720.avif 720w, assets/window-1119.avif 1119w" sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)" />
+          <source type="image/webp" srcset="assets/window-480.webp 480w, assets/window-720.webp 720w, assets/window-1119.webp 1119w" sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)" />
+          <img src="assets/window.jpg" width="1119" height="1680" loading="lazy" decoding="async"
+            srcset="assets/window-480.jpg 480w, assets/window-720.jpg 720w, assets/window.jpg 1119w"
+            sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)"
+            alt="Manuchie in a white cap, sunglasses and a white T-shirt, standing beside a wooden window" />
+        </picture>
+      </figure>
+      <figure class="reveal">
+        <picture>
+          <source type="image/avif" srcset="assets/recline-480.avif 480w, assets/recline-720.avif 720w, assets/recline-1119.avif 1119w" sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)" />
+          <source type="image/webp" srcset="assets/recline-480.webp 480w, assets/recline-720.webp 720w, assets/recline-1119.webp 1119w" sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)" />
+          <img src="assets/recline.jpg" width="1119" height="1680" loading="lazy" decoding="async"
+            srcset="assets/recline-480.jpg 480w, assets/recline-720.jpg 720w, assets/recline.jpg 1119w"
+            sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)"
+            alt="Manuchie dressed in white, reclining on a sofa in dappled sunlight" />
+        </picture>
+      </figure>
+      <figure class="reveal">
+        <picture>
+          <source type="image/avif" srcset="assets/portrait-cap-480.avif 480w, assets/portrait-cap-720.avif 720w, assets/portrait-cap-1119.avif 1119w" sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)" />
+          <source type="image/webp" srcset="assets/portrait-cap-480.webp 480w, assets/portrait-cap-720.webp 720w, assets/portrait-cap-1119.webp 1119w" sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)" />
+          <img src="assets/portrait-cap.jpg" width="1119" height="1680" loading="lazy" decoding="async"
+            srcset="assets/portrait-cap-480.jpg 480w, assets/portrait-cap-720.jpg 720w, assets/portrait-cap.jpg 1119w"
+            sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)"
+            alt="Portrait of Manuchie in a white cap and sunglasses, glancing to one side" />
+        </picture>
+      </figure>
+      <figure class="reveal">
+        <picture>
+          <source type="image/avif" srcset="assets/tux-gallery-480.avif 480w, assets/tux-gallery-720.avif 720w, assets/tux-gallery-1120.avif 1120w" sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)" />
+          <source type="image/webp" srcset="assets/tux-gallery-480.webp 480w, assets/tux-gallery-720.webp 720w, assets/tux-gallery-1120.webp 1120w" sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)" />
+          <img src="assets/tux-gallery.jpg" width="1120" height="1680" loading="lazy" decoding="async"
+            srcset="assets/tux-gallery-480.jpg 480w, assets/tux-gallery-720.jpg 720w, assets/tux-gallery.jpg 1120w"
+            sizes="(min-width: 1440px) 318px, (min-width: 640px) 23vw, calc(50vw - 1.5rem)"
+            alt="Manuchie in a white tuxedo jacket and black bow tie, in a dark room hung with a leopard painting" />
+        </picture>
+      </figure>
     </section>
 
     <!-- ===== CONTACT ===== -->
-    <section class="contact" id="contact">
+    <section class="contact" id="contact" data-section="contact">
       <div class="contact-left">
         <p class="sec-no reveal">04 — Say Hello</p>
         <h2 class="h-xl reveal">Let’s make<br><em>great music.</em></h2>
-        <p class="contact-sub contact-lead reveal">Great music begins with a conversation.</p>
-        <p class="contact-sub reveal">
-          Whether you’re an artist with a new idea, a church building its worship sound, a label
-          seeking production expertise, or a creative team looking for its next collaborator,
-          Manuchie is open to connecting.
-        </p>
-        <p class="contact-sub reveal">
-          For production enquiries, songwriting, collaborations, music direction, and international
-          projects, get in touch and let’s explore what we can create together.
-        </p>
+        <div class="prose reveal">
+          <p class="lead">Great music begins with a conversation.</p>
+          <p>
+            Whether you’re an artist with a new idea, a church building its worship sound, a label
+            seeking production expertise, or a creative team looking for its next collaborator,
+            Manuchie is open to connecting.
+          </p>
+          <p>
+            For production enquiries, songwriting, collaborations, music direction, and international
+            projects, get in touch and let’s explore what we can create together.
+          </p>
+        </div>
         <p class="contact-loc reveal">Harare, Zimbabwe · Australia · Worldwide</p>
         <p class="contact-sign reveal"><strong>Let’s create something that matters.</strong><br><em>Get in touch. Let’s make great music.</em></p>
         <div class="contact-direct reveal">
-          <a class="cd" id="directEmail" href="#" data-user="bookings" data-domain="manuchie.com">
+          <a class="cd" id="directEmail" href="#" data-user="bookings" data-domain="manuchie.com" data-track="email">
             <span class="cd-k">Email</span><span class="cd-v">Direct to the inbox</span>
           </a>
           <a class="cd" href="https://www.instagram.com/manuchie1/" target="_blank" rel="noopener">
@@ -367,13 +468,33 @@
         </div>
       </div>
 
-      <!-- Opens the visitor's own email app, addressed to the booking email (set in config.js;
-           build.sh writes it into this action, script.js composes the email when JS is on) -->
-      <form class="contact-form reveal" id="bookingForm" action="mailto:bookings@manuchie.com?subject=Session%20enquiry%20via%20manuchie" method="post" enctype="text/plain">
-        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
-        <label class="fld"><span>Your name</span><input type="text" name="name" autocomplete="name" required placeholder="First and last" /></label>
-        <label class="fld"><span>Email</span><input type="email" name="email" autocomplete="email" required placeholder="you@email.com" /></label>
-        <label class="fld"><span>The project</span><textarea name="message" rows="4" required placeholder="A little about you, the song, timing and budget…"></textarea></label>
+      <!-- Posts to the Worker's /api/enquiry. Without JavaScript the browser sends a normal
+           form post (urlencoded, checkbox value "on") and the Worker answers with a
+           confirmation page; with JavaScript, script.js sends JSON and shows the result here. -->
+      <form class="contact-form reveal" id="bookingForm" action="/api/enquiry" method="post">
+        <div class="hp" aria-hidden="true">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="source_page" value="/" />
+        <div class="fld">
+          <label for="f-name">Your name</label>
+          <input id="f-name" type="text" name="name" autocomplete="name" required maxlength="120" placeholder="First and last" />
+          <p class="fld-err" id="f-name-err" hidden></p>
+        </div>
+        <div class="fld">
+          <label for="f-email">Email</label>
+          <input id="f-email" type="email" name="email" autocomplete="email" required maxlength="254" placeholder="you@email.com" />
+          <p class="fld-err" id="f-email-err" hidden></p>
+        </div>
+        <div class="fld">
+          <label for="f-message">The project</label>
+          <textarea id="f-message" name="message" rows="4" required maxlength="5000" placeholder="A little about you, the song, timing and budget…"></textarea>
+          <p class="fld-err" id="f-message-err" hidden></p>
+        </div>
+        <div class="fld-check">
+          <input id="f-consent" type="checkbox" name="marketing_consent" />
+          <label for="f-consent">Keep me posted about new music and projects from Manuchie. Optional — you can unsubscribe at any time.</label>
+        </div>
         <button type="submit" class="btn btn-gold btn-wide" id="submitBtn"><span class="btn-label">Send it over</span></button>
         <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
@@ -382,7 +503,7 @@
 
   <footer class="foot">
     <div class="foot-top">
-      <span class="foot-logo">Manuchie</span>
+      <img class="foot-logo" src="assets/logo-wordmark.svg" alt="Manuchie" width="381" height="40" loading="lazy" decoding="async" />
       <nav class="foot-links" aria-label="Footer">
         <a href="https://www.instagram.com/manuchie1/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM" target="_blank" rel="noopener">Spotify</a>
@@ -394,19 +515,18 @@
     <div class="foot-base">
       <span>Emmanuel Manuchie Chiwanga · Harare, Zimbabwe · Australia</span>
       <span class="foot-mantra">Make music with purpose.</span>
-      <span>© <span id="year"></span> Manuchie</span>
+      <span>© <span id="year">2026</span> Manuchie</span>
     </div>
     <div class="foot-credit-row">
       <a class="foot-credit" href="https://alltheglory.co.za/websites" target="_blank" rel="noopener">
         <span class="foot-credit-k">Built by</span>
-        <img src="assets/alltheglory-dove.png" alt="" width="79" height="96" loading="lazy" decoding="async" />
+        <picture>
+          <source type="image/webp" srcset="assets/alltheglory-dove.webp" />
+          <img src="assets/alltheglory-dove.png" alt="" width="79" height="96" loading="lazy" decoding="async" />
+        </picture>
         <span>All The Glory</span>
       </a>
     </div>
   </footer>
-
-  <script src="config.js?v=1"></script>
-  <script src="script.js?v=15"></script>
-  <!-- v11 -->
 </body>
 </html>

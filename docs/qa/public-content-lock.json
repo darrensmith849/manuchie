@@ -1,0 +1,480 @@
+{
+  "390": {
+    "allTextDiff": [
+      {
+        "type": "added",
+        "text": "Keep me posted about new music and projects from Manuchie. Optional — you can unsubscribe at any time."
+      }
+    ],
+    "innerTextDiff": [
+      {
+        "type": "added",
+        "text": "Keep me posted about new music and projects from Manuchie. Optional — you can unsubscribe at any time."
+      }
+    ],
+    "imagesOld": [
+      "portrait-terracotta",
+      "studio",
+      "studio-mantra",
+      "worship-rays",
+      "window",
+      "recline",
+      "portrait-cap",
+      "tux-gallery",
+      "alltheglory-dove"
+    ],
+    "imagesNew": [
+      "portrait-terracotta",
+      "studio",
+      "studio-mantra",
+      "worship-rays",
+      "window",
+      "recline",
+      "portrait-cap",
+      "tux-gallery",
+      "alltheglory-dove"
+    ],
+    "imagesSameOrder": true,
+    "currentSrcNew": [
+      "portrait-terracotta",
+      "studio",
+      "studio-mantra",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "altChanges": [
+      {
+        "file": "portrait-terracotta",
+        "old": "Manuchie",
+        "new": "Manuchie in black sunglasses and a silver chain, chin resting on his hand, against a terracotta-orange wall"
+      },
+      {
+        "file": "studio",
+        "old": "Manuchie at work in the studio",
+        "new": "Manuchie in headphones working at a laptop at his studio desk, beside a studio monitor speaker"
+      },
+      {
+        "file": "studio-mantra",
+        "old": "Manuchie in his studio beneath the sign that reads Better Music Bigger Purpose",
+        "new": "Manuchie in sunglasses and a black top in his studio, beneath a sign that reads Better Music Bigger Purpose"
+      },
+      {
+        "file": "worship-rays",
+        "old": "Still from the Been So Good film",
+        "new": "Still from the Been So Good film: Manuchie with The Unveiled in a hall crossed by shafts of light, beneath the title Been So Good"
+      },
+      {
+        "file": "window",
+        "old": "Manuchie",
+        "new": "Manuchie in a white cap, sunglasses and a white T-shirt, standing beside a wooden window"
+      },
+      {
+        "file": "recline",
+        "old": "Manuchie",
+        "new": "Manuchie dressed in white, reclining on a sofa in dappled sunlight"
+      },
+      {
+        "file": "portrait-cap",
+        "old": "Manuchie, portrait",
+        "new": "Portrait of Manuchie in a white cap and sunglasses, glancing to one side"
+      },
+      {
+        "file": "tux-gallery",
+        "old": "Manuchie in a white tuxedo",
+        "new": "Manuchie in a white tuxedo jacket and black bow tie, in a dark room hung with a leopard painting"
+      }
+    ],
+    "linksSame": true,
+    "linksOld": [
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/search/Present%20Jesu%20Annatoria",
+      "https://open.spotify.com/search/Celebrate%20Africa%20Britt%20Nicole",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702",
+      "mailto:[bookingEmail from config.js]?subject=Session%20enquiry&body=Hi%20Manuchie%2C%0A%0AI%27d%20love%20to%20work%20on%E2%80%A6%0A%0A",
+      "https://www.instagram.com/manuchie1/",
+      "https://www.instagram.com/manuchie1/",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702",
+      "https://alltheglory.co.za/websites"
+    ],
+    "linksNew": [
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/search/Present%20Jesu%20Annatoria",
+      "https://open.spotify.com/search/Celebrate%20Africa%20Britt%20Nicole",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702",
+      "mailto:[bookingEmail from config.js]?subject=Session%20enquiry&body=Hi%20Manuchie%2C%0A%0AI%27d%20love%20to%20work%20on%E2%80%A6%0A%0A",
+      "https://www.instagram.com/manuchie1/",
+      "https://www.instagram.com/manuchie1/",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702",
+      "https://alltheglory.co.za/websites"
+    ],
+    "framesOld": [
+      "https://open.spotify.com/embed/artist/0ipSaL44aiNFpQzx5O3vLM?utm_source=generator&theme=0",
+      "https://embed.music.apple.com/us/album/mourning-to-dancing-feat-the-unveiled-single/1707767813?i=1707767814&theme=dark"
+    ],
+    "framesNew": [
+      "https://embed.music.apple.com/us/album/mourning-to-dancing-feat-the-unveiled-single/1707767813?i=1707767814&theme=dark",
+      "https://open.spotify.com/embed/artist/0ipSaL44aiNFpQzx5O3vLM?utm_source=generator&theme=0"
+    ],
+    "headingsSame": true,
+    "headingsOld": [
+      "H1 Manuchie",
+      "H2 A sound rooted in faith.A vision without borders.",
+      "H2 Make music with purpose.Pursue excellence in every sound.",
+      "H2 Press play.",
+      "H3 Manuchie",
+      "H3 Been So Good",
+      "H2 Let’s bring yourideas to life.",
+      "H3 Music production and arrangement",
+      "H3 Songwriting and composition",
+      "H3 Vocal production",
+      "H3 Recording, mixing, and mastering",
+      "H3 Keyboard recording and musical direction",
+      "H3 Creative development for artists, churches, and worship collectives",
+      "H3 Wherever you are in the world,we can create together.",
+      "H2 Let’s makegreat music."
+    ],
+    "headingsNew": [
+      "H1 Manuchie",
+      "H2 A sound rooted in faith.A vision without borders.",
+      "H2 Make music with purpose.Pursue excellence in every sound.",
+      "H2 Press play.",
+      "H3 Manuchie",
+      "H3 Been So Good",
+      "H2 Let’s bring yourideas to life.",
+      "H3 Music production and arrangement",
+      "H3 Songwriting and composition",
+      "H3 Vocal production",
+      "H3 Recording, mixing, and mastering",
+      "H3 Keyboard recording and musical direction",
+      "H3 Creative development for artists, churches, and worship collectives",
+      "H3 Wherever you are in the world,we can create together.",
+      "H2 Let’s makegreat music."
+    ],
+    "sectionsOld": [
+      "nav",
+      "hero",
+      "marquee",
+      "story",
+      "mantra",
+      "sound",
+      "studio",
+      "gallery",
+      "contact",
+      "foot"
+    ],
+    "sectionsNew": [
+      "nav",
+      "hero",
+      "marquee",
+      "story",
+      "mantra",
+      "sound",
+      "studio",
+      "gallery",
+      "contact",
+      "foot"
+    ],
+    "ctasSame": true,
+    "ctasOld": [
+      "Book a session",
+      "Book a session",
+      "Book a session",
+      "Hear his work",
+      "Spotify ↗",
+      "Apple Music ↗",
+      "YouTube ↗",
+      "Enquire about your next project",
+      "Send it over"
+    ],
+    "ctasNew": [
+      "Book a session",
+      "Book a session",
+      "Book a session",
+      "Hear his work",
+      "Spotify ↗",
+      "Apple Music ↗",
+      "YouTube ↗",
+      "Enquire about your next project",
+      "Send it over"
+    ],
+    "fieldsOld": [
+      "botcheck|checkbox||",
+      "name|text|First and last|Your name",
+      "email|email|you@email.com|Email",
+      "message|textarea|A little about you, the song, timing and budget…|The project"
+    ],
+    "fieldsNew": [
+      "botcheck|checkbox||",
+      "source_page|hidden||",
+      "name|text|First and last|Your name",
+      "email|email|you@email.com|Email",
+      "message|textarea|A little about you, the song, timing and budget…|The project",
+      "marketing_consent|checkbox||Keep me posted about new music and projects from Manuchie. Optional — you can unsubscribe at any time."
+    ]
+  },
+  "1440": {
+    "allTextDiff": [
+      {
+        "type": "added",
+        "text": "Keep me posted about new music and projects from Manuchie. Optional — you can unsubscribe at any time."
+      }
+    ],
+    "innerTextDiff": [
+      {
+        "type": "added",
+        "text": "Keep me posted about new music and projects from Manuchie. Optional — you can unsubscribe at any time."
+      }
+    ],
+    "imagesOld": [
+      "portrait-terracotta",
+      "studio",
+      "studio-mantra",
+      "worship-rays",
+      "window",
+      "recline",
+      "portrait-cap",
+      "tux-gallery",
+      "alltheglory-dove"
+    ],
+    "imagesNew": [
+      "portrait-terracotta",
+      "studio",
+      "studio-mantra",
+      "worship-rays",
+      "window",
+      "recline",
+      "portrait-cap",
+      "tux-gallery",
+      "alltheglory-dove"
+    ],
+    "imagesSameOrder": true,
+    "currentSrcNew": [
+      "portrait-terracotta",
+      "studio",
+      "studio-mantra",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "altChanges": [
+      {
+        "file": "portrait-terracotta",
+        "old": "Manuchie",
+        "new": "Manuchie in black sunglasses and a silver chain, chin resting on his hand, against a terracotta-orange wall"
+      },
+      {
+        "file": "studio",
+        "old": "Manuchie at work in the studio",
+        "new": "Manuchie in headphones working at a laptop at his studio desk, beside a studio monitor speaker"
+      },
+      {
+        "file": "studio-mantra",
+        "old": "Manuchie in his studio beneath the sign that reads Better Music Bigger Purpose",
+        "new": "Manuchie in sunglasses and a black top in his studio, beneath a sign that reads Better Music Bigger Purpose"
+      },
+      {
+        "file": "worship-rays",
+        "old": "Still from the Been So Good film",
+        "new": "Still from the Been So Good film: Manuchie with The Unveiled in a hall crossed by shafts of light, beneath the title Been So Good"
+      },
+      {
+        "file": "window",
+        "old": "Manuchie",
+        "new": "Manuchie in a white cap, sunglasses and a white T-shirt, standing beside a wooden window"
+      },
+      {
+        "file": "recline",
+        "old": "Manuchie",
+        "new": "Manuchie dressed in white, reclining on a sofa in dappled sunlight"
+      },
+      {
+        "file": "portrait-cap",
+        "old": "Manuchie, portrait",
+        "new": "Portrait of Manuchie in a white cap and sunglasses, glancing to one side"
+      },
+      {
+        "file": "tux-gallery",
+        "old": "Manuchie in a white tuxedo",
+        "new": "Manuchie in a white tuxedo jacket and black bow tie, in a dark room hung with a leopard painting"
+      }
+    ],
+    "linksSame": true,
+    "linksOld": [
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/search/Present%20Jesu%20Annatoria",
+      "https://open.spotify.com/search/Celebrate%20Africa%20Britt%20Nicole",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702",
+      "mailto:[bookingEmail from config.js]?subject=Session%20enquiry&body=Hi%20Manuchie%2C%0A%0AI%27d%20love%20to%20work%20on%E2%80%A6%0A%0A",
+      "https://www.instagram.com/manuchie1/",
+      "https://www.instagram.com/manuchie1/",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702",
+      "https://alltheglory.co.za/websites"
+    ],
+    "linksNew": [
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://open.spotify.com/search/Present%20Jesu%20Annatoria",
+      "https://open.spotify.com/search/Celebrate%20Africa%20Britt%20Nicole",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702",
+      "mailto:[bookingEmail from config.js]?subject=Session%20enquiry&body=Hi%20Manuchie%2C%0A%0AI%27d%20love%20to%20work%20on%E2%80%A6%0A%0A",
+      "https://www.instagram.com/manuchie1/",
+      "https://www.instagram.com/manuchie1/",
+      "https://open.spotify.com/artist/0ipSaL44aiNFpQzx5O3vLM",
+      "https://music.apple.com/us/artist/manuchie/1708095589",
+      "https://www.youtube.com/channel/UCkNNnWe8Or5WWjzsIohnlZQ",
+      "https://www.shazam.com/artist/manuchie/1662208702",
+      "https://alltheglory.co.za/websites"
+    ],
+    "framesOld": [
+      "https://open.spotify.com/embed/artist/0ipSaL44aiNFpQzx5O3vLM?utm_source=generator&theme=0",
+      "https://embed.music.apple.com/us/album/mourning-to-dancing-feat-the-unveiled-single/1707767813?i=1707767814&theme=dark"
+    ],
+    "framesNew": [
+      "https://embed.music.apple.com/us/album/mourning-to-dancing-feat-the-unveiled-single/1707767813?i=1707767814&theme=dark",
+      "https://open.spotify.com/embed/artist/0ipSaL44aiNFpQzx5O3vLM?utm_source=generator&theme=0"
+    ],
+    "headingsSame": true,
+    "headingsOld": [
+      "H1 Manuchie",
+      "H2 A sound rooted in faith.A vision without borders.",
+      "H2 Make music with purpose.Pursue excellence in every sound.",
+      "H2 Press play.",
+      "H3 Manuchie",
+      "H3 Been So Good",
+      "H2 Let’s bring yourideas to life.",
+      "H3 Music production and arrangement",
+      "H3 Songwriting and composition",
+      "H3 Vocal production",
+      "H3 Recording, mixing, and mastering",
+      "H3 Keyboard recording and musical direction",
+      "H3 Creative development for artists, churches, and worship collectives",
+      "H3 Wherever you are in the world,we can create together.",
+      "H2 Let’s makegreat music."
+    ],
+    "headingsNew": [
+      "H1 Manuchie",
+      "H2 A sound rooted in faith.A vision without borders.",
+      "H2 Make music with purpose.Pursue excellence in every sound.",
+      "H2 Press play.",
+      "H3 Manuchie",
+      "H3 Been So Good",
+      "H2 Let’s bring yourideas to life.",
+      "H3 Music production and arrangement",
+      "H3 Songwriting and composition",
+      "H3 Vocal production",
+      "H3 Recording, mixing, and mastering",
+      "H3 Keyboard recording and musical direction",
+      "H3 Creative development for artists, churches, and worship collectives",
+      "H3 Wherever you are in the world,we can create together.",
+      "H2 Let’s makegreat music."
+    ],
+    "sectionsOld": [
+      "nav",
+      "hero",
+      "marquee",
+      "story",
+      "mantra",
+      "sound",
+      "studio",
+      "gallery",
+      "contact",
+      "foot"
+    ],
+    "sectionsNew": [
+      "nav",
+      "hero",
+      "marquee",
+      "story",
+      "mantra",
+      "sound",
+      "studio",
+      "gallery",
+      "contact",
+      "foot"
+    ],
+    "ctasSame": true,
+    "ctasOld": [
+      "Book a session",
+      "Book a session",
+      "Book a session",
+      "Hear his work",
+      "Spotify ↗",
+      "Apple Music ↗",
+      "YouTube ↗",
+      "Enquire about your next project",
+      "Send it over"
+    ],
+    "ctasNew": [
+      "Book a session",
+      "Book a session",
+      "Book a session",
+      "Hear his work",
+      "Spotify ↗",
+      "Apple Music ↗",
+      "YouTube ↗",
+      "Enquire about your next project",
+      "Send it over"
+    ],
+    "fieldsOld": [
+      "botcheck|checkbox||",
+      "name|text|First and last|Your name",
+      "email|email|you@email.com|Email",
+      "message|textarea|A little about you, the song, timing and budget…|The project"
+    ],
+    "fieldsNew": [
+      "botcheck|checkbox||",
+      "source_page|hidden||",
+      "name|text|First and last|Your name",
+      "email|email|you@email.com|Email",
+      "message|textarea|A little about you, the song, timing and budget…|The project",
+      "marketing_consent|checkbox||Keep me posted about new music and projects from Manuchie. Optional — you can unsubscribe at any time."
+    ]
+  }
+}

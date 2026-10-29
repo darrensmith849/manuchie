@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<style>path.ink{fill:#0a0a0b}path.accent{fill:#b5481e}</style>
+<path class="ink" d="M2 2H8L11 16V30H2ZM30 2V30H21V16L24 2Z"/>
+<path class="accent" d="M10 2H22L16 30Z"/>
+</svg>

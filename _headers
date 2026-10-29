@@ -1,30 +1,46 @@
-# Cloudflare Pages headers (ignored by other hosts — safe to keep)
+# Cloudflare static-assets headers (Workers + Pages read this file; other hosts ignore it).
+# The Worker sets its own headers on /api/* and /admin/* (no-store, noindex, stricter CSP).
 #
-# CSP allows exactly what the page uses:
-#   self ............ page, styles, scripts, self-hosted fonts, images
-#   data: ........... favicon + film-grain SVG (img-src)
-#   open.spotify.com  Spotify player iframe + reachability probe script
-#   embed.music.apple.com  Apple Music fallback player (only if Spotify is blocked)
-#   mailto: ........ booking form opens the visitor's email app
+# CSP allows exactly what the public page uses:
+#   self ................... page, styles, scripts, self-hosted fonts, images, /api/enquiry + /api/collect
+#   data: .................. favicon + film-grain SVG (img-src)
+#   open.spotify.com ....... Spotify player iframe (frame-src) + its reachability probe, one image (img-src);
+#                            no third-party script runs on the page itself (script-src 'self' only)
+#   embed.music.apple.com .. Apple Music fallback player (only if Spotify is blocked)
+#   form-action 'self' ..... the enquiry form posts to /api/enquiry only (no mailto:)
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self' https://open.spotify.com; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src https://open.spotify.com https://embed.music.apple.com; form-action 'self' mailto:; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://open.spotify.com; font-src 'self'; connect-src 'self'; frame-src https://open.spotify.com https://embed.music.apple.com; form-action 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
-  X-Frame-Options: SAMEORIGIN
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
-  Strict-Transport-Security: max-age=31536000
+  Cross-Origin-Opener-Policy: same-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), browsing-topics=()
 
-# HTML always revalidates, so updates show immediately
+# HTML always revalidates, so updates show immediately. no-transform stops Cloudflare from
+# injecting its own Web Analytics script: the site has first-party analytics, and the CSP
+# would block that script anyway (a console error and a slower page).
 /
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
 /index.html
-  Cache-Control: public, max-age=0, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate, no-transform
+/robots.txt
+  Cache-Control: public, max-age=3600
+/sitemap.xml
+  Cache-Control: public, max-age=3600
 
-# CSS, JS and images are referenced with a content hash (?v=…, added by build.sh),
-# fonts have content-hashed filenames — a changed file gets a new URL, so cache for a year
+# styles.css, script.js, config.js and every image are referenced with a content hash (?v=…,
+# added by build.sh) and fonts have content-hashed filenames — a changed file gets a new URL,
+# so they are cached for a year.
 /*.css
   Cache-Control: public, max-age=31536000, immutable
 /*.js
   Cache-Control: public, max-age=31536000, immutable
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+# fonts.css is also linked without a hash by the Worker's no-JavaScript confirmation page,
+# so it gets a day rather than a year (detach the year-long rule above first).
+/fonts.css
+  ! Cache-Control
+  Cache-Control: public, max-age=86400

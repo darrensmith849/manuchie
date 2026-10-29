@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Manuchie">
+<title>Manuchie</title>
+<path fill="#0a0a0b" d="M4 0H28C30.21 0 32 1.79 32 4V28C32 30.21 30.21 32 28 32H4C1.79 32 0 30.21 0 28V4C0 1.79 1.79 0 4 0Z"/>
+<path fill="#f3f0ea" d="M6 7V30H2V7ZM26 7H30V30H26ZM14 7H18V23H14ZM8 7H12V15H8ZM20 7H24V15H20Z"/>
+<path fill="#c8a15a" d="M2 2H30V5H2Z"/>
+</svg>

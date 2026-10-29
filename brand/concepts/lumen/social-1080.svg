@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" role="img" aria-label="Manuchie">
+<title>Manuchie</title>
+<defs><radialGradient id="glow" cx="540" cy="-140" r="1020" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#b5481e"/><stop offset=".32" stop-color="#6a2a12"/><stop offset=".58" stop-color="#2a130c"/><stop offset=".86" stop-color="#0a0a0b"/></radialGradient></defs>
+<rect width="1080" height="1080" fill="#0a0a0b"/><rect width="1080" height="1080" fill="url(#glow)"/>
+<path fill="#f3f0ea" d="M302.4 318.6H406.94L457.13 546.7V793.8H302.4ZM777.6 318.6V793.8H622.87V546.7L673.06 318.6Z"/>
+<path fill="#b5481e" d="M435.46 318.6H644.54L540 793.8Z"/>
+</svg>

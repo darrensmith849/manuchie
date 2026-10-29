@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Manuchie">
+<title>Manuchie</title>
+<path fill="#0a0a0b" d="M6 0H42C45.31 0 48 2.69 48 6V42C48 45.31 45.31 48 42 48H6C2.69 48 0 45.31 0 42V6C0 2.69 2.69 0 6 0Z"/>
+<path fill="#c8a15a" d="M21.76 40 13.64 13.14 6.18 40H3V25.32L7.81 8H19.39L24 23.24L28.61 8H40.19L45 25.32V40H41.82L34.36 13.14L26.24 40ZM3 3H45V5H3ZM3 43H45V45H3Z"/>
+</svg>
