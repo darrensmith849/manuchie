@@ -43,10 +43,15 @@
       wording, time, method, page and a salted IP hash (`consent_records`, append-only).
 - [x] Unsubscribe records a withdrawal; suppression excludes a contact from every
       marketing export regardless of consent.
-- [x] The marketing export contains only opted-in, active, not-withdrawn contacts.
+- [x] The marketing export (Contacts → Export mailing list) contains only opted-in, active,
+      not-withdrawn contacts.
 - [x] Right of access: per-contact JSON export. Right to erasure: deleting a contact
       removes them, their enquiries and their consent history.
-- [x] One contact record per email address (unique normalised email).
+- [x] One contact record per email address (unique normalised email). Clients added by hand
+      may have no email; they are still one record each.
+- [x] Client phone numbers and companies are only visible in the dashboard and included in the
+      personal-data export. Deleting a client erases them, their enquiries and consent history;
+      their projects and money entries stay (the studio's own books) with the client unlinked.
 
 ## Analytics
 

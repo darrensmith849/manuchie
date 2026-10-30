@@ -108,3 +108,20 @@ export function daysBetween(from, to) {
   }
   return out;
 }
+
+/* Money typed by a person ("1,250.50", "R 900", 1200) → whole cents, or null if it isn't a sensible amount. */
+export function parseMoney(value) {
+  if (value === null || value === undefined || value === "") return null;
+  if (typeof value === "number") return Number.isFinite(value) && value >= 0 && value < 1e10 ? Math.round(value * 100) : null;
+  const s = String(value).replace(/[^\d.,-]/g, "").replace(/,(?=\d{3}(\D|$))/g, "").replace(",", ".");
+  if (!/^\d+(\.\d{1,2})?$/.test(s)) return null;
+  const n = Number(s);
+  return n < 1e10 ? Math.round(n * 100) : null;
+}
+
+/* A real calendar day as YYYY-MM-DD. */
+export function isDay(s) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(s || "")) return false;
+  const d = new Date(s + "T00:00:00Z");
+  return !Number.isNaN(d.getTime()) && d.toISOString().slice(0, 10) === s;
+}

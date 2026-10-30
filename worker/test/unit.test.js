@@ -2,7 +2,7 @@
 
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { clean, isEmail, stripUrl, refHost, isBot, deviceOf, toCsv, parseTags, parseRange, daysBetween, linkCount } from "../src/lib/text.js";
+import { clean, isEmail, stripUrl, refHost, isBot, deviceOf, toCsv, parseTags, parseRange, daysBetween, linkCount, parseMoney, isDay } from "../src/lib/text.js";
 import { hashPassword, verifyPassword, safeEqual, toB64Url, fromB64Url } from "../src/lib/crypto.js";
 import { validateEnquiry, spamReason } from "../src/enquiry.js";
 import { parseEvent } from "../src/collect.js";
@@ -102,4 +102,19 @@ test("analytics events are whitelisted", () => {
   assert.equal(parseEvent({ type: "pageview", name: "ignored", path: "//evil.com" }).name, null);
   assert.equal(parseEvent({ type: "pageview", path: "//evil.com" }).path, "/");
   assert.equal(parseEvent({ type: "form_start", sid: "<script>" }).sid, "script");
+});
+
+test("money typed by a person becomes whole cents; nonsense is refused", () => {
+  assert.equal(parseMoney("1,250.50"), 125050);
+  assert.equal(parseMoney("R 900"), 90000);
+  assert.equal(parseMoney("$12.5"), 1250);
+  assert.equal(parseMoney(1200), 120000);
+  assert.equal(parseMoney("2,500"), 250000);
+  assert.equal(parseMoney("0"), 0);
+  for (const bad of ["abc", "-5", "12.345", "", null, -3, Infinity]) assert.equal(parseMoney(bad), null, String(bad));
+});
+
+test("dates must be real calendar days", () => {
+  assert.ok(isDay("2026-10-30") && isDay("2028-02-29"));
+  for (const bad of ["2026-02-30", "2026-13-01", "30/10/2026", "", null]) assert.ok(!isDay(bad), String(bad));
 });

@@ -23,11 +23,14 @@ Still to do: email delivery (§2) and, optionally, the daily cron (see the end o
   later `npx wrangler …` / `node scripts/create-admin.mjs …` command.
 - For email: a [Resend](https://resend.com) account (free tier: 3,000 emails a month).
 
-## 1. Create the database tables (once)
+## 1. Create or upgrade the database tables
 
 ```bash
-npx wrangler d1 migrations apply manuchie --remote
+HOME=~/.cf-manuchie npm_config_cache=~/.npm npx wrangler d1 migrations apply manuchie --remote
 ```
+
+Run it again whenever `migrations/` gains a file (0002 added projects, to-dos, money and
+client phone/company). It only applies migrations that haven't run yet.
 
 ## 2. Set up email delivery (Resend)
 
@@ -59,8 +62,12 @@ current state.
 ## 3. Deploy
 
 ```bash
-./build.sh && npx wrangler deploy
+./build.sh && HOME=~/.cf-manuchie npm_config_cache=~/.npm npx wrangler deploy
 ```
+
+`HOME=~/.cf-manuchie` keeps the sign-in to Manuchie's Cloudflare account separate from any other
+Wrangler login on this Mac. If it says you're not signed in, run the same prefix with `login`
+first (the Cloudflare "Allow" page waits about two minutes).
 
 `build.sh` builds the public site and copies the dashboard into `dist/`. The deploy keeps
 both custom domains (`manuchie.org`, `www.manuchie.org`) attached.

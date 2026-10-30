@@ -142,8 +142,6 @@ html.cv-off :is(.story,.mantra,.sound,.studio,.gallery,.contact,.foot){content-v
   padding-inline:var(--gutter);transition:background-color .4s,box-shadow .4s}
 .nav.solid,html.drawer-open .nav{background:rgba(15,11,7,.82);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);box-shadow:0 14px 34px -24px rgba(0,0,0,.9)}
 .nav-logo{font-family:var(--disp);font-weight:600;font-size:1.4rem;letter-spacing:-.01em;color:var(--white);min-height:var(--tap);display:inline-flex;align-items:center}
-.nav-logo img{display:block;height:28px;width:auto}
-@media (max-width:900px){.nav-logo img{height:24px}}
 .nav-links{display:none;align-items:center;gap:clamp(.75rem,2vw,1.75rem)}
 .nav-links a{display:inline-flex;align-items:center;min-height:var(--tap);padding-inline:.25rem;font-size:.92rem;font-weight:500;color:rgba(243,243,241,.82);transition:color .2s}
 .nav-links a:hover{color:var(--white)}
@@ -428,7 +426,7 @@ html.cv-off :is(.story,.mantra,.sound,.studio,.gallery,.contact,.foot){content-v
 /* ---------- footer ---------- */
 .foot{background:var(--bg-deep);border-top:1px solid var(--line-2);padding:clamp(3rem,6vw,4.5rem) var(--gutter) clamp(2rem,4vw,3rem)}
 .foot-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem 1.5rem;padding-bottom:clamp(1.5rem,3vw,2.2rem);border-bottom:1px solid var(--line-2)}
-.foot-logo{display:block;height:clamp(1.6rem,1.1rem + 1.6vw,2.5rem);width:auto;max-width:100%}
+.foot-logo{font-family:var(--disp);font-weight:500;font-size:clamp(2.6rem,1.6rem + 3.6vw,4rem);line-height:.9;color:var(--white)}
 .foot-links{display:flex;flex-wrap:wrap;column-gap:1.25rem;margin-bottom:-.6rem}
 .foot-links a{display:inline-flex;align-items:center;min-height:var(--tap);font-size:.92rem;color:var(--cream-soft);transition:color .2s}
 .foot-links a:hover{color:var(--white)}

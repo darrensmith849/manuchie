@@ -4,13 +4,38 @@
 `142be17a-9123-49ff-b7fb-2cf07fdc5c88`, Manuchie01@gmail.com's Cloudflare account).
 Dashboard: **https://manuchie.org/admin/login**.
 
+## Dashboard rework (after first use)
+
+Feedback from the first real enquiry: no obvious way to open, edit, mark read or complete, and the
+marketing-consent page wasn't useful. Changes: inbox views (To reply · In progress · Booked ·
+Complete · All · Spam) with counts; whole rows open the enquiry; per-row **Mark read / unread**
+and **Complete / Reopen**; a bulk bar (mark read, complete, spam, export, delete); search covers
+the message text; the enquiry page has Reply by email (pre-filled, quoting their message),
+Mark replied, Mark complete, Booked, Mark unread, a status picker, **Edit** for name and email
+(the contact follows; duplicates are merged safely), notes and earlier enquiries from the same
+person; the overview leads with To reply / In progress / Booked and a "Needs your attention"
+list. The Marketing consent page is gone: consent is still recorded, shown as "Mailing list" on
+contacts, with an "Export mailing list" button on Contacts.
+
+## Studio desk (30 Oct)
+
+Projects (lead → booked → in progress → final touches → completed, plus on hold / cancelled) with
+type, client, dates, agreed fee, to-dos (progress follows them) and notes; Money (income received
+and expected, expenses by category, profit, still to invoice, 12-month chart, CSV); Clients added
+by hand with phone and company, Email / Call / WhatsApp buttons; "Start a project" from an
+enquiry; studio currency in Settings; phone navigation Home · Enquiries · Projects · Money · More.
+Backend checks for all of it are in `integration.mjs` (110 checks in total). Every dashboard screen
+was rendered offscreen at 390/768/1024/1440 with sample data (54 renders: no overflow, no script
+errors, no axe violations) using `worker/test/offscreen/` — WebKit in a hidden window, no browser.
+A unit test caught an impossible-month date crashing the date check; fixed.
+
 ## Results
 
 | Suite | What it covers | Result |
 |---|---|---|
 | Unit — `npm test` | validation, spam rules, PBKDF2, CSV formula safety, bot/device detection, date ranges, event whitelist | **10 / 10** |
-| Backend end-to-end — `worker/test/integration.mjs` | enquiry API (origin, validation, size, rate limit, honeypot, no-JS), email via a mock Resend, analytics beacons (bots, other origins, admins excluded), sign-in, cookie flags, CSRF, every dashboard API, CSV/JSON exports, consent, erasure, password rules, lockout, logout, logs free of message text | **73 / 73** |
-| Browser end-to-end — `worker/test/site-e2e.mjs` | the real page against the real Worker: Hallmark logo and favicons, manifest, robots; UTM landing, section views once each, Spotify click, form start once, enquiry sent in-page with no email app, form cleared; no-JavaScript post; the admin dashboard then shows exactly that visit, click, funnel, campaign, device, enquiry and consent wording; no overflow at 390/768/1024/1440 | **31 / 31** |
+| Backend end-to-end — `worker/test/integration.mjs` | enquiry API (origin, validation, size, rate limit, honeypot, no-JS), email via a mock Resend, analytics beacons (bots, other origins, admins excluded), sign-in, cookie flags, CSRF, every dashboard API incl. editing name/email (contact kept in step, duplicate emails refused), status-list filters, message search, bulk complete/delete, CSV/JSON exports, consent, erasure, password rules, lockout, logout, logs free of message text | **110 / 110** |
+| Browser end-to-end — `worker/test/site-e2e.mjs` | the real page against the real Worker: text logo, robots; UTM landing, section views once each, Spotify click, form start once, enquiry sent in-page with no email app, form cleared; no-JavaScript post; the admin dashboard then shows exactly that visit, click, funnel, campaign, device, enquiry and consent wording; no overflow at 390/768/1024/1440 | **26 / 26** |
 | Dashboard visual + accessibility — `worker/test/dashboard-qa.mjs` | every dashboard page at 390/768/1024/1440, axe-core (WCAG 2.2 AA) at 390 and 1440, console errors, mobile menu focus and Escape, skip link | **No overflow, no console errors, no axe violations** |
 | Public site QA (public-site pass) | content lock, layout at four widths, anchors, keyboard, reduced motion, touch targets, form states | see `docs/PUBLIC_SITE_CHANGES.md` |
 | Live checks after deploy | page, favicons, manifest, robots, sign-in page, `/admin/` gate; one test event and one test enquiry reached the production database and were then deleted | **pass** (production holds 0 test rows) |
@@ -42,7 +67,7 @@ Two live-only fixes made after the first deploy:
   and `public-top-*.jpg` (first screen); `public-form-sent-1440.jpg`; `public-player-*.png`
   (Spotify embed working).
 - Dashboard: `dashboard-<page>-<width>.png` for login, overview, analytics, enquiries, an
-  enquiry, contacts, a contact, consent and settings at 390/768/1024/1440, plus
+  enquiry, contacts, a contact and settings at 390/768/1024/1440, plus
   `dashboard-menu-390.png` and `dashboard-enquiries-e2e-1440.jpg`. Dashboard screenshots use
   clearly fake sample data (`example.test` addresses) in a throwaway local database.
 
@@ -53,8 +78,9 @@ order; every external link. The only text added is the optional marketing-consen
 brief allows it); the footer year is now also written into the HTML (it was filled in by
 script). All 9 photographs are in the same order and all 19 external links are unchanged.
 Photo alt text was rewritten to describe each picture (listed in `PUBLIC_SITE_CHANGES.md`).
-The header and footer now show the Hallmark logo the client approved, with the accessible
-name "Manuchie".
+The Hallmark logo was added after approval and then removed at the client's request; the header
+and footer show the original "Manuchie" text and the original favicon. New symbol-only mark
+proposals are in progress in `brand/v2/` (not live).
 
 ## Deliverables
 

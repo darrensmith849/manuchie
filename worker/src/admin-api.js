@@ -1,11 +1,12 @@
 /* /api/admin/* — JSON for the private dashboard. Every route here runs after requireAdmin(). */
 
 import { json, csv, readBody, PRIVATE_HEADERS } from "./lib/http.js";
-import { clean, normEmail, parseTags, parseRange, daysBetween, toCsv } from "./lib/text.js";
+import { clean, normEmail, isEmail, parseTags, parseRange, daysBetween, toCsv } from "./lib/text.js";
 import { newId } from "./lib/crypto.js";
 import { changePassword } from "./auth.js";
 import { emailConfigured, ackEnabled } from "./email.js";
 import { CONSENT_WORDING } from "./enquiry.js";
+import { handleStudioApi, studioSummary, getCurrency } from "./studio-api.js";
 
 export const STATUSES = ["new", "read", "replied", "in_progress", "booked", "closed", "spam"];
 const PLATFORMS = ["spotify", "apple_music", "youtube", "shazam", "instagram", "email", "book_session"];
@@ -69,11 +70,13 @@ async function overview(env, params) {
     series(env, r.prevFrom, r.prevTo),
     ranked(env, `SELECT name, COUNT(*) AS n FROM events WHERE type = 'section_view' AND day BETWEEN ? AND ? GROUP BY name ORDER BY n DESC`, r.from, r.to),
     ranked(env, `SELECT ${SOURCE_SQL} AS name, COUNT(DISTINCT session) AS n FROM events WHERE type = 'pageview' AND day BETWEEN ? AND ? GROUP BY 1 ORDER BY n DESC`, r.from, r.to, 6),
-    env.DB.prepare("SELECT COUNT(*) AS n FROM enquiries WHERE status = 'new'").first(),
-    all(env.DB.prepare(`SELECT id, name, email, status, created_at, marketing_consent FROM enquiries
-                        WHERE status != 'spam' ORDER BY created_at DESC LIMIT 6`)),
+    all(env.DB.prepare("SELECT status, COUNT(*) AS n FROM enquiries GROUP BY status")),
+    all(env.DB.prepare(`SELECT id, name, email, status, created_at, substr(message, 1, 120) AS preview, last_contacted_at FROM enquiries
+                        WHERE status IN ('new', 'read', 'replied', 'in_progress') ORDER BY created_at DESC LIMIT 8`)),
   ]);
-  return json({ range: r, current, previous, series: daily, previousSeries, sections, sources, unread: unread.n, recent });
+  const statusCounts = Object.fromEntries(unread.map((c) => [c.status, c.n]));
+  const studio = await studioSummary(env);
+  return json({ range: r, current, previous, series: daily, previousSeries, sections, sources, unread: statusCounts.new || 0, statusCounts, recent, studio });
 }
 
 async function analytics(env, params) {
@@ -103,9 +106,10 @@ function enquiryFilters(params) {
   const where = [];
   const binds = [];
   const q = clean(params.get("q"), 100);
-  const status = params.get("status");
-  if (q) { where.push("(name LIKE ? ESCAPE '\\' OR email LIKE ? ESCAPE '\\')"); binds.push(like(q), like(q)); }
-  if (STATUSES.includes(status)) { where.push("status = ?"); binds.push(status); }
+  const status = params.get("status") || "";
+  const wanted = status.split(",").filter((x) => STATUSES.includes(x));
+  if (q) { where.push("(name LIKE ? ESCAPE '\\' OR email LIKE ? ESCAPE '\\' OR message LIKE ? ESCAPE '\\')"); binds.push(like(q), like(q), like(q)); }
+  if (wanted.length) { where.push(`status IN (${wanted.map(() => "?").join(",")})`); binds.push(...wanted); }
   else if (status !== "all") where.push("status != 'spam'");
   const from = params.get("from"), to = params.get("to");
   if (/^\d{4}-\d{2}-\d{2}$/.test(from || "")) { where.push("substr(created_at, 1, 10) >= ?"); binds.push(from); }
@@ -121,7 +125,7 @@ async function listEnquiries(env, params) {
   const [rows, total, counts] = await Promise.all([
     all(env.DB.prepare(`SELECT id, name, email, substr(message, 1, 140) AS preview, length(message) > 140 AS truncated,
                           created_at, status, marketing_consent, email_status, last_contacted_at, notes != '' AS has_notes
-                        FROM enquiries ${f.sql} ORDER BY created_at DESC LIMIT ? OFFSET ?`).bind(...f.binds, pg.per, pg.offset)),
+                        FROM enquiries ${f.sql} ORDER BY created_at ${params.get("sort") === "oldest" ? "ASC" : "DESC"} LIMIT ? OFFSET ?`).bind(...f.binds, pg.per, pg.offset)),
     env.DB.prepare(`SELECT COUNT(*) AS n FROM enquiries ${f.sql}`).bind(...f.binds).first(),
     all(env.DB.prepare("SELECT status, COUNT(*) AS n FROM enquiries GROUP BY status")),
   ]);
@@ -140,7 +144,11 @@ async function getEnquiry(env, id) {
                               (SELECT COUNT(*) FROM enquiries WHERE contact_id = contacts.id) AS enquiry_count
                             FROM contacts WHERE id = ?`).bind(row.contact_id).first()
     : null;
-  return json({ enquiry: row, contact: contact && { ...contact, tags: JSON.parse(contact.tags || "[]") } });
+  const others = row.contact_id
+    ? await all(env.DB.prepare(`SELECT id, created_at, status, substr(message, 1, 100) AS preview FROM enquiries
+                                WHERE contact_id = ? AND id != ? ORDER BY created_at DESC LIMIT 10`).bind(row.contact_id, id))
+    : [];
+  return json({ enquiry: row, contact: contact && { ...contact, tags: JSON.parse(contact.tags || "[]") }, others });
 }
 
 /* Links an enquiry that was flagged as spam to a contact once a person marks it as genuine. */
@@ -183,14 +191,67 @@ async function updateEnquiry(env, id, request) {
   }
   if (status !== e.status) { sets.push("status = ?"); binds.push(status); }
   if (data.notes !== undefined) { sets.push("notes = ?"); binds.push(clean(data.notes, 5000, { multiline: true })); }
+  let name = e.name, email = e.email;
+  if (data.name !== undefined) {
+    name = clean(data.name, 120);
+    if (!name) return json({ ok: false, error: "name", message: "Enter a name." }, 400);
+    sets.push("name = ?"); binds.push(name);
+  }
+  if (data.email !== undefined) {
+    email = clean(data.email, 254);
+    if (!isEmail(email)) return json({ ok: false, error: "email", message: "Enter a valid email address." }, 400);
+    sets.push("email = ?"); binds.push(email);
+  }
 
   await env.DB.prepare(`UPDATE enquiries SET ${sets.join(", ")} WHERE id = ?`).bind(...binds, id).run();
+  if (e.contact_id && (name !== e.name || email !== e.email)) await syncContact(env, e.contact_id, id, name, email, now);
   if (e.status === "spam" && status !== "spam" && !e.contact_id) await linkContact(env, e);
   const contactId = e.contact_id || (await env.DB.prepare("SELECT contact_id FROM enquiries WHERE id = ?").bind(id).first()).contact_id;
   if (data.replied === true && contactId) {
     await env.DB.prepare("UPDATE contacts SET last_contacted_at = ?, updated_at = ? WHERE id = ?").bind(now, now, contactId).run();
   }
   return getEnquiry(env, id);
+}
+
+/* After a name/email correction on an enquiry: update its contact, or move the enquiry (and any
+   consent proof) to the contact that already has the corrected address. */
+async function syncContact(env, contactId, enquiryId, name, email, now) {
+  const norm = normEmail(email);
+  const other = await env.DB.prepare("SELECT id FROM contacts WHERE email_norm = ? AND id != ?").bind(norm, contactId).first();
+  if (!other) {
+    await env.DB.prepare("UPDATE contacts SET name = ?, email = ?, email_norm = ?, updated_at = ? WHERE id = ?")
+      .bind(name, email, norm, now, contactId).run();
+    return;
+  }
+  const rest = await env.DB.prepare("SELECT COUNT(*) AS n FROM enquiries WHERE contact_id = ? AND id != ?").bind(contactId, enquiryId).first();
+  const stmts = [env.DB.prepare("UPDATE enquiries SET contact_id = ? WHERE id = ?").bind(other.id, enquiryId)];
+  if (!rest.n) {
+    stmts.push(env.DB.prepare("UPDATE consent_records SET contact_id = ? WHERE contact_id = ?").bind(other.id, contactId));
+    stmts.push(env.DB.prepare(`UPDATE contacts SET marketing_consent = MAX(marketing_consent, (SELECT marketing_consent FROM contacts WHERE id = ?)),
+                                 consent_at = COALESCE(consent_at, (SELECT consent_at FROM contacts WHERE id = ?)), updated_at = ? WHERE id = ?`)
+      .bind(contactId, contactId, now, other.id));
+    stmts.push(env.DB.prepare("DELETE FROM contacts WHERE id = ?").bind(contactId));
+  }
+  await env.DB.batch(stmts);
+}
+
+/* Several enquiries at once: { ids: [...], status } or { ids: [...], delete: true }. */
+async function bulkEnquiries(env, request) {
+  const { data = {} } = await readBody(request, 40000);
+  const ids = (Array.isArray(data.ids) ? data.ids : []).filter((x) => /^[0-9a-f-]{36}$/.test(x)).slice(0, 500);
+  if (!ids.length) return json({ ok: false, error: "ids" }, 400);
+  const marks = ids.map(() => "?").join(",");
+  if (data.delete === true) {
+    const r = await env.DB.prepare(`DELETE FROM enquiries WHERE id IN (${marks})`).bind(...ids).run();
+    return json({ ok: true, changed: r.meta.changes });
+  }
+  if (!STATUSES.includes(data.status)) return json({ ok: false, error: "status" }, 400);
+  const unspam = data.status !== "spam"
+    ? await all(env.DB.prepare(`SELECT * FROM enquiries WHERE id IN (${marks}) AND status = 'spam' AND contact_id IS NULL`).bind(...ids))
+    : [];
+  const r = await env.DB.prepare(`UPDATE enquiries SET status = ?, updated_at = ? WHERE id IN (${marks})`).bind(data.status, nowIso(), ...ids).run();
+  for (const e of unspam) await linkContact(env, e);
+  return json({ ok: true, changed: r.meta.changes });
 }
 
 async function deleteEnquiry(env, id) {
@@ -220,7 +281,7 @@ function contactFilters(params) {
   const where = [];
   const binds = [];
   const q = clean(params.get("q"), 100);
-  if (q) { where.push("(c.name LIKE ? ESCAPE '\\' OR c.email LIKE ? ESCAPE '\\' OR c.notes LIKE ? ESCAPE '\\')"); binds.push(like(q), like(q), like(q)); }
+  if (q) { where.push("(c.name LIKE ? ESCAPE '\\' OR c.email LIKE ? ESCAPE '\\' OR c.notes LIKE ? ESCAPE '\\' OR c.phone LIKE ? ESCAPE '\\' OR c.company LIKE ? ESCAPE '\\')"); binds.push(like(q), like(q), like(q), like(q), like(q)); }
   const consent = params.get("consent");
   if (consent === "yes") where.push("c.marketing_consent = 1 AND c.status = 'active' AND c.unsubscribed_at IS NULL");
   if (consent === "no") where.push("c.marketing_consent = 0");
@@ -253,12 +314,15 @@ async function listContacts(env, params) {
 async function getContact(env, id) {
   const c = await env.DB.prepare(`${CONTACT_SELECT} WHERE c.id = ? GROUP BY c.id`).bind(id).first();
   if (!c) return json({ ok: false, error: "not_found" }, 404);
-  const [enquiries, consent] = await Promise.all([
+  const [enquiries, consent, projects] = await Promise.all([
     all(env.DB.prepare(`SELECT id, created_at, status, substr(message, 1, 140) AS preview, marketing_consent
                         FROM enquiries WHERE contact_id = ? ORDER BY created_at DESC`).bind(id)),
     all(env.DB.prepare("SELECT id, action, wording, method, source_page, created_at FROM consent_records WHERE contact_id = ? ORDER BY created_at DESC").bind(id)),
+    all(env.DB.prepare(`SELECT p.id, p.title, p.status, p.progress, p.due_date, p.fee_cents,
+                          (SELECT COALESCE(SUM(amount_cents), 0) FROM transactions x WHERE x.project_id = p.id AND x.kind = 'income' AND x.settled = 1) AS received_cents
+                        FROM projects p WHERE p.contact_id = ? ORDER BY p.updated_at DESC`).bind(id)),
   ]);
-  return json({ contact: tidyContact(c), enquiries, consent });
+  return json({ contact: tidyContact(c), enquiries, consent, projects });
 }
 
 async function updateContact(env, id, request) {
@@ -271,6 +335,20 @@ async function updateContact(env, id, request) {
   const binds = [now];
   if (data.notes !== undefined) { sets.push("notes = ?"); binds.push(clean(data.notes, 5000, { multiline: true })); }
   if (data.tags !== undefined) { sets.push("tags = ?"); binds.push(JSON.stringify(parseTags(data.tags))); }
+  if (data.name !== undefined) {
+    const name = clean(data.name, 120);
+    if (!name) return json({ ok: false, error: "name", message: "Enter a name." }, 400);
+    sets.push("name = ?"); binds.push(name);
+  }
+  if (data.email !== undefined) {
+    const email = clean(data.email, 254);
+    if (email && !isEmail(email)) return json({ ok: false, error: "email", message: "Enter a valid email address." }, 400);
+    const taken = email && await env.DB.prepare("SELECT id FROM contacts WHERE email_norm = ? AND id != ?").bind(normEmail(email), id).first();
+    if (taken) return json({ ok: false, error: "email_taken", message: "Another contact already has that email address." }, 409);
+    sets.push("email = ?", "email_norm = ?"); binds.push(email, email ? normEmail(email) : "none:" + id);
+  }
+  if (data.phone !== undefined) { sets.push("phone = ?"); binds.push(clean(data.phone, 40)); }
+  if (data.company !== undefined) { sets.push("company = ?"); binds.push(clean(data.company, 120)); }
   if (data.suppressed !== undefined) { sets.push("status = ?"); binds.push(data.suppressed ? "suppressed" : "active"); }
   if (data.unsubscribe === true && c.marketing_consent) {
     sets.push("marketing_consent = 0", "unsubscribed_at = ?"); binds.push(now);
@@ -395,12 +473,15 @@ export async function handleAdminApi(request, env, admin, path) {
   const [resource, id, sub] = parts;
   const uuid = (s) => /^[0-9a-f-]{36}$/.test(s || "");
 
-  if (resource === "me" && m === "GET") return json({ email: admin.email, csrf: admin.csrf });
+  const studio = await handleStudioApi(request, env, parts);
+  if (studio) return studio;
+  if (resource === "me" && m === "GET") return json({ email: admin.email, csrf: admin.csrf, currency: await getCurrency(env) });
   if (resource === "overview" && m === "GET") return overview(env, p);
   if (resource === "analytics" && m === "GET") return analytics(env, p);
 
   if (resource === "enquiries.csv" && m === "GET") return exportEnquiries(env, p);
   if (resource === "enquiries" && !id && m === "GET") return listEnquiries(env, p);
+  if (resource === "enquiries" && id === "bulk" && m === "POST") return bulkEnquiries(env, request);
   if (resource === "enquiries" && uuid(id) && !sub) {
     if (m === "GET") return getEnquiry(env, id);
     if (m === "PATCH") return updateEnquiry(env, id, request);

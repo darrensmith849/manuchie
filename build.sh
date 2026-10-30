@@ -53,9 +53,6 @@ fi
 grep -oE 'assets/fonts/[A-Za-z0-9_.-]+\.woff2' fonts.css | sort -u | while read -r f; do cp "$f" "dist/$f"; done
 grep -oE 'assets/[A-Za-z0-9_.-]+\.(jpg|png|webp|avif|svg)' index.html | sort -u | while read -r f; do cp "$f" "dist/$f"; done
 
-# --- Hallmark identity: favicons, home-screen icons and manifest at the site root --------
-cp brand/package/{favicon.ico,favicon.svg,apple-touch-icon.png,icon-192.png,icon-512.png,maskable-512.png,site.webmanifest} dist/
-
 # --- private dashboard shell (auth-gated by the Worker; never linked from the page) -----
 if [ -d admin ]; then
   mkdir -p dist/admin

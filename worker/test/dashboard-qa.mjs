@@ -143,7 +143,7 @@ try {
     const firstEnquiry = await page.evaluate(async () => (await (await fetch("/api/admin/enquiries?per=5")).json()).rows[0].id);
     const firstContact = await page.evaluate(async () => (await (await fetch("/api/admin/contacts?per=5")).json()).rows[0].id);
     const routes = [["overview", "#/overview"], ["analytics", "#/analytics"], ["enquiries", "#/enquiries"], ["enquiry", "#/enquiries/" + firstEnquiry],
-      ["contacts", "#/contacts"], ["contact", "#/contacts/" + firstContact], ["consent", "#/consent"], ["settings", "#/settings"]];
+      ["contacts", "#/contacts"], ["contact", "#/contacts/" + firstContact], ["settings", "#/settings"]];
     for (const [name, hash] of routes) {
       await page.goto(BASE + "/admin/" + hash);
       await page.waitForFunction(() => !document.querySelector("#main .loading"));

@@ -8,8 +8,17 @@ songwriter, music director and keyboardist — live at **https://manuchie.org**.
   (Spotify player, featured project, records) · studio services · gallery · contact.
 - **Enquiry system:** the contact form posts to the site's own API — no email app opens.
   Each enquiry is validated, rate-limited, spam-checked, stored, and emailed to Manuchie.
-- **Private dashboard** at `/admin`: overview, first-party analytics, enquiries, contacts,
-  marketing consent and settings, behind a secure sign-in.
+- **Private studio dashboard** at `/admin`, behind a secure sign-in:
+  - **Overview** — greeting, what needs a reply, projects in the studio, money this month.
+  - **Enquiries** — inbox views, quick mark read / complete, bulk actions, editable details,
+    notes, and "Start a project" from any enquiry.
+  - **Projects** — every job from lead to completed: type, stage, client, start and due dates,
+    agreed fee, a to-do list that drives the progress bar, and notes.
+  - **Money** — income received and expected, production expenses by category, profit,
+    fees still to invoice, the last 12 months, CSV export. One studio currency (Settings).
+  - **Clients** — everyone who enquired or was added by hand, with email, phone and company;
+    Email / Call / WhatsApp buttons; their projects and enquiries.
+  - **Analytics** and **Settings** (password, devices, currency, email alerts).
 - **Hosting:** one Cloudflare Worker (`manuchie`) with static assets and a D1 database, in
   Manuchie01@gmail.com's Cloudflare account.
 

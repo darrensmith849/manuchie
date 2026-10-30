@@ -4,29 +4,35 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
-  <title>Sign in — Manuchie dashboard</title>
-  <link rel="icon" href="/favicon.ico" sizes="32x32" />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#09090a" />
+  <title>Sign in — Manuchie studio</title>
   <link rel="stylesheet" href="/fonts.css" />
   <link rel="stylesheet" href="/admin/admin.css" />
 </head>
 <body>
   <main class="login">
-    <div class="login-box">
-      <span class="brand-k">Private dashboard</span>
-      <h1><img class="login-logo" src="/admin/logo.svg" alt="Manuchie" width="246" height="28" /></h1>
-      <p>Sign in to see enquiries, contacts and website analytics.</p>
-      <form id="loginForm" novalidate>
-        <label class="fld"><span>Email</span>
-          <input type="email" name="email" autocomplete="username" required autofocus />
-        </label>
-        <label class="fld"><span>Password</span>
-          <input type="password" name="password" autocomplete="current-password" required />
-        </label>
-        <p class="form-error" id="loginError" role="alert" aria-live="assertive"></p>
-        <button class="btn btn-primary" type="submit" id="loginBtn">Sign in</button>
-      </form>
+    <figure class="login-photo">
+      <img src="/admin/img/studio.webp" alt="Manuchie in his studio" width="960" height="1288" fetchpriority="high" />
+      <figcaption><span>Manuchie · Studio</span><b>Make music with purpose.</b></figcaption>
+    </figure>
+    <div class="login-panel">
+      <div class="login-box">
+        <img class="brand-av" src="/admin/img/avatar.webp" alt="" width="64" height="64" />
+        <span class="brand-k">Private studio dashboard</span>
+        <h1>Welcome back.</h1>
+        <p>Sign in to see your enquiries, contacts and how the website is doing.</p>
+        <form id="loginForm" novalidate>
+          <label class="fld"><span>Email</span>
+            <input type="email" name="email" autocomplete="username" required autofocus />
+          </label>
+          <label class="fld"><span>Password</span>
+            <input type="password" name="password" autocomplete="current-password" required />
+          </label>
+          <p class="form-error" id="loginError" role="alert" aria-live="assertive"></p>
+          <button class="btn btn-primary" type="submit" id="loginBtn">Sign in</button>
+        </form>
+        <p class="login-foot"><a href="https://manuchie.org/">← Back to manuchie.org</a></p>
+      </div>
     </div>
   </main>
   <script src="/admin/login.js" defer></script>

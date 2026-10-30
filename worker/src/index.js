@@ -11,7 +11,7 @@ import { currentAdmin, requireAdmin, handleLogin, handleLogout } from "./auth.js
 import { handleAdminApi } from "./admin-api.js";
 
 /* Dashboard files anyone may load: the login page and the stylesheet it shares. */
-const ADMIN_PUBLIC = new Set(["/admin/login", "/admin/login.html", "/admin/login.js", "/admin/admin.css", "/admin/logo.svg"]);
+const ADMIN_PUBLIC = new Set(["/admin/login", "/admin/login.html", "/admin/login.js", "/admin/admin.css"]);
 
 const notAllowed = () => json({ ok: false, error: "method" }, 405, { Allow: "POST" });
 
@@ -20,7 +20,8 @@ async function serveAdmin(request, env, url) {
   const admin = await currentAdmin(request, env);
   const isLogin = path === "/admin/login" || path === "/admin/login.html";
   if (isLogin && admin) return redirect("/admin/");
-  if (!ADMIN_PUBLIC.has(path) && !admin) return redirect("/admin/login");
+  // the sign-in page's photos are public too (they are on the website already)
+  if (!ADMIN_PUBLIC.has(path) && !path.startsWith("/admin/img/") && !admin) return redirect("/admin/login");
   const res = await env.ASSETS.fetch(request);
   return withHeaders(res, { ...PRIVATE_HEADERS, "Content-Security-Policy": DASHBOARD_CSP });
 }

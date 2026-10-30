@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manuchie Symbol Proposals</title>
+<meta name="description" content="Three figurative symbol proposals for Manuchie: Facing the Light, The Cue and Lifted. Symbol only, white form in gold light.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="facing-the-light/png/icon-32.png">
+<style>
+@font-face{font-family:"Newsreader";font-style:normal;font-weight:200 800;src:url(assets/fonts/newsreader.woff2) format("woff2")}
+@font-face{font-family:"Newsreader";font-style:italic;font-weight:200 800;src:url(assets/fonts/newsreader-italic.woff2) format("woff2")}
+@font-face{font-family:"Inter";font-style:normal;font-weight:100 900;src:url(assets/fonts/inter.woff2) format("woff2")}
+:root{--bg:#0a0a0b;--surface:#141416;--ink:#f3f0ea;--soft:rgba(243,240,234,.68);--mute:rgba(243,240,234,.5);
+  --line:rgba(255,255,255,.1);--paper:#f3f0ea;--gold:#c8a15a;--disp:"Newsreader",Georgia,serif;--sans:"Inter",-apple-system,"Segoe UI",sans-serif;
+  --gutter:clamp(16px,4vw,56px);--r:14px}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+.wrap{max-width:1320px;margin:0 auto;padding:0 var(--gutter)}
+header{padding:clamp(56px,8vw,96px) 0 40px;background:radial-gradient(110% 120% at 80% -30%,#3a2a12 0%,#1a140c 30%,var(--bg) 60%)}
+.eyebrow{font:600 12px/1.4 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+h1{font:500 clamp(40px,6vw,80px)/1 var(--disp);letter-spacing:-.02em;margin:20px 0 22px}
+h1 em{font-style:italic;font-weight:400}
+.lede{max-width:46rem;font-size:clamp(16px,1.5vw,18px);color:var(--soft)}
+.lede + .lede{margin-top:10px}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.trio a{display:block;text-decoration:none;color:inherit}
+.trio figure{border-radius:var(--r);overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.trio figcaption{display:flex;justify-content:space-between;align-items:baseline;padding:14px 16px;border-top:1px solid var(--line)}
+.trio b{font:500 20px/1.2 var(--disp)}
+.trio span{font:600 11px/1 var(--sans);letter-spacing:.16em;color:var(--mute)}
+section{padding:clamp(48px,7vw,88px) 0;border-top:1px solid var(--line)}
+.head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.no{font:italic 400 22px/1 var(--disp);color:var(--mute)}
+h2{font:500 clamp(36px,4.6vw,58px)/1 var(--disp);letter-spacing:-.015em}
+.idea{flex-basis:100%;font:italic 400 clamp(19px,2vw,24px)/1.35 var(--disp);color:var(--soft);margin-top:8px}
+.grid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(20px,3vw,36px);margin-top:30px;align-items:start}
+.big{border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
+.side{display:grid;gap:12px}
+.why p{color:var(--soft)}
+.why p + p{margin-top:10px}
+.why strong{color:var(--ink);font-weight:600}
+.panel{position:relative;border-radius:var(--r);padding:34px 20px 20px;border:1px solid var(--line);background:var(--surface)}
+.panel.ink{background:var(--bg)}
+.tag{position:absolute;left:14px;top:11px;font:600 10px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.light{padding:0;overflow:hidden;background:var(--paper);border:0}
+.light .tag{color:rgba(10,10,11,.5);z-index:1}
+.avatar{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.avatar img{border-radius:50%}
+.sizes{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.sizes figure{display:flex;flex-direction:column;align-items:center;gap:8px}
+.sizes figcaption{font:500 11px/1 var(--sans);color:var(--mute)}
+.px{image-rendering:pixelated}
+.sep{width:1px;align-self:stretch;background:var(--line)}
+.board{margin-top:12px;font-size:13px;color:var(--mute)}
+.board a{color:var(--soft)}
+footer{padding:36px 0 56px;border-top:1px solid var(--line);color:var(--mute);font-size:13px}
+@media (max-width:980px){.grid{grid-template-columns:minmax(0,1fr)}.trio{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.pair{grid-template-columns:minmax(0,1fr)}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Manuchie · symbol proposals, round 2 · 29 October 2026</p>
+    <h1>One symbol,<br><em>no name beside it.</em></h1>
+    <p class="lede">Following the brief, each is a single figurative mark in the spirit of the All The Glory dove: one luminous white form, warm gold light around it, nothing else. This time each mark is drawn from Manuchie himself. The outlines come from his own portraits: the high-top with its sharp line-up, the sunglasses, the full beard, the chain, and a music director’s hand.</p>
+    <p class="lede">Each one is shown on near-black (the primary) and on a light ground, at 180, 48, 32 and 16 px, and as a round profile picture.</p>
+    <div class="trio">
+      <a href="#facing-the-light"><figure><img src="facing-the-light/symbol-on-dark-square.svg" alt="Facing the Light"><figcaption><b>Facing the Light</b><span>01</span></figcaption></figure></a>
+      <a href="#the-cue"><figure><img src="the-cue/symbol-on-dark-square.svg" alt="The Cue"><figcaption><b>The Cue</b><span>02</span></figcaption></figure></a>
+      <a href="#lifted"><figure><img src="lifted/symbol-on-dark-square.svg" alt="Lifted"><figcaption><b>Lifted</b><span>03</span></figcaption></figure></a>
+    </div>
+  </div>
+</header>
+
+<section id="facing-the-light">
+  <div class="wrap">
+    <div class="head"><p class="no">01</p><h2>Facing the Light</h2>
+      <p class="idea">His profile, turned toward a burst of gold.</p></div>
+    <div class="grid">
+      <div class="big"><img src="facing-the-light/symbol-on-dark-square.svg" alt="Facing the Light, large, on near-black"></div>
+      <div class="side">
+        <div class="why panel ink">
+          <p>Drawn over the terracotta portrait on the site. The <strong>textured high-top and its sharp line-up</strong>, the <strong>sunglasses</strong>, the full beard and the <strong>chain</strong> make it him and nobody else.</p>
+          <p>The light sits <strong>in front of him</strong>, where he is looking, rather than behind his head. It is light he faces, not a halo. A fine gold arc carries it round, as the arc does in the dove.</p>
+          <p>At 48 px and below it simplifies to two tones, bold lenses and a gold sun.</p>
+        </div>
+        <div class="pair">
+          <div class="panel light"><span class="tag">On light</span><img src="facing-the-light/symbol-on-light.svg" alt="On a light ground"></div>
+          <div class="panel ink avatar"><span class="tag">Profile picture</span>
+            <img src="facing-the-light/png/avatar-540.png" width="150" height="150" alt="Round profile picture">
+            <img src="facing-the-light/png/avatar-540.png" width="48" height="48" alt=""></div>
+        </div>
+        <div class="panel ink"><span class="tag">180 · 48 · 32 · 16 px, actual size, then enlarged</span>
+          <div class="sizes">
+            <figure><img src="facing-the-light/png/symbol-180.png" width="180" height="180" alt=""><figcaption>180</figcaption></figure>
+            <figure><img class="px" src="facing-the-light/png/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+            <figure><img class="px" src="facing-the-light/png/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+            <figure><img class="px" src="facing-the-light/png/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+            <span class="sep"></span>
+            <figure><img class="px" src="facing-the-light/png/icon-16.png" width="96" height="96" alt="16 px enlarged"><figcaption>16 × 6</figcaption></figure>
+          </div></div>
+        <p class="board">Board: <a href="boards/01-facing-the-light.png">boards/01-facing-the-light.png</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="the-cue">
+  <div class="wrap">
+    <div class="head"><p class="no">02</p><h2>The Cue</h2>
+      <p class="idea">A music director’s raised hand, the moment before the downbeat.</p></div>
+    <div class="grid">
+      <div class="big"><img src="the-cue/symbol-on-dark-square.svg" alt="The Cue, large, on near-black"></div>
+      <div class="side">
+        <div class="why panel ink">
+          <p>The hand a music director raises to <strong>hold a room</strong> before bringing the band in. It is also the open hand of <strong>worship</strong>. Its fingertips meet the gold burst, and the arc closes round it.</p>
+          <p>His craft rather than his face: the one personal detail is the <strong>watch at the wrist</strong>. The forearm fades away below, as the dove’s tail does.</p>
+          <p>At 16 px the hand is redrawn pixel by pixel.</p>
+        </div>
+        <div class="pair">
+          <div class="panel light"><span class="tag">On light</span><img src="the-cue/symbol-on-light.svg" alt="On a light ground"></div>
+          <div class="panel ink avatar"><span class="tag">Profile picture</span>
+            <img src="the-cue/png/avatar-540.png" width="150" height="150" alt="Round profile picture">
+            <img src="the-cue/png/avatar-540.png" width="48" height="48" alt=""></div>
+        </div>
+        <div class="panel ink"><span class="tag">180 · 48 · 32 · 16 px, actual size, then enlarged</span>
+          <div class="sizes">
+            <figure><img src="the-cue/png/symbol-180.png" width="180" height="180" alt=""><figcaption>180</figcaption></figure>
+            <figure><img class="px" src="the-cue/png/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+            <figure><img class="px" src="the-cue/png/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+            <figure><img class="px" src="the-cue/png/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+            <span class="sep"></span>
+            <figure><img class="px" src="the-cue/png/icon-16.png" width="96" height="96" alt="16 px enlarged"><figcaption>16 × 6</figcaption></figure>
+          </div></div>
+        <p class="board">Board: <a href="boards/02-the-cue.png">boards/02-the-cue.png</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lifted">
+  <div class="wrap">
+    <div class="head"><p class="no">03</p><h2>Lifted</h2>
+      <p class="idea">The same portrait, face raised into shafts of light from above.</p></div>
+    <div class="grid">
+      <div class="big"><img src="lifted/symbol-on-dark-square.svg" alt="Lifted, large, on near-black"></div>
+      <div class="side">
+        <div class="why panel ink">
+          <p>The worship-rays imagery of the <strong>“Been So Good”</strong> film, turned into a mark: his head <strong>lifted toward light that falls from above</strong>. The mood is praise rather than contemplation.</p>
+          <p>The drawing is the one used in Facing the Light, cropped tighter, with no arc and no burst. Here the light is <strong>beams</strong>, which also crop well into banners and video end-cards.</p>
+          <p>At small sizes it keeps two or three beams and the two-tone head.</p>
+        </div>
+        <div class="pair">
+          <div class="panel light"><span class="tag">On light</span><img src="lifted/symbol-on-light.svg" alt="On a light ground"></div>
+          <div class="panel ink avatar"><span class="tag">Profile picture</span>
+            <img src="lifted/png/avatar-540.png" width="150" height="150" alt="Round profile picture">
+            <img src="lifted/png/avatar-540.png" width="48" height="48" alt=""></div>
+        </div>
+        <div class="panel ink"><span class="tag">180 · 48 · 32 · 16 px, actual size, then enlarged</span>
+          <div class="sizes">
+            <figure><img src="lifted/png/symbol-180.png" width="180" height="180" alt=""><figcaption>180</figcaption></figure>
+            <figure><img class="px" src="lifted/png/icon-48.png" width="48" height="48" alt=""><figcaption>48</figcaption></figure>
+            <figure><img class="px" src="lifted/png/icon-32.png" width="32" height="32" alt=""><figcaption>32</figcaption></figure>
+            <figure><img class="px" src="lifted/png/icon-16.png" width="16" height="16" alt=""><figcaption>16</figcaption></figure>
+            <span class="sep"></span>
+            <figure><img class="px" src="lifted/png/icon-16.png" width="96" height="96" alt="16 px enlarged"><figcaption>16 × 6</figcaption></figure>
+          </div></div>
+        <p class="board">Board: <a href="boards/03-lifted.png">boards/03-lifted.png</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap">Proposals only: nothing here is wired into the site. All artwork is vector (paths and gradients) in <code>brand/v2/&lt;concept&gt;/</code>, generated by <code>brand/v2/source/make.py</code>.</div></footer>
+</body>
+</html>

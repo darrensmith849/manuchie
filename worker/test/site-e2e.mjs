@@ -46,11 +46,6 @@ const browser = await chromium.launch({ executablePath: process.env.CHROME_PATH,
 const ignorable = (t) => /spotify|scdn|apple\.com|mzstatic|Failed to load resource.*(spotify|apple)/i.test(t);
 
 try {
-  /* static identity files */
-  for (const [path, type] of [["/favicon.ico", "image"], ["/favicon.svg", "svg"], ["/apple-touch-icon.png", "image/png"], ["/site.webmanifest", "manifest"]]) {
-    const r = await fetch(BASE + path);
-    check(`${path} is served (${r.headers.get("content-type")})`, r.status === 200 && new RegExp(type).test(r.headers.get("content-type") || ""));
-  }
   const robots = await (await fetch(BASE + "/robots.txt")).text();
   check("robots.txt disallows /admin and /api/", /Disallow: \/admin/.test(robots) && /Disallow: \/api\//.test(robots));
 
@@ -63,9 +58,8 @@ try {
   const beacons = [];
   page.on("request", (r) => { if (r.url().endsWith("/api/collect")) beacons.push(JSON.parse(r.postData() || "{}")); });
   await page.goto(BASE + "/?utm_source=qa&utm_medium=test&utm_campaign=e2e", { waitUntil: "load" });
-  check("Header shows the Hallmark lockup", await page.locator(".nav-logo img[alt='Manuchie']").evaluate((img) => img.complete && img.naturalWidth > 0));
-  check("Footer shows the Hallmark wordmark", await page.locator("img.foot-logo").count() === 1);
-  check("Old gold 'M' data: favicon is gone", !(await page.content()).includes("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect"));
+  check("Header shows the text name, no logo image", (await page.textContent(".nav-logo")).trim() === "Manuchie" && (await page.locator(".nav-logo img").count()) === 0);
+  check("Footer shows the text name, no logo image", (await page.textContent(".foot-logo")).trim() === "Manuchie");
   for (const id of ["story", "sound", "studio", "contact"]) {
     await page.locator("#" + id).scrollIntoViewIfNeeded();
     await page.waitForTimeout(400);
@@ -103,7 +97,7 @@ try {
   await p2.fill("#bookingForm [name=name]", "No Script Visitor");
   await p2.fill("#bookingForm [name=email]", "noscript@example.test");
   await p2.fill("#bookingForm [name=message]", "Sent with JavaScript switched off.");
-  await Promise.all([p2.waitForNavigation(), p2.click("#submitBtn")]);
+  await Promise.all([p2.waitForURL("**/api/enquiry", { timeout: 60000 }), p2.click("#submitBtn")]);
   check("Without JavaScript the form posts and shows the confirmation page", /Thank you/.test(await p2.textContent("body")) && p2.url().endsWith("/api/enquiry"));
   await noJs.close();
 

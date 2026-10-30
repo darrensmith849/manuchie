@@ -1,41 +1,16 @@
 [
   {
-    "name": "/favicon.ico is served (image/vnd.microsoft.icon)",
-    "ok": true,
-    "info": ""
-  },
-  {
-    "name": "/favicon.svg is served (image/svg+xml)",
-    "ok": true,
-    "info": ""
-  },
-  {
-    "name": "/apple-touch-icon.png is served (image/png)",
-    "ok": true,
-    "info": ""
-  },
-  {
-    "name": "/site.webmanifest is served (application/manifest+json)",
-    "ok": true,
-    "info": ""
-  },
-  {
     "name": "robots.txt disallows /admin and /api/",
     "ok": true,
     "info": ""
   },
   {
-    "name": "Header shows the Hallmark lockup",
+    "name": "Header shows the text name, no logo image",
     "ok": true,
     "info": ""
   },
   {
-    "name": "Footer shows the Hallmark wordmark",
-    "ok": true,
-    "info": ""
-  },
-  {
-    "name": "Old gold 'M' data: favicon is gone",
+    "name": "Footer shows the text name, no logo image",
     "ok": true,
     "info": ""
   },
