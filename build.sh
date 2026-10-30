@@ -20,7 +20,7 @@ ESBUILD="esbuild@0.28.2"
 
 rm -rf dist
 mkdir -p dist/assets/fonts
-cp index.html _headers robots.txt sitemap.xml dist/
+cp index.html _headers robots.txt sitemap.xml favicon.ico dist/
 
 # --- CSS + JS (minified) --------------------------------------------------------------
 minify() { # minify <file> <esbuild args…>

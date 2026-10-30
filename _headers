@@ -3,7 +3,7 @@
 #
 # CSP allows exactly what the public page uses:
 #   self ................... page, styles, scripts, self-hosted fonts, images, /api/enquiry + /api/collect
-#   data: .................. favicon + film-grain SVG (img-src)
+#   data: .................. film-grain SVG (img-src)
 #   open.spotify.com ....... Spotify player iframe (frame-src) + its reachability probe, one image (img-src);
 #                            no third-party script runs on the page itself (script-src 'self' only)
 #   embed.music.apple.com .. Apple Music fallback player (only if Spotify is blocked)

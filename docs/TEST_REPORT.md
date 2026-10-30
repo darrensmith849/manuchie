@@ -101,8 +101,10 @@ brief allows it); the footer year is now also written into the HTML (it was fill
 script). All 9 photographs are in the same order and all 19 external links are unchanged.
 Photo alt text was rewritten to describe each picture (listed in `PUBLIC_SITE_CHANGES.md`).
 The Hallmark logo was added after approval and then removed at the client's request; the header
-and footer show the original "Manuchie" text and the original favicon. New symbol-only mark
-proposals are in progress in `brand/v2/` (not live).
+and footer show the original "Manuchie" text. New symbol-only mark proposals are in progress in
+`brand/v2/` (not live). Since 30 Oct the browser-tab icon (`favicon.ico`, `assets/icon-32.png`) and
+the home-screen icon (`assets/apple-touch-icon.png`) are his terracotta share portrait, cropped to
+his face; the dashboard uses the same icon. The invoice header shows the full share portrait.
 
 ## Deliverables
 
