@@ -10,7 +10,8 @@
     "db:migrate:local": "wrangler d1 migrations apply manuchie --local",
     "db:migrate": "wrangler d1 migrations apply manuchie --remote",
     "admin:create": "node scripts/create-admin.mjs",
-    "deploy": "./build.sh && wrangler deploy"
+    "deploy": "./build.sh && wrangler deploy",
+    "ship": "./scripts/ship.sh"
   },
   "devDependencies": {
     "wrangler": "4.155.0"

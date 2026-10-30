@@ -16,9 +16,15 @@ songwriter, music director and keyboardist — live at **https://manuchie.org**.
     agreed fee, a to-do list that drives the progress bar, and notes.
   - **Money** — income received and expected, production expenses by category, profit,
     fees still to invoice, the last 12 months, CSV export. One studio currency (Settings).
+  - **Invoices** — branded PDF invoices (his photo, the site's black-and-terracotta look) made
+    from a project or from scratch: client details, line items, discount, tax, payment details
+    and notes, with a live preview. Download the PDF, email the client a private link, mark it
+    paid (the income lands in Money), duplicate, void. Numbered MAN-2026-001, MAN-2026-002…
   - **Clients** — everyone who enquired or was added by hand, with email, phone and company;
-    Email / Call / WhatsApp buttons; their projects and enquiries.
-  - **Analytics** and **Settings** (password, devices, currency, email alerts).
+    Email / Call / WhatsApp buttons; their projects, invoices and enquiries. Client details can
+    be added or edited from a project too.
+  - **Analytics** and **Settings** (password, devices, currency, email alerts, invoice details,
+    and his own lists: project types, expense and income categories, stage names).
 - **Hosting:** one Cloudflare Worker (`manuchie`) with static assets and a D1 database, in
   Manuchie01@gmail.com's Cloudflare account.
 

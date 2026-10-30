@@ -5,14 +5,52 @@
 import { json, csv, readBody } from "./lib/http.js";
 import { clean, normEmail, isEmail, toCsv, parseMoney, isDay } from "./lib/text.js";
 import { newId } from "./lib/crypto.js";
+import { handleInvoiceApi } from "./invoices.js";
 
 export const PROJECT_STATUSES = ["lead", "booked", "in_progress", "review", "completed", "on_hold", "cancelled"];
-export const PROJECT_TYPES = ["production", "songwriting", "vocal_production", "mixing_mastering", "music_direction", "keys", "arrangement", "other"];
 export const CURRENCIES = ["USD", "AUD", "ZAR", "GBP", "EUR", "NZD", "CAD", "ZWG", "NGN", "KES"];
 const ACTIVE = ["booked", "in_progress", "review"];
 const VIEWS = { active: ACTIVE, leads: ["lead"], completed: ["completed"], on_hold: ["on_hold", "cancelled"], all: null };
 export const EXPENSE_CATEGORIES = ["Studio hire", "Musicians & vocalists", "Mixing & mastering", "Equipment", "Software & plugins", "Travel", "Marketing", "Other"];
-export const INCOME_CATEGORIES = ["Deposit", "Final payment", "Royalties", "Performance", "Other"];
+export const INCOME_CATEGORIES = ["Deposit", "Final payment", "Invoice", "Royalties", "Performance", "Other"];
+export const DEFAULT_LISTS = {
+  project_types: ["Production", "Songwriting", "Vocal production", "Mixing & mastering", "Music direction", "Keys session", "Arrangement", "Other"],
+  expense_categories: EXPENSE_CATEGORIES,
+  income_categories: INCOME_CATEGORIES,
+  stage_labels: { lead: "Lead", booked: "Booked", in_progress: "In progress", review: "Final touches", completed: "Completed", on_hold: "On hold", cancelled: "Cancelled" },
+};
+
+/* Lists Manuchie edits in Settings: project types, money categories and stage names. */
+export async function getLists(env) {
+  const row = await env.DB.prepare("SELECT value FROM settings WHERE key = 'lists'").first();
+  let saved = {};
+  try { saved = row ? JSON.parse(row.value) : {}; } catch { saved = {}; }
+  return { ...DEFAULT_LISTS, ...saved, stage_labels: { ...DEFAULT_LISTS.stage_labels, ...(saved.stage_labels || {}) } };
+}
+
+async function saveLists(env, request) {
+  const { data = {} } = await readBody(request, 20000);
+  const lists = await getLists(env);
+  for (const k of ["project_types", "expense_categories", "income_categories"]) {
+    if (data[k] === undefined) continue;
+    if (!Array.isArray(data[k])) return bad(k, "Send a list.");
+    const out = [];
+    for (const v of data[k]) { const t = clean(v, 40); if (t && !out.some((o) => o.toLowerCase() === t.toLowerCase())) out.push(t); }
+    if (!out.length || out.length > 40) return bad(k, "Keep between 1 and 40 options.");
+    lists[k] = out;
+  }
+  if (data.stage_labels !== undefined) {
+    for (const key of PROJECT_STATUSES) {
+      if (data.stage_labels[key] === undefined) continue;
+      const t = clean(data.stage_labels[key], 30);
+      if (!t) return bad("stage_labels", "Every stage needs a name.");
+      lists.stage_labels[key] = t;
+    }
+  }
+  await env.DB.prepare("INSERT INTO settings (key, value, created_at) VALUES ('lists', ?, ?) ON CONFLICT(key) DO UPDATE SET value = excluded.value")
+    .bind(JSON.stringify(lists), nowIso()).run();
+  return json({ ok: true, lists });
+}
 
 const all = async (stmt) => (await stmt.all()).results || [];
 const nowIso = () => new Date().toISOString();
@@ -99,8 +137,9 @@ async function projectFields(env, data, creating) {
     sets.title = t;
   }
   if (data.type !== undefined) {
-    if (!PROJECT_TYPES.includes(data.type)) return { error: bad("type", "Choose a project type.") };
-    sets.type = data.type;
+    const t = clean(data.type, 60);
+    if (!t) return { error: bad("type", "Choose a project type.") };
+    sets.type = t;
   }
   if (data.status !== undefined) {
     if (!PROJECT_STATUSES.includes(data.status)) return { error: bad("status", "Choose a stage.") };
@@ -147,6 +186,7 @@ async function createProject(env, request) {
   const id = newId();
   const now = nowIso();
   sets.status = sets.status || "booked";
+  sets.type = sets.type || (await getLists(env)).project_types[0] || "Production";
   if (sets.status === "completed") { sets.completed_at = now; sets.progress = 100; }
   const cols = ["id", "created_at", "updated_at", ...Object.keys(sets)];
   await env.DB.prepare(`INSERT INTO projects (${cols.join(", ")}) VALUES (${cols.map(() => "?").join(", ")})`)
@@ -337,7 +377,7 @@ async function money(env, params) {
     range: r, currency: await getCurrency(env),
     totals: { received: received.n, expected: expected.n, spent: spent.n, due: due.n, uninvoiced: uninvoiced.n, net: received.n - spent.n },
     months, categories, upcoming, recent,
-    expenseCategories: EXPENSE_CATEGORIES, incomeCategories: INCOME_CATEGORIES,
+    expenseCategories: (await getLists(env)).expense_categories, incomeCategories: (await getLists(env)).income_categories,
   });
 }
 
@@ -414,6 +454,9 @@ export async function handleStudioApi(request, env, parts) {
     if (m === "DELETE") return deleteTransaction(env, id);
   }
   if (resource === "clients" && m === "POST") return postClient(env, request);
+  if (resource === "settings" && id === "lists" && m === "GET") return json({ lists: await getLists(env) });
+  if (resource === "settings" && id === "lists" && m === "POST") return saveLists(env, request);
+  if (resource === "invoices" || resource === "business") return handleInvoiceApi(request, env, parts, await getCurrency(env));
   if (resource === "settings" && id === "currency" && m === "POST") {
     const { data = {} } = await readBody(request, 1000);
     if (!CURRENCIES.includes(data.currency)) return bad("currency", "Choose a currency from the list.");

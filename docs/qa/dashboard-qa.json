@@ -104,6 +104,24 @@
 
     ],
     "overflow" : 0,
+    "page" : "invoices",
+    "width" : 390
+  },
+  {
+    "axe" : "[]",
+    "errors" : [
+
+    ],
+    "overflow" : 0,
+    "page" : "invoice",
+    "width" : 390
+  },
+  {
+    "axe" : "[]",
+    "errors" : [
+
+    ],
+    "overflow" : 0,
     "page" : "settings",
     "width" : 390
   },
@@ -230,6 +248,24 @@
 
     ],
     "overflow" : 0,
+    "page" : "invoices",
+    "width" : 768
+  },
+  {
+    "axe" : "skipped",
+    "errors" : [
+
+    ],
+    "overflow" : 0,
+    "page" : "invoice",
+    "width" : 768
+  },
+  {
+    "axe" : "skipped",
+    "errors" : [
+
+    ],
+    "overflow" : 0,
     "page" : "settings",
     "width" : 768
   },
@@ -356,6 +392,24 @@
 
     ],
     "overflow" : 0,
+    "page" : "invoices",
+    "width" : 1024
+  },
+  {
+    "axe" : "skipped",
+    "errors" : [
+
+    ],
+    "overflow" : 0,
+    "page" : "invoice",
+    "width" : 1024
+  },
+  {
+    "axe" : "skipped",
+    "errors" : [
+
+    ],
+    "overflow" : 0,
     "page" : "settings",
     "width" : 1024
   },
@@ -465,6 +519,24 @@
     ],
     "overflow" : 0,
     "page" : "contact",
+    "width" : 1440
+  },
+  {
+    "axe" : "[]",
+    "errors" : [
+
+    ],
+    "overflow" : 0,
+    "page" : "invoices",
+    "width" : 1440
+  },
+  {
+    "axe" : "[]",
+    "errors" : [
+
+    ],
+    "overflow" : 0,
+    "page" : "invoice",
     "width" : 1440
   },
   {

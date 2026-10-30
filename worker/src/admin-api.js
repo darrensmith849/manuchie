@@ -6,7 +6,7 @@ import { newId } from "./lib/crypto.js";
 import { changePassword } from "./auth.js";
 import { emailConfigured, ackEnabled } from "./email.js";
 import { CONSENT_WORDING } from "./enquiry.js";
-import { handleStudioApi, studioSummary, getCurrency } from "./studio-api.js";
+import { handleStudioApi, studioSummary, getCurrency, getLists } from "./studio-api.js";
 
 export const STATUSES = ["new", "read", "replied", "in_progress", "booked", "closed", "spam"];
 const PLATFORMS = ["spotify", "apple_music", "youtube", "shazam", "instagram", "email", "book_session"];
@@ -375,12 +375,15 @@ async function deleteContact(env, id) {
 async function exportContact(env, id) {
   const contact = await env.DB.prepare("SELECT * FROM contacts WHERE id = ?").bind(id).first();
   if (!contact) return json({ ok: false, error: "not_found" }, 404);
-  const [enquiries, consent] = await Promise.all([
+  const [enquiries, consent, invoices] = await Promise.all([
     all(env.DB.prepare(`SELECT id, name, email, message, created_at, source_page, referrer, utm_source, utm_medium, utm_campaign,
                           status, marketing_consent, last_contacted_at FROM enquiries WHERE contact_id = ? ORDER BY created_at`).bind(id)),
     all(env.DB.prepare("SELECT action, wording, method, source_page, created_at FROM consent_records WHERE contact_id = ? ORDER BY created_at").bind(id)),
+    // invoices keep their own copy of the client's details
+    all(env.DB.prepare(`SELECT number, status, issue_date, due_date, currency, client_name, client_company, client_email, client_phone, client_address,
+                          items, discount_cents, tax_bp, tax_label, notes, sent_at, paid_at FROM invoices WHERE contact_id = ? ORDER BY issue_date`).bind(id)),
   ]);
-  const body = JSON.stringify({ exported_at: nowIso(), contact: tidyContact(contact), enquiries, consent }, null, 2);
+  const body = JSON.stringify({ exported_at: nowIso(), contact: tidyContact(contact), enquiries, consent, invoices }, null, 2);
   return new Response(body, { headers: { ...PRIVATE_HEADERS, "Content-Type": "application/json; charset=utf-8",
     "Content-Disposition": `attachment; filename="manuchie-contact-${stamp()}.json"` } });
 }
@@ -475,7 +478,7 @@ export async function handleAdminApi(request, env, admin, path) {
 
   const studio = await handleStudioApi(request, env, parts);
   if (studio) return studio;
-  if (resource === "me" && m === "GET") return json({ email: admin.email, csrf: admin.csrf, currency: await getCurrency(env) });
+  if (resource === "me" && m === "GET") return json({ email: admin.email, csrf: admin.csrf, currency: await getCurrency(env), lists: await getLists(env) });
   if (resource === "overview" && m === "GET") return overview(env, p);
   if (resource === "analytics" && m === "GET") return analytics(env, p);
 

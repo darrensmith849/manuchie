@@ -107,12 +107,14 @@ final class Shooter: NSObject, WKNavigationDelegate, WKScriptMessageHandler {
               const e = await (await fetch('/api/admin/enquiries?per=5')).json();
               const c = await (await fetch('/api/admin/contacts?per=5&q=tariro')).json();
               const p = await (await fetch('/api/admin/projects?view=active')).json();
-              return [e.rows[0].id, c.rows[0].id, p.rows[0].id].join(',');
-            """) as? String ?? ",,"
+              const i = await (await fetch('/api/admin/invoices?status=sent')).json();
+              return [e.rows[0].id, c.rows[0].id, p.rows[0].id, i.rows[i.rows.length - 1].id].join(',');
+            """) as? String ?? ",,,"
             let parts = ids.split(separator: ",").map(String.init)
             var routes: [(String, String)] = [("overview", "#/overview"), ("analytics", "#/analytics"), ("enquiries", "#/enquiries?view=todo"),
                                                ("enquiry", "#/enquiries/\(parts[0])"), ("projects", "#/projects"), ("project", "#/projects/\(parts[2])"),
-                                               ("project-new", "#/projects/new"), ("money", "#/money"), ("contacts", "#/contacts"), ("contact", "#/contacts/\(parts[1])"), ("settings", "#/settings")]
+                                               ("project-new", "#/projects/new"), ("money", "#/money"), ("contacts", "#/contacts"), ("contact", "#/contacts/\(parts[1])"),
+                                               ("invoices", "#/invoices"), ("invoice", "#/invoices/\(parts[3])"), ("settings", "#/settings")]
             if width < 800 { routes.append(("more", "#/more")) }
             var n = 0
             for (name, hash) in routes {

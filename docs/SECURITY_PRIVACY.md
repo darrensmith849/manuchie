@@ -19,6 +19,10 @@
 - [x] No dashboard data in public HTML; the dashboard loads its data from the API after
       sign-in. Its code is separate from the public site's (`admin/` vs `script.js`).
 - [x] All database values are inserted into the page as text (no `innerHTML`).
+- [x] Invoice share links (`/invoice/<token>`) use a random 192-bit token, show only that one PDF,
+      are `noindex` and never cached, and stop working the moment he turns the link off or deletes
+      the invoice. Invoices are private until he creates a link. Invoice PDFs may only be framed
+      by the dashboard itself (`frame-ancestors 'self'`).
 
 ## Enquiry form
 
@@ -52,6 +56,9 @@
 - [x] Client phone numbers and companies are only visible in the dashboard and included in the
       personal-data export. Deleting a client erases them, their enquiries and consent history;
       their projects and money entries stay (the studio's own books) with the client unlinked.
+- [x] Invoices keep their own copy of the client's name and contact details (an issued invoice
+      must not change later). They are included in the client's data export; deleting the client
+      unlinks them but keeps the invoice, as an accounting record. Delete an invoice to remove it.
 
 ## Analytics
 

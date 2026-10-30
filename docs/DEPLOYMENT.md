@@ -30,7 +30,18 @@ HOME=~/.cf-manuchie npm_config_cache=~/.npm npx wrangler d1 migrations apply man
 ```
 
 Run it again whenever `migrations/` gains a file (0002 added projects, to-dos, money and
-client phone/company). It only applies migrations that haven't run yet.
+client phone/company; 0003 added invoices and turned project types into editable labels).
+It only applies migrations that haven't run yet. Apply 0003 **before** deploying the code that
+uses it. **`./scripts/ship.sh`** (or `npm run ship`) does everything in the right order — unit
+tests, migrations, build, deploy, a check that manuchie.org serves the new build, then
+`git push` — using the `~/.cf-manuchie` login:
+
+```bash
+./scripts/ship.sh
+```
+
+After deploying, open **Settings → Invoice details** once and fill in the email, phone and
+payment (bank) details that should print on every invoice.
 
 ## 2. Set up email delivery (Resend)
 

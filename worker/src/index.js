@@ -9,6 +9,7 @@ import { handleEnquiry } from "./enquiry.js";
 import { handleCollect } from "./collect.js";
 import { currentAdmin, requireAdmin, handleLogin, handleLogout } from "./auth.js";
 import { handleAdminApi } from "./admin-api.js";
+import { handlePublicInvoice } from "./invoices.js";
 
 /* Dashboard files anyone may load: the login page and the stylesheet it shares. */
 const ADMIN_PUBLIC = new Set(["/admin/login", "/admin/login.html", "/admin/login.js", "/admin/admin.css"]);
@@ -42,6 +43,7 @@ export default {
         return await handleAdminApi(request, env, gate.admin, path.slice("/api/admin/".length));
       }
       if (path.startsWith("/api/")) return json({ ok: false, error: "not_found" }, 404);
+      if (path.startsWith("/invoice/")) return request.method === "GET" ? await handlePublicInvoice(request, env, path.slice("/invoice/".length)) : notAllowed();
       if (path === "/admin") return redirect("/admin/");
       if (path.startsWith("/admin/")) return await serveAdmin(request, env, url);
       return env.ASSETS.fetch(request);

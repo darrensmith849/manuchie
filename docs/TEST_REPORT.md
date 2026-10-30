@@ -29,12 +29,34 @@ was rendered offscreen at 390/768/1024/1440 with sample data (54 renders: no ove
 errors, no axe violations) using `worker/test/offscreen/` — WebKit in a hidden window, no browser.
 A unit test caught an impossible-month date crashing the date check; fixed.
 
+## Invoices and editable lists (30 Oct)
+
+Invoices: create from a project (the remaining fee and the client are filled in) or from scratch;
+client details are copied onto the invoice; line items with live totals, discount, tax; autosave
+with a live PDF preview; Download PDF; Email to client (a private link in a pre-written email);
+Copy link / Turn off link; Mark as sent / paid / unpaid (paying logs the income in Money, reusing
+a matching expected payment so nothing is counted twice); Duplicate; Void; Delete (undoes its
+payment). Numbering is PREFIX-YEAR-### and restarts each year. The PDF is written by a small
+dependency-free PDF writer (`worker/src/lib/pdf.js`): A4, his circular photo, standard fonts with
+real widths for wrapping and alignment. Settings gained Invoice details (name, contact, tax number,
+bank details, terms, prefix, due days, default tax) and **Your lists** — project types, expense and
+income categories and stage names are all editable. Projects can add a new client in place, or
+edit, change or unlink theirs; money entries and to-dos are editable in place. A client's data
+export now includes their invoices.
+
+Checks: 28 new backend checks (138 in total), 7 new unit tests (PDF text encoding, widths and
+wrapping, JPEG header, a cross-reference table that points at every object, a full invoice render,
+totals and money formatting). All 62 offscreen renders (now including Invoices and an invoice) are
+clean — no overflow, no script errors, no axe violations; the first pass caught the phone layout
+running 167px wide, unstyled selects and phone fields, and a total that was invisible on its white
+bar — all fixed. Sample PDFs (fake details): `docs/qa/invoice-sample.pdf`, `invoice-sample-paid.pdf`.
+
 ## Results
 
 | Suite | What it covers | Result |
 |---|---|---|
-| Unit — `npm test` | validation, spam rules, PBKDF2, CSV formula safety, bot/device detection, date ranges, event whitelist | **10 / 10** |
-| Backend end-to-end — `worker/test/integration.mjs` | enquiry API (origin, validation, size, rate limit, honeypot, no-JS), email via a mock Resend, analytics beacons (bots, other origins, admins excluded), sign-in, cookie flags, CSRF, every dashboard API incl. editing name/email (contact kept in step, duplicate emails refused), status-list filters, message search, bulk complete/delete, CSV/JSON exports, consent, erasure, password rules, lockout, logout, logs free of message text | **110 / 110** |
+| Unit — `npm test` | validation, spam rules, PBKDF2, CSV formula safety, bot/device detection, date ranges, event whitelist | **18 / 18** |
+| Backend end-to-end — `worker/test/integration.mjs` | enquiry API (origin, validation, size, rate limit, honeypot, no-JS), email via a mock Resend, analytics beacons (bots, other origins, admins excluded), sign-in, cookie flags, CSRF, every dashboard API incl. editing name/email (contact kept in step, duplicate emails refused), status-list filters, message search, bulk complete/delete, CSV/JSON exports, consent, erasure, password rules, lockout, logout, logs free of message text; projects, money, editable lists, invoice details; invoices end to end (numbering, totals, validation, PDF download, share link on/off, paid/unpaid with Money, duplicate, delete) | **138 / 138** |
 | Browser end-to-end — `worker/test/site-e2e.mjs` | the real page against the real Worker: text logo, robots; UTM landing, section views once each, Spotify click, form start once, enquiry sent in-page with no email app, form cleared; no-JavaScript post; the admin dashboard then shows exactly that visit, click, funnel, campaign, device, enquiry and consent wording; no overflow at 390/768/1024/1440 | **26 / 26** |
 | Dashboard visual + accessibility — `worker/test/dashboard-qa.mjs` | every dashboard page at 390/768/1024/1440, axe-core (WCAG 2.2 AA) at 390 and 1440, console errors, mobile menu focus and Escape, skip link | **No overflow, no console errors, no axe violations** |
 | Public site QA (public-site pass) | content lock, layout at four widths, anchors, keyboard, reduced motion, touch targets, form states | see `docs/PUBLIC_SITE_CHANGES.md` |

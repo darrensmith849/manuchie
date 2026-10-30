@@ -674,7 +674,8 @@
       h("a", { class: "back", href: "#/contacts" }, "← Clients"),
       h("div", { class: "head" }, h("div", { class: "person-head" }, avatar(c.name, "lg"),
           h("div", {}, h("h1", {}, c.name), h("p", {}, [c.company, c.email, c.phone].filter(Boolean).join(" · ") || "No contact details yet"))),
-        h("div", { class: "actions" }, reachButtons(c.name, c.email, c.phone, true))),
+        h("div", { class: "actions" }, reachButtons(c.name, c.email, c.phone, true),
+          h("button", { class: "btn", type: "button", onclick: () => newInvoice({ contact_id: c.id }) }, "New invoice"))),
       h("div", { class: "detail" },
         h("div", { class: "stack" },
           h("section", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Projects"),
@@ -726,9 +727,12 @@
   }
 
   /* ---------- Studio: shared helpers ---------- */
-  const P_STATUS = { lead: "Lead", booked: "Booked", in_progress: "In progress", review: "Final touches", completed: "Completed", on_hold: "On hold", cancelled: "Cancelled" };
-  const P_TYPES = { production: "Production", songwriting: "Songwriting", vocal_production: "Vocal production", mixing_mastering: "Mixing & mastering",
+  const DEFAULT_STAGES = { lead: "Lead", booked: "Booked", in_progress: "In progress", review: "Final touches", completed: "Completed", on_hold: "On hold", cancelled: "Cancelled" };
+  const stages = () => ({ ...DEFAULT_STAGES, ...((ME && ME.lists && ME.lists.stage_labels) || {}) });
+  // project types are his own labels; the first version stored a few as keys
+  const LEGACY_TYPES = { production: "Production", songwriting: "Songwriting", vocal_production: "Vocal production", mixing_mastering: "Mixing & mastering",
     music_direction: "Music direction", keys: "Keys session", arrangement: "Arrangement", other: "Other" };
+  const typeLabel = (t) => LEGACY_TYPES[t] || t || "";
   const P_VIEWS = [["active", "Active", ["booked", "in_progress", "review"]], ["leads", "Leads", ["lead"]], ["completed", "Completed", ["completed"]],
     ["on_hold", "On hold", ["on_hold", "cancelled"]], ["all", "All", null]];
   const CURRENCY_NAMES = { USD: "US dollar", AUD: "Australian dollar", ZAR: "South African rand", GBP: "British pound", EUR: "Euro", NZD: "New Zealand dollar",
@@ -741,7 +745,7 @@
         minimumFractionDigits: opts.whole || !(cents % 100) ? 0 : 2, maximumFractionDigits: opts.whole ? 0 : 2 }).format(v);
     } catch { return v.toFixed(2); }
   }
-  const projPill = (status) => h("span", { class: "pill p-" + status }, P_STATUS[status] || status);
+  const projPill = (status) => h("span", { class: "pill p-" + status }, stages()[status] || status);
   const dayText = (d) => d ? new Date(d + "T00:00:00Z").toLocaleDateString(undefined, { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" }) : "—";
   function dueInfo(p, today) {
     if (!p.due_date) return null;
@@ -791,7 +795,7 @@
               h("a", { class: "inbox-main", href: "#/projects/" + p.id }, avatar(p.client_name || p.title),
                 h("span", { class: "inbox-body" },
                   h("span", { class: "inbox-top" }, h("b", {}, p.title), due ? h("span", { class: "due nowrap " + due.cls }, due.text) : null),
-                  h("span", { class: "inbox-msg" }, (p.client_name || "No client") + " · " + (P_TYPES[p.type] || p.type) + " · " + p.progress + "% done"),
+                  h("span", { class: "inbox-msg" }, (p.client_name || "No client") + " · " + typeLabel(p.type) + " · " + p.progress + "% done"),
                   progressBar(p.progress, p.title + ": " + p.progress + "% done"))),
               h("span", { class: "inbox-side" }, projPill(p.status)));
           })))
@@ -805,7 +809,7 @@
     const due = dueInfo(p, today);
     const paidOf = p.fee_cents ? `${money(p.received_cents, { whole: true })} of ${money(p.fee_cents, { whole: true })} paid` : p.received_cents ? money(p.received_cents, { whole: true }) + " received" : "No fee set";
     return h("a", { class: "proj", href: "#/projects/" + p.id },
-      h("span", { class: "proj-top" }, h("span", { class: "tag" }, P_TYPES[p.type] || p.type), projPill(p.status)),
+      h("span", { class: "proj-top" }, h("span", { class: "tag" }, typeLabel(p.type)), projPill(p.status)),
       h("span", { class: "proj-title" }, p.title),
       p.client_name ? h("span", { class: "who" }, avatar(p.client_name), h("span", {}, h("span", { class: "proj-client" }, p.client_name),
         p.client_company ? h("span", { class: "sub" }, p.client_company) : null)) : h("span", { class: "sub" }, "No client linked"),
@@ -841,18 +845,31 @@
   function projectForm(initial, clients, { submitLabel, onSubmit, onCancel }) {
     const f = (id, label, input, hint) => h("label", { class: "fld", for: id }, h("span", {}, label), input, hint ? h("small", { class: "muted" }, hint) : null);
     const title = h("input", { type: "text", id: "pTitle", value: initial.title || "", required: true, maxlength: "160", placeholder: "e.g. Live worship album" });
-    const type = h("select", { id: "pType" }, Object.entries(P_TYPES).map(([k, l]) => h("option", { value: k }, l)));
-    type.value = initial.type || "production";
-    const status = h("select", { id: "pStatus" }, Object.entries(P_STATUS).map(([k, l]) => h("option", { value: k }, l)));
+    const typeList = [...((ME && ME.lists && ME.lists.project_types) || ["Production"])];
+    if (initial.type && !typeList.includes(typeLabel(initial.type))) typeList.push(typeLabel(initial.type));
+    const type = h("select", { id: "pType" }, typeList.map((l) => h("option", { value: l }, l)));
+    type.value = typeLabel(initial.type) || typeList[0];
+    const status = h("select", { id: "pStatus" }, Object.entries(stages()).map(([k, l]) => h("option", { value: k }, l)));
     status.value = initial.status || "booked";
-    const client = h("select", { id: "pClient" }, h("option", { value: "" }, "No client"), clients.map((c) => h("option", { value: c.id }, c.label)),
-      h("option", { value: "__new" }, "+ Add a new client…"));
+    const client = h("select", { id: "pClient" }, h("option", { value: "" }, "No client yet"), clients.map((c) => h("option", { value: c.id }, c.label)));
     client.value = initial.contact_id || "";
-    const nName = h("input", { type: "text", id: "nName", placeholder: "Full name" });
+    const nName = h("input", { type: "text", id: "nName", placeholder: "Full name or organisation" });
     const nEmail = h("input", { type: "email", id: "nEmail", placeholder: "name@email.com" });
     const nPhone = h("input", { type: "tel", id: "nPhone", placeholder: "+263 …" });
-    const newClient = h("div", { class: "form-row inset", hidden: true }, f("nName", "New client's name", nName), f("nEmail", "Email (optional)", nEmail), f("nPhone", "Phone (optional)", nPhone));
-    client.addEventListener("change", () => { newClient.hidden = client.value !== "__new"; if (!newClient.hidden) nName.focus(); });
+    const nCompany = h("input", { type: "text", id: "nCompany", placeholder: "Church, label, band…" });
+    const existingBox = h("div", {}, f("pClient", "Choose a client", client));
+    const newBox = h("div", { class: "stack inset-box", hidden: true },
+      h("div", { class: "form-row" }, f("nName", "Name", nName), f("nCompany", "Company (optional)", nCompany)),
+      h("div", { class: "form-row" }, f("nEmail", "Email (optional)", nEmail), f("nPhone", "Phone (optional)", nPhone)));
+    let mode = "existing";
+    const modeSeg = h("div", { class: "seg", role: "group", "aria-label": "Client" }, [["existing", "Existing client"], ["new", "New client"]].map(([k, l]) =>
+      h("button", { type: "button", "aria-pressed": String(k === mode), onclick: (e) => {
+        mode = k;
+        modeSeg.querySelectorAll("button").forEach((b) => b.setAttribute("aria-pressed", String(b === e.currentTarget)));
+        existingBox.hidden = k !== "existing"; newBox.hidden = k !== "new";
+        (k === "new" ? nName : client).focus();
+      } }, l)));
+    if (!clients.length) { mode = "new"; existingBox.hidden = true; newBox.hidden = false; modeSeg.querySelectorAll("button").forEach((b, i) => b.setAttribute("aria-pressed", String(i === 1))); }
     const start = h("input", { type: "date", id: "pStart", value: initial.start_date || "" });
     const due = h("input", { type: "date", id: "pDue", value: initial.due_date || "" });
     const fee = h("input", { type: "text", id: "pFee", inputmode: "decimal", placeholder: "0", value: initial.fee_cents ? (initial.fee_cents / 100).toString() : "" });
@@ -864,14 +881,14 @@
       err.textContent = "";
       const body = { title: title.value, type: type.value, status: status.value, start_date: start.value, due_date: due.value, fee: fee.value };
       if (showNotes) body.notes = notes.value;
-      if (client.value === "__new") body.client = { name: nName.value, email: nEmail.value, phone: nPhone.value };
-      else body.contact_id = client.value;
+      if (mode === "new" && nName.value.trim()) body.client = { name: nName.value, email: nEmail.value, phone: nPhone.value, company: nCompany.value };
+      else if (mode === "existing") body.contact_id = client.value;
       const msg = await onSubmit(body);
       if (msg) { err.textContent = msg; title.focus(); }
     } },
       f("pTitle", "Project name", title),
       h("div", { class: "form-row" }, f("pType", "Type", type), f("pStatus", "Stage", status)),
-      f("pClient", "Client", client), newClient,
+      h("div", { class: "stack client-pick" }, h("div", { class: "panel-head" }, h("span", { class: "fld-k" }, "Client"), modeSeg), existingBox, newBox),
       h("div", { class: "form-row" }, f("pStart", "Start date", start), f("pDue", "Due date", due), f("pFee", `Agreed fee (${(ME && ME.currency) || "USD"})`, fee)),
       showNotes ? f("pNotes", "Notes", notes) : null,
       err,
@@ -927,10 +944,32 @@
       h("div", { class: "actions" }, h("button", { class: "btn btn-primary", type: "submit" }, "Save"), h("button", { class: "btn", type: "button", onclick: onCancel }, "Cancel")));
   }
 
+  /* Edit a money entry in place. */
+  function txEditForm(x, li, onChange) {
+    const inc = x.kind === "income";
+    const cats = [...((ME.lists && (inc ? ME.lists.income_categories : ME.lists.expense_categories)) || [])];
+    if (x.category && !cats.includes(x.category)) cats.push(x.category);
+    const amount = h("input", { type: "text", inputmode: "decimal", value: (x.amount_cents / 100).toFixed(2).replace(/\.00$/, ""), "aria-label": "Amount" });
+    const date = h("input", { type: "date", value: x.date, "aria-label": "Date" });
+    const settled = h("select", { "aria-label": "Status" }, inc ? [h("option", { value: "1" }, "Received"), h("option", { value: "0" }, "Expected")]
+      : [h("option", { value: "1" }, "Paid"), h("option", { value: "0" }, "To pay")]);
+    settled.value = x.settled ? "1" : "0";
+    const cat = h("select", { "aria-label": "Category" }, cats.map((c) => h("option", { value: c }, c)));
+    cat.value = x.category;
+    const desc = h("input", { type: "text", value: x.description, maxlength: "300", "aria-label": "Description", placeholder: "Description" });
+    const err = h("p", { class: "form-error", role: "alert" });
+    return h("li", { class: "tx editing" }, h("form", { class: "tx-edit", onsubmit: async (e) => {
+      e.preventDefault();
+      try { await api("transactions/" + x.id, { method: "PATCH", body: { amount: amount.value, date: date.value, settled: settled.value === "1", category: cat.value, description: desc.value } }); toast("Entry saved."); onChange(); }
+      catch (y) { err.textContent = y.message; }
+    } }, desc, amount, date, settled, cat, h("div", { class: "actions" }, h("button", { class: "btn btn-sm btn-primary", type: "submit" }, "Save"),
+      h("button", { class: "btn btn-sm", type: "button", onclick: (e) => e.currentTarget.closest("li").replaceWith(li) }, "Cancel")), err));
+  }
+
   function txRow(x, { onChange, showProject }) {
     const inc = x.kind === "income";
     const state = inc ? (x.settled ? "Received" : "Expected") : (x.settled ? "Paid" : "To pay");
-    return h("li", { class: "tx " + (inc ? "in" : "out") + (x.settled ? "" : " pending") },
+    const li = h("li", { class: "tx " + (inc ? "in" : "out") + (x.settled ? "" : " pending") },
       h("span", { class: "tx-sign", "aria-hidden": "true" }, inc ? "+" : "−"),
       h("span", { class: "tx-body" },
         h("b", {}, x.description || x.category || (inc ? "Income" : "Expense")),
@@ -940,15 +979,72 @@
         !x.settled ? h("button", { class: "btn btn-sm btn-done", type: "button", onclick: async () => {
           try { await api("transactions/" + x.id, { method: "PATCH", body: { settled: true } }); toast(inc ? "Marked received." : "Marked paid."); onChange(); } catch (e) { toast(e.message, true); }
         } }, inc ? "Received" : "Paid") : null,
+        h("button", { class: "btn btn-sm btn-ghost", type: "button", "aria-label": "Edit " + (x.description || x.category || "entry"), onclick: () => li.replaceWith(txEditForm(x, li, onChange)) }, "Edit"),
         h("button", { class: "btn btn-sm btn-ghost", type: "button", "aria-label": "Delete " + (x.description || x.category || "entry"), onclick: async () => {
           if (!(await confirmAction("Delete this entry?", `${(inc ? "" : "−") + money(x.amount_cents)} on ${dayText(x.date)} will be removed.`, "Delete"))) return;
           try { await api("transactions/" + x.id, { method: "DELETE" }); toast("Entry deleted."); onChange(); } catch (e) { toast(e.message, true); }
         } }, "✕")));
+    return li;
+  }
+
+  /* The client on a project: edit their details here, or link / add one. */
+  function clientPanel(p, again) {
+    const box = h("div", { class: "stack" });
+    const f = (id, label, input) => h("label", { class: "fld", for: id }, h("span", {}, label), input);
+    const linkTo = async (contactId, msg) => {
+      try { await api("projects/" + p.id, { method: "PATCH", body: { contact_id: contactId } }); toast(msg); again(); } catch (x) { toast(x.message, true); }
+    };
+    const pick = async () => {
+      const clients = await clientOptions();
+      const sel = h("select", { id: "cpSel" }, h("option", { value: "" }, "Choose a client…"), clients.map((c) => h("option", { value: c.id }, c.label)));
+      const nName = h("input", { type: "text", id: "cpName", placeholder: "Name" });
+      const nCompany = h("input", { type: "text", id: "cpCompany", placeholder: "Company (optional)" });
+      const nEmail = h("input", { type: "email", id: "cpEmail", placeholder: "Email (optional)" });
+      const nPhone = h("input", { type: "tel", id: "cpPhone", placeholder: "Phone (optional)" });
+      const err = h("p", { class: "form-error", role: "alert" });
+      box.replaceChildren(
+        h("div", { class: "panel-head" }, h("h2", {}, "Client"), p.contact_id ? h("button", { class: "btn btn-sm", type: "button", onclick: show }, "Cancel") : null),
+        clients.length ? h("div", { class: "form-row" }, f("cpSel", "An existing client", sel),
+          h("button", { class: "btn", type: "button", onclick: () => sel.value && linkTo(sel.value, "Client linked.") }, "Link")) : null,
+        h("p", { class: "muted" }, clients.length ? "…or add a new one:" : "Add the client:"),
+        h("form", { class: "stack", onsubmit: async (e) => {
+          e.preventDefault();
+          err.textContent = "";
+          try {
+            const r = await api("clients", { method: "POST", body: { name: nName.value, company: nCompany.value, email: nEmail.value, phone: nPhone.value } });
+            await linkTo(r.id, "Client added and linked.");
+          } catch (x) { err.textContent = x.message; }
+        } }, h("div", { class: "form-row" }, f("cpName", "Name", nName), f("cpCompany", "Company", nCompany)),
+          h("div", { class: "form-row" }, f("cpEmail", "Email", nEmail), f("cpPhone", "Phone", nPhone)), err,
+          h("div", { class: "actions" }, h("button", { class: "btn btn-primary", type: "submit" }, "Add client"))));
+    };
+    const show = () => {
+      if (!p.contact_id) return pick();
+      const name = h("input", { type: "text", id: "cpeName", value: p.client_name || "" });
+      const company = h("input", { type: "text", id: "cpeCompany", value: p.client_company || "" });
+      const email = h("input", { type: "email", id: "cpeEmail", value: p.client_email || "" });
+      const phone = h("input", { type: "tel", id: "cpePhone", value: p.client_phone || "", placeholder: "+263 …" });
+      const err = h("p", { class: "form-error", role: "alert" });
+      box.replaceChildren(
+        h("div", { class: "panel-head" }, h("h2", {}, "Client"), h("a", { class: "btn btn-sm btn-ghost", href: "#/contacts/" + p.contact_id }, "Open client →")),
+        h("form", { class: "stack", onsubmit: async (e) => {
+          e.preventDefault();
+          err.textContent = "";
+          try { await api("contacts/" + p.contact_id, { method: "PATCH", body: { name: name.value, company: company.value, email: email.value, phone: phone.value } }); toast("Client details saved."); again(); }
+          catch (x) { err.textContent = x.message; }
+        } }, h("div", { class: "form-row" }, f("cpeName", "Name", name), f("cpeCompany", "Company", company)),
+          h("div", { class: "form-row" }, f("cpeEmail", "Email", email), f("cpePhone", "Phone", phone)), err,
+          h("div", { class: "actions" }, h("button", { class: "btn btn-primary btn-sm", type: "submit" }, "Save client"),
+            h("button", { class: "btn btn-sm", type: "button", onclick: pick }, "Change client"),
+            h("button", { class: "btn btn-sm btn-ghost", type: "button", onclick: () => linkTo("", "Client unlinked.") }, "Unlink"))));
+    };
+    show();
+    return box;
   }
 
   async function project(id) {
     loading();
-    const [d, meta] = await Promise.all([api("projects/" + id), api("money?range=month")]);
+    const [d, meta, inv] = await Promise.all([api("projects/" + id), api("money?range=month"), api("invoices?project=" + id)]);
     const p = d.project;
     const again = () => project(id).catch(failed);
     const save = async (body, msg) => {
@@ -966,13 +1062,25 @@
       if (!newTask.value.trim()) return;
       try { await api(`projects/${id}/tasks`, { method: "POST", body: { title: newTask.value } }); again(); } catch (x) { toast(x.message, true); }
     } }, newTask, h("button", { class: "btn btn-primary", type: "submit" }, "Add"));
-    const tasks = h("ul", { class: "tasks" }, d.tasks.map((t) => h("li", { class: t.done ? "done" : "" },
+    const renameTask = (t, li) => {
+      const input = h("input", { type: "text", value: t.title, maxlength: "300", "aria-label": "Rename to-do" });
+      const done = async (keep) => {
+        if (keep && input.value.trim() && input.value.trim() !== t.title) { try { await api("tasks/" + t.id, { method: "PATCH", body: { title: input.value } }); again(); return; } catch (x) { toast(x.message, true); } }
+        form.replaceWith(li);
+      };
+      const form = h("form", { class: "task-add task-rename", onsubmit: (e) => { e.preventDefault(); done(true); } }, input,
+        h("button", { class: "btn btn-sm btn-primary", type: "submit" }, "Save"), h("button", { class: "btn btn-sm", type: "button", onclick: () => done(false) }, "Cancel"));
+      li.replaceWith(form);
+      input.focus(); input.select();
+    };
+    const tasks = h("ul", { class: "tasks" }, d.tasks.map((t) => { const li = h("li", { class: t.done ? "done" : "" },
       h("label", { class: "task" }, h("input", { type: "checkbox", checked: !!t.done, onchange: async (e) => {
         try { await api("tasks/" + t.id, { method: "PATCH", body: { done: e.target.checked } }); again(); } catch (x) { toast(x.message, true); }
       } }), h("span", {}, t.title)),
+      h("button", { class: "btn btn-sm btn-ghost", type: "button", "aria-label": "Rename to-do: " + t.title, onclick: () => renameTask(t, li) }, "Edit"),
       h("button", { class: "btn btn-sm btn-ghost", type: "button", "aria-label": "Delete to-do: " + t.title, onclick: async () => {
         try { await api("tasks/" + t.id, { method: "DELETE" }); again(); } catch (x) { toast(x.message, true); }
-      } }, "✕"))));
+      } }, "✕")); return li; }));
 
     /* progress */
     const slider = h("input", { type: "range", min: "0", max: "100", step: "5", value: String(p.progress), "aria-label": "Progress", class: "slider", style: { "--p": p.progress + "%" } });
@@ -991,9 +1099,7 @@
       h("div", { class: "panel-head" }, h("h2", {}, "Details"), h("button", { class: "btn btn-sm", type: "button", onclick: showEdit }, "Edit")),
       h("dl", { class: "meta" },
         h("dt", {}, "Client"), h("dd", {}, p.contact_id ? h("a", { href: "#/contacts/" + p.contact_id }, p.client_name) : "None linked"),
-        p.client_email ? [h("dt", {}, "Email"), h("dd", {}, p.client_email)] : null,
-        p.client_phone ? [h("dt", {}, "Phone"), h("dd", {}, p.client_phone)] : null,
-        h("dt", {}, "Type"), h("dd", {}, P_TYPES[p.type] || p.type),
+        h("dt", {}, "Type"), h("dd", {}, typeLabel(p.type)),
         h("dt", {}, "Start"), h("dd", {}, dayText(p.start_date)),
         h("dt", {}, "Due"), h("dd", {}, p.due_date ? [dayText(p.due_date), due && due.cls ? h("span", { class: "due " + due.cls }, " · " + due.text) : null] : "—"),
         p.completed_at ? [h("dt", {}, "Completed"), h("dd", {}, when(p.completed_at))] : null,
@@ -1010,16 +1116,17 @@
     render(
       h("a", { class: "back", href: "#/projects" }, "← Projects"),
       h("div", { class: "head" },
-        h("div", {}, h("span", { class: "hero-k" }, P_TYPES[p.type] || p.type), h("h1", {}, p.title),
+        h("div", {}, h("span", { class: "hero-k" }, typeLabel(p.type)), h("h1", {}, p.title),
           h("p", {}, p.client_name ? p.client_name + (p.client_company ? " · " + p.client_company : "") : "No client linked", due ? [" · ", h("span", { class: "due " + due.cls }, due.text)] : null)),
         h("label", { class: "head-status" }, h("span", { class: "muted" }, "Stage"),
-          (() => { const sel = h("select", {}, Object.entries(P_STATUS).map(([k, l]) => h("option", { value: k }, l))); sel.value = p.status;
-            sel.addEventListener("change", () => save({ status: sel.value }, "Moved to " + P_STATUS[sel.value] + ".")); return sel; })())),
+          (() => { const sel = h("select", {}, Object.entries(stages()).map(([k, l]) => h("option", { value: k }, l))); sel.value = p.status;
+            sel.addEventListener("change", () => save({ status: sel.value }, "Moved to " + stages()[sel.value] + ".")); return sel; })())),
       h("div", { class: "actions action-bar" },
         p.status === "completed"
           ? h("button", { class: "btn", type: "button", onclick: () => save({ status: "in_progress" }, "Reopened.") }, "Reopen")
           : h("button", { class: "btn btn-done", type: "button", onclick: () => save({ status: "completed" }, "Project completed. 🎉") }, "Mark complete"),
-        reachButtons(p.client_name, p.client_email, p.client_phone, true)),
+        reachButtons(p.client_name, p.client_email, p.client_phone, true),
+        h("button", { class: "btn", type: "button", onclick: () => newInvoice({ project_id: id }) }, "Create invoice")),
       h("section", { class: "panel progress-panel section-gap" },
         h("div", { class: "panel-head" }, h("h2", {}, "Progress"), h("p", {}, d.tasks.length ? "Moves with your to-do list — or set it yourself" : "Drag to set how far along it is")),
         h("div", { class: "progress-row" }, pctLabel, h("div", { class: "grow" }, slider))),
@@ -1044,7 +1151,14 @@
               h("button", { class: "btn btn-sm", type: "button", onclick: () => showMoneyForm("income") }, "+ Payment"),
               h("button", { class: "btn btn-sm", type: "button", onclick: () => showMoneyForm("expense") }, "+ Expense")),
             moneySlot,
-            d.transactions.length ? h("ul", { class: "txs" }, d.transactions.map((x) => txRow(x, { onChange: again }))) : null),
+            d.transactions.length ? h("ul", { class: "txs" }, d.transactions.map((x) => txRow(x, { onChange: again }))) : null,
+            h("div", { class: "panel-head section-gap" }, h("h3", { class: "h3" }, "Invoices"), h("button", { class: "btn btn-sm", type: "button", onclick: () => newInvoice({ project_id: id }) }, "+ Invoice")),
+            inv.rows.length ? h("ul", { class: "inbox" }, inv.rows.map((iv) => h("li", {},
+              h("a", { class: "inbox-main", href: "#/invoices/" + iv.id }, h("span", { class: "inbox-body" },
+                h("span", { class: "inbox-top" }, h("b", {}, iv.number), h("span", { class: "inv-amt" }, money(iv.totals.total))),
+                h("span", { class: "inbox-msg" }, "Issued " + dayText(iv.issue_date)))),
+              h("span", { class: "inbox-side" }, invPill(iv.display_status))))) : h("p", { class: "muted" }, "No invoices yet.")),
+          h("section", { class: "panel" }, clientPanel(p, again)),
           h("section", { class: "panel" }, detailsBox),
           h("section", { class: "panel" }, h("div", { class: "actions" },
             h("button", { class: "btn btn-danger", type: "button", onclick: async () => {
@@ -1098,6 +1212,7 @@
         h("div", { class: "actions" },
           h("button", { class: "btn btn-primary", type: "button", onclick: () => openForm("income") }, "+ Income"),
           h("button", { class: "btn", type: "button", onclick: () => openForm("expense") }, "+ Expense"),
+          h("a", { class: "btn", href: "#/invoices" }, "Invoices"),
           h("a", { class: "btn btn-ghost", href: "/api/admin/transactions.csv" }, "Export"))),
       h("div", { class: "toolbar" }, seg),
       formSlot,
@@ -1119,12 +1234,272 @@
           : h("p", { class: "empty" }, "No income or expenses logged " + rangeLabel + ".")));
   }
 
+  /* ---------- Invoices ---------- */
+  const I_STATUS = { draft: "Draft", sent: "Sent", overdue: "Overdue", paid: "Paid", void: "Void" };
+  const invPill = (s) => h("span", { class: "pill i-" + s }, I_STATUS[s] || s);
+  const invState = { status: "all", q: "" };
+  const centsToInput = (c) => (c ? (c / 100).toFixed(2).replace(/\.00$/, "") : "");
+
+  async function newInvoice(body) {
+    try { const r = await api("invoices", { method: "POST", body: body || {} }); toast("Invoice started."); location.hash = "#/invoices/" + r.id; }
+    catch (x) { toast(x.message, true); }
+  }
+
+  async function invoices(params) {
+    if (params.has("status")) invState.status = params.get("status");
+    const qs = new URLSearchParams({ status: invState.status });
+    if (invState.q) qs.set("q", invState.q);
+    const d = await api("invoices?" + qs);
+    const sm = d.summary, cnt = sm.counts || {};
+    const views = [["all", "All"], ["draft", "Drafts"], ["sent", "Sent"], ["overdue", "Overdue"], ["paid", "Paid"], ["void", "Void"]];
+    const search = h("input", { type: "search", placeholder: "Search number, client or project", value: invState.q, "aria-label": "Search invoices" });
+    let t;
+    search.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => { invState.q = search.value.trim(); invoices(new URLSearchParams()).catch(failed); }, 300); });
+    render(
+      head("Invoices", "Branded PDF invoices, ready to download or send", h("button", { class: "btn btn-primary", type: "button", onclick: () => newInvoice() }, "+ New invoice")),
+      h("div", { class: "grid cards four" },
+        card("Outstanding", money(sm.outstanding, { whole: true }), h("span", { class: "delta" }, "Sent and not yet paid"), true),
+        card("Overdue", money(sm.overdue, { whole: true }), sm.overdue ? h("span", { class: "delta down" }, "Past the due date") : h("span", { class: "delta" }, "Nothing overdue")),
+        card("Paid this year", money(sm.paid_year, { whole: true }), h("span", { class: "delta" }, "Logged in Money")),
+        card("Drafts", num(sm.drafts), h("span", { class: "delta" }, "Not sent yet"))),
+      h("div", { class: "chips section-gap", role: "group", "aria-label": "Show" }, views.map(([k, l]) =>
+        h("button", { type: "button", class: "chip", "aria-pressed": String(invState.status === k), onclick: () => { invState.status = k; invoices(new URLSearchParams()).catch(failed); } },
+          l, h("b", {}, num(k === "all" ? ["draft", "sent", "paid", "void"].reduce((a, s2) => a + (cnt[s2] || 0), 0) : cnt[k] || 0))))),
+      h("div", { class: "toolbar" }, h("div", { class: "grow" }, search)),
+      h("section", { class: "panel" }, d.rows.length ? h("ul", { class: "inbox" }, d.rows.map((iv) => h("li", { class: iv.display_status === "overdue" ? "unread" : "" },
+        h("a", { class: "inbox-main", href: "#/invoices/" + iv.id }, avatar(iv.client_name || iv.number),
+          h("span", { class: "inbox-body" },
+            h("span", { class: "inbox-top" }, h("b", {}, iv.client_name || "No client yet"), h("span", { class: "inv-amt" }, money(iv.totals.total))),
+            h("span", { class: "inbox-msg" }, [iv.number, iv.project_title, "issued " + dayText(iv.issue_date), iv.due_date && iv.status !== "paid" ? "due " + dayText(iv.due_date) : null].filter(Boolean).join(" · ")))),
+        h("span", { class: "inbox-side" }, invPill(iv.display_status),
+          h("a", { class: "btn btn-sm", href: `/api/admin/invoices/${iv.id}/pdf`, "aria-label": "Download " + iv.number + " as PDF" }, "PDF")))))
+        : h("p", { class: "empty" }, invState.q ? "No invoices match that search." : "No invoices yet. Start one here, or from a project with “Create invoice”.")));
+  }
+
+  /* Grows a one-line textarea to fit what's typed (where CSS field-sizing isn't supported). */
+  function fitText(el) {
+    if (CSS.supports && CSS.supports("field-sizing", "content")) return;
+    el.style.height = "auto";
+    el.style.height = el.scrollHeight + 2 + "px";
+  }
+
+  async function invoice(id) {
+    loading();
+    const [d, clientList, projList] = await Promise.all([api("invoices/" + id), clientOptions(), api("projects?view=all")]);
+    let inv = d.invoice;
+    const again = () => invoice(id).catch(failed);
+    const act = async (path, body, msg, method = "POST") => {
+      try { const r = await api(path, { method, body }); toast(msg); again(); return r; } catch (x) { toast(x.message, true); return null; }
+    };
+    const f = (id2, label, input) => h("label", { class: "fld", for: id2 }, h("span", {}, label), input);
+    const inp = (id2, value, attrs = {}) => h("input", { type: "text", id: id2, value: value ?? "", autocomplete: "off", ...attrs });
+
+    /* client */
+    const cName = inp("ivName", inv.client_name, { placeholder: "Client or organisation" });
+    const cCompany = inp("ivCompany", inv.client_company);
+    const cEmail = inp("ivEmail", inv.client_email, { type: "email" });
+    const cPhone = inp("ivPhone", inv.client_phone, { type: "tel" });
+    const cAddr = h("textarea", { id: "ivAddr", rows: "3", placeholder: "Street, city, country" }, inv.client_address);
+    const fill = h("select", { class: "inv-fill", "aria-label": "Fill from a client" }, h("option", { value: "" }, "Fill from a client…"), clientList.map((c) => h("option", { value: c.id }, c.label)));
+    fill.addEventListener("change", async () => {
+      if (!fill.value) return;
+      const { contact: c } = await api("contacts/" + fill.value);
+      cName.value = c.name; cCompany.value = c.company || ""; cEmail.value = c.email || ""; cPhone.value = c.phone || "";
+      contactId = c.id; fill.value = ""; queueSave();
+    });
+    let contactId = inv.contact_id || "";
+
+    /* invoice details */
+    const number = inp("ivNumber", inv.number);
+    const issue = h("input", { type: "date", id: "ivIssue", value: inv.issue_date || "" });
+    const due = h("input", { type: "date", id: "ivDue", value: inv.due_date || "" });
+    const proj = h("select", { id: "ivProject" }, h("option", { value: "" }, "No project"), projList.rows.map((p) => h("option", { value: p.id }, p.title)));
+    proj.value = inv.project_id || "";
+
+    /* line items */
+    const rows = h("div", { class: "items" });
+    const lineTotal = (q, u) => Math.round((Number(String(q).replace(",", ".")) || 0) * Math.round((Number(String(u).replace(/[^\d.]/g, "")) || 0) * 100));
+    const addRow = (it = { description: "", qty: 1, unit_cents: 0 }) => {
+      const desc = h("textarea", { rows: "1", placeholder: "What you did, e.g. Production — 4 songs", "aria-label": "Description" }, it.description);
+      const qty = h("input", { type: "text", inputmode: "decimal", value: String(it.qty ?? 1), "aria-label": "Quantity" });
+      const unit = h("input", { type: "text", inputmode: "decimal", value: centsToInput(it.unit_cents), placeholder: "0.00", "aria-label": "Rate" });
+      const amt = h("span", { class: "item-amt" }, money(lineTotal(qty.value, unit.value)));
+      const row = h("div", { class: "item" }, desc, qty, unit, amt,
+        h("button", { class: "btn btn-sm btn-ghost", type: "button", "aria-label": "Remove line", onclick: () => { row.remove(); queueSave(); } }, "✕"));
+      row._get = () => ({ description: desc.value, qty: qty.value, unit: unit.value });
+      [qty, unit].forEach((el) => el.addEventListener("input", () => { amt.textContent = money(lineTotal(qty.value, unit.value)); }));
+      desc.addEventListener("input", () => fitText(desc));
+      rows.append(row);
+      return desc;
+    };
+    inv.items.forEach((it) => addRow(it));
+    if (!inv.items.length) addRow();
+
+    /* totals */
+    const discount = inp("ivDiscount", centsToInput(inv.discount_cents), { inputmode: "decimal", placeholder: "0" });
+    const taxLabel = inp("ivTaxLabel", inv.tax_label || "Tax");
+    const taxRate = inp("ivTaxRate", inv.tax_bp ? String(inv.tax_bp / 100) : "", { inputmode: "decimal", placeholder: "0" });
+    const totalsBox = h("dl", { class: "money-sum inv-totals" });
+    const drawTotals = (t) => totalsBox.replaceChildren(
+      h("div", {}, h("dt", {}, "Subtotal"), h("dd", {}, money(t.subtotal))),
+      h("div", {}, h("dt", {}, "Discount"), h("dd", {}, t.discount ? "– " + money(t.discount) : money(0))),
+      h("div", {}, h("dt", {}, (taxLabel.value || "Tax") + (taxRate.value ? ` (${taxRate.value}%)` : "")), h("dd", {}, money(t.tax))),
+      h("div", { class: "total" }, h("dt", {}, inv.status === "paid" ? "Total (paid)" : "Total due"), h("dd", {}, money(t.total))));
+    drawTotals(inv.totals);
+
+    const notes = h("textarea", { id: "ivNotes", rows: "4", placeholder: "Payment terms, thank-you note…" }, inv.notes);
+
+    /* live PDF preview */
+    // the fragment hides Chrome's viewer toolbar and fits the page to the frame's width
+    const previewSrc = () => `/api/admin/invoices/${id}/pdf?inline=1&v=${Date.now()}#toolbar=0&navpanes=0&view=FitH`;
+    const frame = h("iframe", { class: "pdf-frame", title: "Invoice preview", src: previewSrc() });
+    const saveState = h("span", { class: "save-state", role: "status", "aria-live": "polite" }, "All changes saved");
+
+    let timer = null, saving = false, pending = false;
+    const payload = () => ({
+      client_name: cName.value, client_company: cCompany.value, client_email: cEmail.value, client_phone: cPhone.value, client_address: cAddr.value,
+      contact_id: contactId || "", number: number.value, issue_date: issue.value, due_date: due.value, project_id: proj.value,
+      items: [...rows.children].map((r) => r._get()), discount: discount.value, tax_label: taxLabel.value, tax_rate: taxRate.value, notes: notes.value,
+    });
+    async function save() {
+      if (saving) { pending = true; return; }
+      saving = true;
+      saveState.textContent = "Saving…";
+      saveState.className = "save-state";
+      try {
+        const r = await api("invoices/" + id, { method: "PATCH", body: payload() });
+        inv = r.invoice;
+        drawTotals(inv.totals);
+        saveState.textContent = "All changes saved";
+        frame.src = previewSrc();
+      } catch (x) { saveState.textContent = x.message; saveState.className = "save-state bad"; }
+      saving = false;
+      if (pending) { pending = false; save(); }
+    }
+    const queueSave = () => { clearTimeout(timer); saveState.textContent = "Editing…"; timer = setTimeout(save, 700); };
+    const editor = h("div", { class: "stack inv-editor", oninput: queueSave, onchange: (e) => { if (e.target !== fill) queueSave(); } },
+      h("section", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Billed to"), fill),
+        h("div", { class: "form-row" }, f("ivName", "Name", cName), f("ivCompany", "Company", cCompany)),
+        h("div", { class: "form-row" }, f("ivEmail", "Email", cEmail), f("ivPhone", "Phone", cPhone)),
+        f("ivAddr", "Address", cAddr)),
+      h("section", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Invoice")),
+        h("div", { class: "form-row tight" }, f("ivNumber", "Number", number), f("ivIssue", "Issued", issue), f("ivDue", "Due", due)),
+        f("ivProject", "Project", proj)),
+      h("section", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, "Items"), h("p", {}, "Description · qty · rate")),
+        h("div", { class: "item item-head", "aria-hidden": "true" }, h("span", {}, "Description"), h("span", {}, "Qty"), h("span", {}, "Rate"), h("span", {}, "Amount"), h("span", {})),
+        rows,
+        h("div", { class: "actions section-gap" }, h("button", { class: "btn btn-sm", type: "button", onclick: () => { addRow().focus(); } }, "+ Add a line"),
+          (ME.lists ? ME.lists.project_types : []).slice(0, 4).map((tp) => h("button", { class: "btn btn-sm btn-ghost", type: "button", onclick: () => { addRow({ description: tp, qty: 1, unit_cents: 0 }); queueSave(); } }, "+ " + tp))),
+        h("div", { class: "form-row tight section-gap" }, f("ivDiscount", `Discount (${ME.currency})`, discount), f("ivTaxLabel", "Tax name", taxLabel), f("ivTaxRate", "Tax %", taxRate)),
+        totalsBox),
+      h("section", { class: "panel" }, h("div", { class: "panel-head" }, h("h2", {}, h("label", { for: "ivNotes" }, "Notes and terms"))), notes));
+
+    const shareAndMail = async () => {
+      if (!cEmail.value) { toast("Add the client's email first.", true); cEmail.focus(); return; }
+      const r = await api(`invoices/${id}/share`, { method: "POST" });
+      const body = `Hi ${(cName.value || "").split(" ")[0] || "there"},\n\nPlease find invoice ${number.value} for ${money(inv.totals.total)}${due.value ? `, due ${dayText(due.value)}` : ""}:\n${r.url}\n\nThank you,\nManuchie`;
+      window.location.href = `mailto:${encodeURIComponent(cEmail.value)}?subject=${encodeURIComponent(`Invoice ${number.value} from Manuchie`)}&body=${encodeURIComponent(body)}`;
+      if (inv.status === "draft") act("invoices/" + id, { status: "sent" }, "Marked as sent.", "PATCH");
+    };
+    const st = inv.display_status;
+    render(
+      h("a", { class: "back", href: "#/invoices" }, "← Invoices"),
+      h("div", { class: "head" },
+        h("div", {}, h("span", { class: "hero-k" }, "Invoice"), h("h1", {}, inv.number),
+          h("p", {}, [inv.client_name || "No client yet", money(inv.totals.total)].join(" · "), " ", invPill(st))),
+        h("div", { class: "actions" }, h("a", { class: "btn btn-primary", href: `/api/admin/invoices/${id}/pdf` }, "Download PDF"))),
+      h("div", { class: "actions action-bar" },
+        st === "draft" ? h("button", { class: "btn", type: "button", onclick: () => act("invoices/" + id, { status: "sent" }, "Marked as sent.", "PATCH") }, "Mark as sent") : null,
+        st === "sent" || st === "overdue" ? h("button", { class: "btn btn-done", type: "button", onclick: () => act(`invoices/${id}/paid`, {}, "Paid — income logged in Money.") }, "Mark as paid") : null,
+        st === "paid" ? h("button", { class: "btn", type: "button", onclick: () => act("invoices/" + id, { status: "sent" }, "Marked unpaid.", "PATCH") }, "Mark unpaid") : null,
+        h("button", { class: "btn btn-terra", type: "button", onclick: shareAndMail }, "Email to client"),
+        h("button", { class: "btn", type: "button", onclick: async () => {
+          const r = await api(`invoices/${id}/share`, { method: "POST" });
+          try { await navigator.clipboard.writeText(r.url); toast("Private link copied — anyone with it can open the PDF."); } catch { toast(r.url); }
+        } }, "Copy link"),
+        h("button", { class: "btn btn-ghost", type: "button", onclick: async () => { const r = await act(`invoices/${id}/duplicate`, {}, "Duplicated as a new draft."); if (r) location.hash = "#/invoices/" + r.id; } }, "Duplicate"),
+        inv.share_token ? h("button", { class: "btn btn-ghost", type: "button", onclick: () => act(`invoices/${id}/share`, undefined, "Link turned off.", "DELETE") }, "Turn off link") : null,
+        st !== "void" && st !== "paid" ? h("button", { class: "btn btn-ghost", type: "button", onclick: () => act("invoices/" + id, { status: "void" }, "Invoice voided.", "PATCH") }, "Void") : null,
+        h("button", { class: "btn btn-danger", type: "button", onclick: async () => {
+          if (!(await confirmAction("Delete this invoice?", `${inv.number} will be removed${inv.status === "paid" ? ", and the payment it logged in Money will be undone" : ""}.`, "Delete invoice"))) return;
+          try { await api("invoices/" + id, { method: "DELETE" }); toast("Invoice deleted."); location.hash = "#/invoices"; } catch (x) { toast(x.message, true); }
+        } }, "Delete")),
+      h("div", { class: "inv-layout section-gap" }, editor,
+        h("aside", { class: "inv-preview" }, h("div", { class: "panel" },
+          h("div", { class: "panel-head" }, h("h2", {}, "Preview"), saveState), frame,
+          h("a", { class: "btn btn-sm inv-open", href: `/api/admin/invoices/${id}/pdf?inline=1`, target: "_blank", rel: "noopener" }, "Open the PDF full size ↗")))));
+    rows.querySelectorAll("textarea").forEach(fitText);
+  }
+
+  /* ---------- Settings: business details and editable lists ---------- */
+  async function businessPanel() {
+    const { business: b } = await api("business");
+    const f = (id, label, input, hint) => h("label", { class: "fld", for: id }, h("span", {}, label), input, hint ? h("small", { class: "muted" }, hint) : null);
+    const i = (id, v, attrs = {}) => h("input", { type: "text", id, value: v ?? "", autocomplete: "off", ...attrs });
+    const t = (id, v, rows, ph) => h("textarea", { id, rows: String(rows), placeholder: ph || "" }, v ?? "");
+    const fields = {
+      name: i("bName", b.name), tagline: i("bTag", b.tagline), legal_name: i("bLegal", b.legal_name, { placeholder: "e.g. Emmanuel Chiwanga" }),
+      email: i("bEmail", b.email || (ME && ME.email) || "", { type: "email" }), phone: i("bPhone", b.phone, { type: "tel" }), website: i("bWeb", b.website),
+      address: t("bAddr", b.address, 2), tax_label: i("bTaxL", b.tax_label, { placeholder: "e.g. VAT number" }), tax_number: i("bTaxN", b.tax_number),
+      bank: t("bBank", b.bank, 4, "Bank, account name, account number, branch / SWIFT, or how to pay you"),
+      terms: t("bTerms", b.terms, 3), prefix: i("bPrefix", b.prefix), due_days: i("bDue", String(b.due_days), { inputmode: "numeric" }),
+      tax_rate: i("bTax", b.tax_bp ? String(b.tax_bp / 100) : "", { inputmode: "decimal", placeholder: "0" }),
+    };
+    const err = h("p", { class: "form-error", role: "alert" });
+    return h("form", { class: "stack", onsubmit: async (e) => {
+      e.preventDefault();
+      err.textContent = "";
+      try { await api("business", { method: "POST", body: Object.fromEntries(Object.entries(fields).map(([k, el]) => [k, el.value])) }); toast("Invoice details saved."); }
+      catch (x) { err.textContent = x.message; }
+    } },
+      h("div", { class: "form-row" }, f("bName", "Name on invoices", fields.name), f("bTag", "Line under your name", fields.tagline)),
+      h("div", { class: "form-row" }, f("bLegal", "Legal or trading name (optional)", fields.legal_name), f("bWeb", "Website", fields.website)),
+      h("div", { class: "form-row" }, f("bEmail", "Email", fields.email), f("bPhone", "Phone", fields.phone)),
+      f("bAddr", "Address", fields.address),
+      h("div", { class: "form-row" }, f("bTaxL", "Tax registration label", fields.tax_label), f("bTaxN", "Tax registration number", fields.tax_number)),
+      f("bBank", "Payment details", fields.bank, "Printed on every invoice."),
+      f("bTerms", "Default notes and terms", fields.terms),
+      h("div", { class: "form-row tight top" }, f("bPrefix", "Invoice number prefix", fields.prefix, "e.g. MAN → MAN-2026-001"), f("bDue", "Payment due after (days)", fields.due_days), f("bTax", "Default tax %", fields.tax_rate)),
+      err, h("div", { class: "actions" }, h("button", { class: "btn btn-primary", type: "submit" }, "Save invoice details")));
+  }
+
+  function listsPanel() {
+    const L = JSON.parse(JSON.stringify((ME && ME.lists) || {}));
+    const chipEditor = (key, title, hint) => {
+      const box = h("div", { class: "chip-edit" });
+      const draw = () => box.replaceChildren(...L[key].map((v, i) => h("span", { class: "chip-e" },
+        h("input", { type: "text", value: v, "aria-label": title + " " + (i + 1), size: String(Math.max(6, v.length)), oninput: (e) => { L[key][i] = e.target.value; } }),
+        h("button", { type: "button", class: "btn btn-sm btn-ghost", "aria-label": "Remove " + v, onclick: () => { L[key].splice(i, 1); draw(); } }, "✕"))));
+      const add = h("input", { type: "text", placeholder: "Add…", "aria-label": "Add to " + title });
+      draw();
+      return h("div", { class: "stack" }, h("div", { class: "panel-head" }, h("h3", { class: "h3" }, title), hint ? h("p", {}, hint) : null), box,
+        h("form", { class: "task-add", onsubmit: (e) => { e.preventDefault(); if (add.value.trim()) { L[key].push(add.value.trim()); add.value = ""; draw(); } } }, add, h("button", { class: "btn btn-sm", type: "submit" }, "Add")));
+    };
+    const stages = Object.entries(L.stage_labels || {}).map(([k, v]) => {
+      const el = h("input", { type: "text", id: "st-" + k, value: v, oninput: (e) => { L.stage_labels[k] = e.target.value; } });
+      return h("label", { class: "fld", for: "st-" + k }, h("span", {}, { lead: "First contact", booked: "Confirmed", in_progress: "Working on it", review: "Nearly done", completed: "Done", on_hold: "Paused", cancelled: "Stopped" }[k]), el);
+    });
+    const err = h("p", { class: "form-error", role: "alert" });
+    return h("div", { class: "stack" },
+      chipEditor("project_types", "Project types", "Shown when you create a project"),
+      chipEditor("expense_categories", "Expense categories"),
+      chipEditor("income_categories", "Income categories"),
+      h("div", { class: "stack" }, h("div", { class: "panel-head" }, h("h3", { class: "h3" }, "Stage names"), h("p", {}, "Rename the stages a project moves through")), h("div", { class: "form-grid" }, stages)),
+      err,
+      h("div", { class: "actions" }, h("button", { class: "btn btn-primary", type: "button", onclick: async () => {
+        err.textContent = "";
+        try { const r = await api("settings/lists", { method: "POST", body: L }); ME.lists = r.lists; toast("Lists saved."); }
+        catch (x) { err.textContent = x.message; }
+      } }, "Save lists")));
+  }
+
   /* ---------- More (phones) ---------- */
   function more() {
     const row = (href, label, sub, attrs = {}) => h("a", { class: "more-row", href, ...attrs }, h("span", {}, h("b", {}, label), h("small", {}, sub)), h("span", { "aria-hidden": "true" }, "›"));
     render(
       head("More", null),
       h("nav", { class: "more", "aria-label": "More sections" },
+        row("#/invoices", "Invoices", "Create, download and send branded PDF invoices"),
         row("#/contacts", "Clients", "Everyone you've worked with, with their email and phone"),
         row("#/analytics", "Analytics", "Visits, clicks and where people come from"),
         row("#/settings", "Settings", "Password, currency and email alerts"),
@@ -1135,7 +1510,7 @@
   /* ---------- Settings ---------- */
   async function settings() {
     loading();
-    const d = await api("settings");
+    const [d, bizForm] = await Promise.all([api("settings"), businessPanel()]);
     const cur = h("input", { type: "password", autocomplete: "current-password", id: "pwCur", required: true });
     const next = h("input", { type: "password", autocomplete: "new-password", id: "pwNew", minlength: "12", required: true });
     const again = h("input", { type: "password", autocomplete: "new-password", id: "pwAgain", required: true });
@@ -1156,7 +1531,7 @@
       err, h("div", { class: "actions" }, h("button", { class: "btn btn-primary", type: "submit" }, "Change password")));
     const em = d.email;
     render(
-      head("Settings", "Account, security and email delivery"),
+      head("Settings", "Account, invoices, your lists and security"),
       h("div", { class: "grid two" },
         panel("Account", null, h("dl", { class: "meta" },
           h("dt", {}, "Signed in as"), h("dd", {}, d.admin.email),
@@ -1181,6 +1556,8 @@
           d.sessions.length > 1 ? h("div", { class: "actions section-gap" }, h("button", { class: "btn", type: "button", onclick: async () => {
             try { await api("settings/sign-out-others", { method: "POST" }); toast("Other devices signed out."); settings().catch(failed); } catch (x) { toast(x.message, true); }
           } }, "Sign out other devices")) : null)),
+      h("div", { class: "section-gap" }, panel("Invoice details", "Your name, contact and payment details as they appear on every invoice", bizForm)),
+      h("div", { class: "section-gap" }, panel("Your lists", "Edit the options used across the dashboard", listsPanel())),
       h("div", { class: "section-gap" }, panel("Studio currency", "Fees, income and expenses are shown in this currency", (() => {
         const sel = h("select", { "aria-label": "Studio currency" }, Object.entries(CURRENCY_NAMES).map(([k, l]) => h("option", { value: k }, `${l} (${k})`)));
         sel.value = (ME && ME.currency) || "USD";
@@ -1214,13 +1591,13 @@
   }
   document.querySelectorAll("[data-logout]").forEach((b) => b.addEventListener("click", logout));
 
-  const TITLES = { overview: "Overview", analytics: "Analytics", enquiries: "Enquiries", projects: "Projects", money: "Money", contacts: "Clients", settings: "Settings", more: "More" };
+  const TITLES = { overview: "Overview", analytics: "Analytics", enquiries: "Enquiries", projects: "Projects", money: "Money", invoices: "Invoices", contacts: "Clients", settings: "Settings", more: "More" };
   async function route() {
     const raw = location.hash.replace(/^#\/?/, "") || "overview";
     const [pathPart, query = ""] = raw.split("?");
     const [name, id] = pathPart.split("/");
     const key = TITLES[name] ? name : "overview";
-    const underMore = ["contacts", "analytics", "settings", "more"].includes(key);
+    const underMore = ["contacts", "analytics", "settings", "more", "invoices"].includes(key);
     document.querySelectorAll("a[data-route]").forEach((a) => (a.dataset.route === key || (a.dataset.route === "more" && underMore)
       ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current")));
     document.title = (TITLES[key] || "Studio") + " — Manuchie";
@@ -1235,6 +1612,8 @@
       else if (key === "projects" && id) await project(id);
       else if (key === "projects") await projects(new URLSearchParams(query));
       else if (key === "money") await moneyPage();
+      else if (key === "invoices" && id) await invoice(id);
+      else if (key === "invoices") await invoices(new URLSearchParams(query));
       else if (key === "more") more();
       else await overview();
       main.style.animation = "none"; void main.offsetWidth; main.style.animation = ""; // replay the page-enter fade

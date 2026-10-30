@@ -6,6 +6,9 @@ import { clean, isEmail, stripUrl, refHost, isBot, deviceOf, toCsv, parseTags, p
 import { hashPassword, verifyPassword, safeEqual, toB64Url, fromB64Url } from "../src/lib/crypto.js";
 import { validateEnquiry, spamReason } from "../src/enquiry.js";
 import { parseEvent } from "../src/collect.js";
+import { readFileSync } from "node:fs";
+import { encodeWinAnsi, textWidth, wrapText, jpegInfo, Pdf } from "../src/lib/pdf.js";
+import { invoiceTotals, formatMoney, formatDay, renderInvoicePdf, DEFAULT_BUSINESS } from "../src/invoices.js";
 
 test("clean strips control and bidi characters, collapses whitespace on one line", () => {
   assert.equal(clean("  Ada\u0000 ‮ Lovelace \n", 50), "Ada Lovelace");
@@ -117,4 +120,84 @@ test("money typed by a person becomes whole cents; nonsense is refused", () => {
 test("dates must be real calendar days", () => {
   assert.ok(isDay("2026-10-30") && isDay("2028-02-29"));
   for (const bad of ["2026-02-30", "2026-13-01", "30/10/2026", "", null]) assert.ok(!isDay(bad), String(bad));
+});
+
+/* ---------- invoices and the PDF writer ---------- */
+
+test("invoice totals: lines, then discount, then tax on what's left", () => {
+  const items = [{ description: "Production", qty: 2, unit_cents: 100000 }, { description: "Mix", qty: 1.5, unit_cents: 20000 }];
+  assert.deepEqual(
+    (({ subtotal, discount, tax, total }) => ({ subtotal, discount, tax, total }))(invoiceTotals({ items: JSON.stringify(items), discount_cents: 10000, tax_bp: 1500 })),
+    { subtotal: 230000, discount: 10000, tax: 33000, total: 253000 });
+  // a discount can't push the invoice below zero, and bad stored JSON counts as no lines
+  assert.equal(invoiceTotals({ items, discount_cents: 999999, tax_bp: 1500 }).total, 0);
+  assert.equal(invoiceTotals({ items: "{oops", discount_cents: 0, tax_bp: 0 }).total, 0);
+  assert.equal(invoiceTotals({ items: [{ qty: 3, unit_cents: 333 }], tax_bp: 1250 }).total, 999 + 125);
+});
+
+test("money and dates read the way a client expects", () => {
+  assert.equal(formatMoney(534750, "USD"), "$5,347.50");
+  assert.equal(formatMoney(-25000, "USD"), "-$250.00");
+  assert.equal(formatMoney(100000, "ZAR"), "R1,000.00");
+  assert.match(formatMoney(100, "XYZ"), /^XYZ 1\.00$/);
+  assert.equal(formatDay("2026-10-30"), "30 Oct 2026");
+  assert.equal(formatDay(null), "—");
+});
+
+test("PDF text: WinAnsi encoding, widths and wrapping", () => {
+  assert.deepEqual(encodeWinAnsi("A€–é"), [65, 0x80, 0x96, 0xe9]);
+  assert.deepEqual(encodeWinAnsi("✓"), [63]);
+  assert.equal(textWidth("Hello", "F1", 10), (722 + 556 + 222 + 222 + 556) / 100);
+  assert.ok(textWidth("WWW", "F2", 12) > textWidth("iii", "F2", 12));
+  const lines = wrapText("one two three four five six seven", "F1", 10, 60);
+  assert.ok(lines.length > 1 && lines.every((l) => textWidth(l, "F1", 10) <= 60), lines.join("|"));
+  assert.deepEqual(wrapText("a\n\nb", "F1", 10, 100), ["a", "", "b"]);
+  // a single word longer than the line is split rather than overflowing
+  assert.ok(wrapText("x".repeat(80), "F1", 10, 50).every((l) => textWidth(l, "F1", 10) <= 50));
+});
+
+test("JPEG size is read from the file header", () => {
+  const info = jpegInfo(new Uint8Array(readFileSync(new URL("../../admin/img/invoice-mark.jpg", import.meta.url))));
+  assert.deepEqual(info, { width: 280, height: 280, components: 3 });
+  assert.throws(() => jpegInfo(new Uint8Array([0x89, 0x50, 0x4e, 0x47])), /not a JPEG/);
+});
+
+/* Every object the cross-reference table lists must start exactly where it says. */
+function checkXref(bytes) {
+  const text = new TextDecoder("latin1").decode(bytes);
+  assert.ok(text.startsWith("%PDF-1.4") && text.trimEnd().endsWith("%%EOF"));
+  const start = Number(text.match(/startxref\s+(\d+)\s+%%EOF\s*$/)[1]);
+  assert.equal(text.slice(start, start + 4), "xref");
+  const [, first, count] = text.slice(start).match(/^xref\s+(\d+) (\d+)/);
+  const rows = text.slice(start).split(/\r?\n/).slice(2, 2 + Number(count));
+  rows.forEach((row, i) => {
+    if (i + Number(first) === 0) return;
+    const off = Number(row.slice(0, 10));
+    assert.ok(text.startsWith(`${i + Number(first)} 0 obj`, off), `object ${i} at ${off}`);
+  });
+  return text;
+}
+
+test("the PDF writer produces a valid file", () => {
+  const doc = new Pdf({ title: "T (1)", author: "A" });
+  const p = doc.page();
+  p.rect(10, 10, 100, 50, { fill: "#000000", radius: 6 }).line(0, 0, 50, 50);
+  p.text("Brackets (and \\ slashes) – €5", 20, 100);
+  checkXref(doc.bytes());
+});
+
+test("an invoice renders to a one-page PDF with the photo, the lines and the totals", () => {
+  const mark = new Uint8Array(readFileSync(new URL("../../admin/img/invoice-mark.jpg", import.meta.url)));
+  const inv = { number: "MAN-2026-007", status: "sent", issue_date: "2026-10-01", due_date: "2026-10-15", currency: "USD",
+    client_name: "Grace Ndlovu", client_company: "Harvest Church", client_email: "grace@example.test", client_address: "12 Samora Machel Ave\nHarare",
+    items: JSON.stringify([{ description: "Album production — 10 songs", qty: 1, unit_cents: 450000 }, { description: "Strings arrangement", qty: 2, unit_cents: 20000 }]),
+    discount_cents: 25000, tax_bp: 1500, tax_label: "VAT", notes: "Thank you!" };
+  const text = checkXref(renderInvoicePdf(inv, { ...DEFAULT_BUSINESS, bank: "CBZ Bank\nAccount 0123" }, mark));
+  assert.equal((text.match(/\/Type \/Page\b/g) || []).length, 1);
+  assert.match(text, /\/Subtype \/Image/);
+  assert.match(text, /\(MAN-2026-007\)/);
+  assert.match(text, /\(\$5,347.50\)/);
+  assert.match(text, /\(Grace Ndlovu\)/);
+  // and without the photo, it still renders
+  checkXref(renderInvoicePdf({ ...inv, status: "paid", paid_at: "2026-10-20T10:00:00Z" }, DEFAULT_BUSINESS, null));
 });
