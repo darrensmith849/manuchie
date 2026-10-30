@@ -124,9 +124,10 @@ class Page {
     for (const line of wrapText(str, font, size, maxWidth)) { if (line) this.text(line, x, yy, { font, size, color }); yy += size * leading; }
     return yy;
   }
-  image(img, x, y, w, h, { circle = false } = {}) {
+  image(img, x, y, w, h, { circle = false, radius = 0 } = {}) {
     this.xobjects.add(img.name);
     this.ops.push("q");
+    if (radius > 0 && !circle) { this.roundPath(x, y, w, h, Math.min(radius, w / 2, h / 2)); this.ops.push("W n"); }
     if (circle) {
       const r = Math.min(w, h) / 2, cx = x + w / 2, cy = this.Y(y + h / 2), k = 0.5523 * r;
       this.ops.push(`${num(cx + r)} ${num(cy)} m`, `${num(cx + r)} ${num(cy + k)} ${num(cx + k)} ${num(cy + r)} ${num(cx)} ${num(cy + r)} c`,

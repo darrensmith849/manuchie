@@ -361,7 +361,12 @@ export function renderInvoicePdf(invRow, biz, markBytes) {
     page.rect(0, 0, PW, 164, { fill: BLACK });
     page.rect(0, 164, PW, 3.5, { fill: TERRA });
     let tx = M;
-    if (mark) { page.rect(M - 3, 39, 78, 78, { fill: "#3a1a11", radius: 39 }); page.image(mark, M, 42, 72, 72, { circle: true }); tx = M + 92; }
+    // the website's share image (what WhatsApp shows for manuchie.org), as a portrait card
+    if (mark) {
+      const ih = 112, iw = Math.round((ih * mark.width) / mark.height);
+      page.image(mark, M, 26, iw, ih, { radius: 10 });
+      tx = M + iw + 22;
+    }
     page.text(biz.name, tx, 78, { font: "F3", size: 28, color: "#ffffff" });
     if (biz.tagline) page.text(biz.tagline.toUpperCase(), tx, 97, { size: 7, color: "#a6a7ac", spacing: 1.5 });
     page.text([biz.website, biz.phone].filter(Boolean).join("   ·   "), tx, 116, { size: 8.5, color: "#d6d6da" });

@@ -158,7 +158,7 @@ test("PDF text: WinAnsi encoding, widths and wrapping", () => {
 
 test("JPEG size is read from the file header", () => {
   const info = jpegInfo(new Uint8Array(readFileSync(new URL("../../admin/img/invoice-mark.jpg", import.meta.url))));
-  assert.deepEqual(info, { width: 280, height: 280, components: 3 });
+  assert.deepEqual(info, { width: 402, height: 480, components: 3 });
   assert.throws(() => jpegInfo(new Uint8Array([0x89, 0x50, 0x4e, 0x47])), /not a JPEG/);
 });
 
